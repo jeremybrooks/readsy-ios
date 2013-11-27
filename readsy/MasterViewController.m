@@ -7,15 +7,18 @@
 //
 
 #import "MasterViewController.h"
-
 #import "DetailViewController.h"
+#import "ReadsyMetadata.h"
+#import "MBProgressHUD.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
+    int _workCounter;
 }
 @end
 
 @implementation MasterViewController
+@synthesize restClient = _restClient;
 
 - (void)awakeFromNib
 {
@@ -30,28 +33,132 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
+    
+    if (!_objects) {
+        NSLog(@"OBJECTS ARRAY IS NULL - WILL LOAD DATA");
+        _objects = [NSMutableArray array];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.restClient loadMetadata:@"/"];
+    }
+    
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"VIEW WILL APPEAR");
+    [[self tableView] reloadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self.restClient cancelAllRequests];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+        NSLog(@"**********************MEMORY WARNING");
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
+//- (void)insertNewObject:(id)sender
+//{
+//    if (!_objects) {
+//        _objects = [[NSMutableArray alloc] init];
+//    }
+//    [_objects insertObject:[NSDate date] atIndex:0];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//}
+
+
+#pragma mark - Dropbox Access
+- (DBRestClient *)restClient {
+    if (!_restClient) {
+        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        _restClient.delegate = self;
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    return _restClient;
 }
+
+/*
+ * Callback when directory metadata has been loaded.
+ */
+- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
+{
+    NSMutableArray *array = [NSMutableArray array];
+    if (metadata.isDirectory) {
+        for (DBMetadata *file in metadata.contents) {
+            [array addObject:file.filename];
+            NSLog(@"%@", file.filename);
+        }
+        _workCounter = (int)array.count;
+        NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+        
+        for (NSString *file in sortedArray) {
+            NSLog(@"********************* Added %@", file);
+            ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:file];
+            [_objects addObject:rm];
+            
+            NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file];
+            [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file] intoPath:tmpFile];
+        }
+        //        for (DBMetadata *file in metadata.contents) {
+        //            NSString *tmpFile = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), file.filename];
+        //            [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file.filename] intoPath:tmpFile];
+        //        }
+    }
+}
+
+- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
+{
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    NSLog(@"Error loading metadata: %@", error);
+}
+
+- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
+       contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
+    _workCounter--;
+    if (_workCounter == 0) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
+    NSError *error;
+    NSString *readsyMetadata = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"There was an error reading the file - %@", error);
+    } else {
+        NSLog(@"***************** '%@'", localPath);
+        //[_objects addObject:[[ReadsyMetadata alloc] initWithMetadata:readsyMetadata]];
+        for (ReadsyMetadata *rm in _objects) {
+            if ([rm.sourceDirectory isEqualToString:[localPath lastPathComponent]]) {
+                [rm setMetadata:readsyMetadata];
+                //                [_objects addObject:rm];
+            }
+        }
+        [[NSFileManager defaultManager] removeItemAtPath:localPath error:&error];
+        if (error) {
+            NSLog(@"Could not delete temp file. %@", error);
+        }
+    }
+    NSLog(@"File loaded into path: %@,%@", localPath, readsyMetadata);
+    [self.tableView reloadData];
+}
+
+- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
+    _workCounter--;
+    if (_workCounter == 0) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }
+    NSLog(@"There was an error loading the file - %@", error);
+}
+
 
 #pragma mark - Table View
 
@@ -68,16 +175,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    
+    ReadsyMetadata *rm = (ReadsyMetadata *) _objects[indexPath.row];
+    if (rm.fileDescription) {
+        cell.textLabel.text = rm.fileDescription;
+        int count = [rm getUnreadCountForDate:[NSDate date]];
+        if (count == 0) {
+            cell.detailTextLabel.text = @"You are all up to date!";
+        } else {
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"There are %d unread items", count];
+        }
+    }
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,25 +206,25 @@
 }
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
+        ReadsyMetadata *object = _objects[indexPath.row];
         self.detailViewController.detailItem = object;
     }
 }
@@ -118,9 +233,11 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
+        ReadsyMetadata *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setTitle:object.fileShortDescription];
     }
 }
+
 
 @end

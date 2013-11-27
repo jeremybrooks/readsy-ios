@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DropboxSDK/DropboxSDK.h>
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <DBRestClientDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, readonly, nonatomic) DBRestClient *restClient;
 
 @end

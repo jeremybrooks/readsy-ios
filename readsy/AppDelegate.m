@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 Jeremy Brooks. All rights reserved.
 //
 
+#import "Secrets.h"
 #import "AppDelegate.h"
+#import <DropboxSDK/DropboxSDK.h>
+
 
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,6 +22,11 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+     DBSession *dbSession = [[DBSession alloc] initWithAppKey:kDbAppKey
+                                                   appSecret:kDbAppSecret
+                                                        root:kDBRootAppFolder];
+    [DBSession setSharedSession:dbSession];
+
     return YES;
 }
 							
@@ -41,11 +50,26 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    NSLog(@"became active");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            NSLog(@"App linked successfully!");
+            // At this point you can start making API calls
+        } else {
+            NSLog(@"App was not linked. Crap.");
+        }
+        return YES;
+    }
+    // Add whatever other url handling code your app requires here
+    return NO;
 }
 
 @end

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F182680183DA7130064F7F8 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F18267F183DA7130064F7F8 /* DropboxSDK.framework */; };
+		7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182681183DA72C0064F7F8 /* Security.framework */; };
+		7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182683183DA7300064F7F8 /* QuartzCore.framework */; };
+		7F1F515C1840405C00E0FF59 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */; };
+		7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */; };
+		7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4D53181840098E0043A25A /* ReadsyMetadata.m */; };
 		7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AB183D67A300365006 /* Foundation.framework */; };
 		7F5AB5AE183D67A300365006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AD183D67A300365006 /* CoreGraphics.framework */; };
 		7F5AB5B0183D67A300365006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AF183D67A300365006 /* UIKit.framework */; };
@@ -23,6 +29,8 @@
 		7F5AB5D3183D67A300365006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AF183D67A300365006 /* UIKit.framework */; };
 		7F5AB5DB183D67A300365006 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F5AB5D9183D67A300365006 /* InfoPlist.strings */; };
 		7F5AB5DD183D67A300365006 /* readsyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5DC183D67A300365006 /* readsyTests.m */; };
+		7F5AB5E8183D6F0B00365006 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5E7183D6F0B00365006 /* WelcomeViewController.m */; };
+		7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCAE4CE183E7744000C2820 /* Secrets.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +44,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F18267F183DA7130064F7F8 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		7F182681183DA72C0064F7F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7F182683183DA7300064F7F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7F182685183DCF4F0064F7F8 /* Secrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		7F1F515A1840405C00E0FF59 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyEntry.h; sourceTree = "<group>"; };
+		7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyEntry.m; sourceTree = "<group>"; };
+		7F4D53171840098E0043A25A /* ReadsyMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyMetadata.h; sourceTree = "<group>"; };
+		7F4D53181840098E0043A25A /* ReadsyMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyMetadata.m; sourceTree = "<group>"; };
 		7F5AB5A8183D67A300365006 /* readsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F5AB5AB183D67A300365006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7F5AB5AD183D67A300365006 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,6 +76,9 @@
 		7F5AB5D8183D67A300365006 /* readsyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "readsyTests-Info.plist"; sourceTree = "<group>"; };
 		7F5AB5DA183D67A300365006 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F5AB5DC183D67A300365006 /* readsyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = readsyTests.m; sourceTree = "<group>"; };
+		7F5AB5E6183D6F0B00365006 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		7F5AB5E7183D6F0B00365006 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		7FCAE4CE183E7744000C2820 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */,
+				7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */,
+				7F182680183DA7130064F7F8 /* DropboxSDK.framework in Frameworks */,
 				7F5AB5AE183D67A300365006 /* CoreGraphics.framework in Frameworks */,
 				7F5AB5B0183D67A300365006 /* UIKit.framework in Frameworks */,
 				7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */,
@@ -106,6 +130,9 @@
 		7F5AB5AA183D67A300365006 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F182683183DA7300064F7F8 /* QuartzCore.framework */,
+				7F182681183DA72C0064F7F8 /* Security.framework */,
+				7F18267F183DA7130064F7F8 /* DropboxSDK.framework */,
 				7F5AB5AB183D67A300365006 /* Foundation.framework */,
 				7F5AB5AD183D67A300365006 /* CoreGraphics.framework */,
 				7F5AB5AF183D67A300365006 /* UIKit.framework */,
@@ -119,14 +146,24 @@
 			children = (
 				7F5AB5BA183D67A300365006 /* AppDelegate.h */,
 				7F5AB5BB183D67A300365006 /* AppDelegate.m */,
-				7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */,
-				7F5AB5C0183D67A300365006 /* Main_iPad.storyboard */,
 				7F5AB5C3183D67A300365006 /* MasterViewController.h */,
 				7F5AB5C4183D67A300365006 /* MasterViewController.m */,
 				7F5AB5C6183D67A300365006 /* DetailViewController.h */,
 				7F5AB5C7183D67A300365006 /* DetailViewController.m */,
+				7F5AB5E6183D6F0B00365006 /* WelcomeViewController.h */,
+				7F5AB5E7183D6F0B00365006 /* WelcomeViewController.m */,
+				7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */,
+				7F5AB5C0183D67A300365006 /* Main_iPad.storyboard */,
 				7F5AB5C9183D67A300365006 /* Images.xcassets */,
 				7F5AB5B2183D67A300365006 /* Supporting Files */,
+				7F182685183DCF4F0064F7F8 /* Secrets.h */,
+				7FCAE4CE183E7744000C2820 /* Secrets.m */,
+				7F4D53171840098E0043A25A /* ReadsyMetadata.h */,
+				7F4D53181840098E0043A25A /* ReadsyMetadata.m */,
+				7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */,
+				7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */,
+				7F1F515A1840405C00E0FF59 /* MBProgressHUD.h */,
+				7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */,
 			);
 			path = readsy;
 			sourceTree = "<group>";
@@ -258,10 +295,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F5AB5E8183D6F0B00365006 /* WelcomeViewController.m in Sources */,
 				7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */,
+				7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */,
 				7F5AB5C5183D67A300365006 /* MasterViewController.m in Sources */,
 				7F5AB5B8183D67A300365006 /* main.m in Sources */,
 				7F5AB5C8183D67A300365006 /* DetailViewController.m in Sources */,
+				7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */,
+				7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */,
+				7F1F515C1840405C00E0FF59 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +440,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jeremyb/development/readsy-ios/readsy",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
 				INFOPLIST_FILE = "readsy/readsy-Info.plist";
@@ -411,6 +457,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jeremyb/development/readsy-ios/readsy",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
 				INFOPLIST_FILE = "readsy/readsy-Info.plist";
@@ -480,6 +530,7 @@
 				7F5AB5E2183D67A300365006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F5AB5E3183D67A300365006 /* Build configuration list for PBXNativeTarget "readsyTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +539,7 @@
 				7F5AB5E5183D67A300365006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
