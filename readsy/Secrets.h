@@ -6,5 +6,8 @@
 //  Copyright (c) 2013 Jeremy Brooks. All rights reserved.
 //
 
+// the Secrets.m file is not included in source control.
+// to make the program work, you need to create Secrets.m
+// and add the correct values from your Dropbox application
 extern NSString *const kDbAppKey;
 extern NSString *const kDbAppSecret;
