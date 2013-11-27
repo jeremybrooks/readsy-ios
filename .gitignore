@@ -19,3 +19,7 @@ DerivedData
 
 #CocoaPods
 Pods
+
+#Secrets
+Secrets.h
+Secrets.m
