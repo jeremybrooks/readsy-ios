@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WelcomeViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *libraryButton;
 @end

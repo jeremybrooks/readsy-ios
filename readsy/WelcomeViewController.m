@@ -68,11 +68,11 @@ static NSString * const SEGUE_ID_MAIN_VIEW = @"mainViewSegue";
     if ([[DBSession sharedSession]isLinked]) {
         self.message.text = @"readsy is connected to your Dropbox account.\n\nTo copy readsy content to your Dropbox account, you can use the desktop readsy app, or copy files from your desktop.\n\nTo learn more, visit the readsy home page.";
         [self.actionButton setTitle:@"Unlink Dropbox" forState:UIControlStateNormal];
-        [self.letsReadButton setEnabled:YES];
+        [self.libraryButton setEnabled:YES];
     } else {
         self.message.text = @"readsy is a program to help you read something every day.\n\nTo get started, lets connect readsy to your Dropbox account so it can find some things to read!";
         [self.actionButton setTitle:@"Link Dropbox" forState:UIControlStateNormal];
-        [self.letsReadButton setEnabled:NO];
+        [self.libraryButton setEnabled:NO];
     }
 }
 
