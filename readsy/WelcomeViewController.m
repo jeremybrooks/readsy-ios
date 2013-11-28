@@ -33,14 +33,17 @@ static NSString * const SEGUE_ID_MAIN_VIEW = @"mainViewSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        if ([[DBSession sharedSession] isLinked]) {
+            [self performSegueWithIdentifier:SEGUE_ID_MAIN_VIEW sender:self];
+        }
+    
 //    [[NSNotificationCenter defaultCenter] addObserver:self
 //                                             selector:@selector(applicationDidBecomeActive:)
 //                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
 
-    if ([[DBSession sharedSession] isLinked]) {
-        [self performSegueWithIdentifier:SEGUE_ID_MAIN_VIEW sender:self];
-    }
+    
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {

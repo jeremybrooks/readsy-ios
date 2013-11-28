@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *headingLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *isReadSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *isReadSwitchLabel;
 
 @property (strong, readonly, nonatomic) DBRestClient *restClient;
 @property (strong, readonly, nonatomic) NSDateFormatter *mmddFormat;

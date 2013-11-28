@@ -50,7 +50,6 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"VIEW WILL APPEAR");
     [[self tableView] reloadData];
 }
 
@@ -65,7 +64,7 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-        NSLog(@"**********************MEMORY WARNING");
+    NSLog(@"**********************MEMORY WARNING");
 }
 
 //- (void)insertNewObject:(id)sender
@@ -97,13 +96,11 @@
     if (metadata.isDirectory) {
         for (DBMetadata *file in metadata.contents) {
             [array addObject:file.filename];
-            NSLog(@"%@", file.filename);
         }
         _workCounter = (int)array.count;
         NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
         
         for (NSString *file in sortedArray) {
-            NSLog(@"********************* Added %@", file);
             ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:file];
             [_objects addObject:rm];
             
@@ -120,6 +117,7 @@
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
 {
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [self showErrorMessage];
     NSLog(@"Error loading metadata: %@", error);
 }
 
@@ -133,13 +131,11 @@
     NSString *readsyMetadata = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
         NSLog(@"There was an error reading the file - %@", error);
+        [self showErrorMessage];
     } else {
-        NSLog(@"***************** '%@'", localPath);
-        //[_objects addObject:[[ReadsyMetadata alloc] initWithMetadata:readsyMetadata]];
         for (ReadsyMetadata *rm in _objects) {
             if ([rm.sourceDirectory isEqualToString:[localPath lastPathComponent]]) {
                 [rm setMetadata:readsyMetadata];
-                //                [_objects addObject:rm];
             }
         }
         [[NSFileManager defaultManager] removeItemAtPath:localPath error:&error];
@@ -147,7 +143,6 @@
             NSLog(@"Could not delete temp file. %@", error);
         }
     }
-    NSLog(@"File loaded into path: %@,%@", localPath, readsyMetadata);
     [self.tableView reloadData];
 }
 
@@ -157,8 +152,24 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
     NSLog(@"There was an error loading the file - %@", error);
+    [self showErrorMessage];
 }
 
+- (void)showErrorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"There was an error while communicating with Dropbox. There may be a network problem."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    NSLog(@"IN MASTER VIEW: shouldHideViewController");
+    return NO;
+}
 
 #pragma mark - Table View
 
@@ -189,21 +200,16 @@
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return NO;
-}
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [_objects removeObjectAtIndex:indexPath.row];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+//    }
+//}
 
 /*
  // Override to support rearranging the table view.

@@ -69,11 +69,19 @@
 
     if (self.detailItem) {
         self.dateLabel.text = [self.shortFormat stringFromDate:self.detailItem.date];
+        self.title = self.detailItem.fileShortDescription;
+    } else {
+        self.title = @"";
     }
     if (self.entryItem) {
         self.headingLabel.text = self.entryItem.heading;
         self.contentTextView.text = self.entryItem.content;
+        self.isReadSwitch.hidden = NO;
+        self.isReadSwitchLabel.hidden = NO;
         self.isReadSwitch.on = [self.detailItem isRead:self.detailItem.date];
+    } else {
+        self.isReadSwitch.hidden = YES;
+        self.isReadSwitchLabel.hidden = YES;
     }
 }
 
@@ -114,6 +122,8 @@
 
 - (void)navigateNumberOfDays:(int)days
 {
+    // only navigate if there is a detail item
+    if (self.detailItem) {
     NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
     dayComponent.day = days;
     
@@ -123,7 +133,7 @@
                                                   options:0];
     _detailItem.date = newDate;
     [self loadDataForItem];
-
+    }
 }
 
 - (IBAction)swipeLeft:(id)sender
@@ -181,6 +191,7 @@
     NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
         NSLog(@"There was an error reading the file - %@", error);
+        [self showErrorMessage];
     } else {
         self.entryItem = [[ReadsyEntry alloc] initWithString:entry];
         
@@ -195,6 +206,7 @@
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     NSLog(@"There was an error loading the file - %@", error);
+    [self showErrorMessage];
 }
 
 - (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
@@ -213,7 +225,7 @@
 {
     NSLog(@"Metadata load failed with error %@", error);
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    //todo show error message
+    [self showErrorMessage];
 }
 
 
@@ -231,14 +243,29 @@
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     NSLog(@"File upload failed with error - %@", error);
+    [self showErrorMessage];
 }
 
+- (void)showErrorMessage
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"There was an error while communicating with Dropbox. There may be a network problem."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+//-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+//{
+//    return NO;
+//}
 
 #pragma mark - Split view
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = NSLocalizedString(@"Master", @"Master");
+    barButtonItem.title = NSLocalizedString(@"Library", @"Library");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }
