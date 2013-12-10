@@ -13,18 +13,18 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate, DBRestClientDelegate>
 
-@property (strong, nonatomic) ReadsyMetadata *detailItem;
-@property (strong, nonatomic) ReadsyEntry *entryItem;
-
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headingLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *isReadSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *isReadSwitchLabel;
 
-@property (strong, readonly, nonatomic) DBRestClient *restClient;
-@property (strong, readonly, nonatomic) NSDateFormatter *mmddFormat;
-@property (strong, readonly, nonatomic) NSDateFormatter *shortFormat;
+@property (strong, nonatomic) ReadsyMetadata *detailItem;
+@property (strong, nonatomic) ReadsyEntry *entryItem;
+@property (strong, nonatomic) NSMutableParagraphStyle *paragraphStyle;
+@property (strong, nonatomic) DBRestClient *restClient;
+@property (strong, nonatomic) NSDateFormatter *mmddFormat;
+@property (strong, nonatomic) NSDateFormatter *shortFormat;
 
 - (IBAction)setReadFlag:(id)sender;
 - (IBAction)swipeLeft:(id)sender;

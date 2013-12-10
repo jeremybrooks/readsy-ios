@@ -48,6 +48,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dlc-AK-U4i">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="5mh-yz-zsR">
+                            <connections>
+                                <segue destination="LNe-y0-PvG" kind="push" identifier="settingsSegue" id="NG7-WS-1bm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Library" id="RHW-WG-zpe">
                             <connections>
                                 <segue destination="pGg-6v-bdr" kind="push" identifier="mainViewSegue" id="qbY-mN-rio"/>
@@ -78,6 +83,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-249" y="50"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="y37-ff-eX1">
+            <objects>
+                <viewController id="LNe-y0-PvG" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6lH-DJ-BZO"/>
+                        <viewControllerLayoutGuide type="bottom" id="m0C-Tc-2y9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fts-UA-lPZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text display font size" lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="tdA-qY-pNv">
+                                <rect key="frame" x="20" y="85" width="280" height="59"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="rjS-pL-9uf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="9" minValue="9" maxValue="36" translatesAutoresizingMaskIntoConstraints="NO" id="KOn-6X-J0P">
+                                <rect key="frame" x="18" y="152" width="284" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeFontSize:" destination="LNe-y0-PvG" eventType="valueChanged" id="YJm-VU-oUh"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="KOn-6X-J0P" secondAttribute="trailing" constant="20" symbolic="YES" id="421-j1-wGq"/>
+                            <constraint firstItem="tdA-qY-pNv" firstAttribute="top" secondItem="6lH-DJ-BZO" secondAttribute="bottom" constant="21" id="DU4-go-AsR"/>
+                            <constraint firstItem="KOn-6X-J0P" firstAttribute="top" secondItem="tdA-qY-pNv" secondAttribute="bottom" constant="8" symbolic="YES" id="E23-0j-XnM"/>
+                            <constraint firstItem="KOn-6X-J0P" firstAttribute="trailing" secondItem="tdA-qY-pNv" secondAttribute="trailing" id="O3a-cI-RNS"/>
+                            <constraint firstItem="KOn-6X-J0P" firstAttribute="leading" secondItem="tdA-qY-pNv" secondAttribute="leading" id="aWf-FO-nTt"/>
+                            <constraint firstItem="KOn-6X-J0P" firstAttribute="leading" secondItem="fts-UA-lPZ" secondAttribute="leading" constant="20" symbolic="YES" id="jn0-zJ-Zk1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3gp-wC-N3O"/>
+                    <connections>
+                        <outlet property="fontLabel" destination="tdA-qY-pNv" id="0xW-1T-zF8"/>
+                        <outlet property="slider" destination="KOn-6X-J0P" id="KUb-aG-Epn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lGh-YO-IxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="785" y="-663"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
@@ -151,7 +206,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CgR-PN-9So">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="loading..." lineBreakMode="middleTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="CgR-PN-9So">
                                 <rect key="frame" x="20" y="96" width="280" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -169,7 +224,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>

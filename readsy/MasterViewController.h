@@ -14,6 +14,8 @@
 @interface MasterViewController : UITableViewController <DBRestClientDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (strong, readonly, nonatomic) DBRestClient *restClient;
+@property (strong, nonatomic) DBRestClient *restClient;
+@property (strong, nonatomic) NSMutableArray *objects;
+@property (nonatomic) int workCounter;
 
 @end

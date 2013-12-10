@@ -8,6 +8,7 @@
 
 #import "Secrets.h"
 #import "WelcomeViewController.h"
+#import "SettingsViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
 
 @interface WelcomeViewController ()
@@ -33,20 +34,20 @@ static NSString * const SEGUE_ID_MAIN_VIEW = @"mainViewSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        if ([[DBSession sharedSession] isLinked]) {
-            [self performSegueWithIdentifier:SEGUE_ID_MAIN_VIEW sender:self];
-        }
+//    if ([[DBSession sharedSession] isLinked]) {
+//        [self performSegueWithIdentifier:SEGUE_ID_MAIN_VIEW sender:self];
+//    }
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(applicationDidBecomeActive:)
-//                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
-
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];   
 }
 
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [self updateDisplay];
 }
 
@@ -57,14 +58,14 @@ static NSString * const SEGUE_ID_MAIN_VIEW = @"mainViewSegue";
  * In either case, we want to segue to the master view, but only if this view is
  * currently visible.
  */
-//- (void)applicationDidBecomeActive:(NSNotification *)notification
-//{
-//    if ([[DBSession sharedSession] isLinked]) {
-//        if (self.isViewLoaded && self.view.window){
-//            [self performSegueWithIdentifier:SEGUE_ID_MAIN_VIEW sender:self];
-//        }
-//    }
-//}
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    if ([[DBSession sharedSession] isLinked]) {
+        if (self.isViewLoaded && self.view.window){
+            [self performSegueWithIdentifier:SEGUE_ID_MAIN_VIEW sender:self];
+        }
+    }
+}
 
 - (void)updateDisplay
 {
@@ -95,9 +96,9 @@ static NSString * const SEGUE_ID_MAIN_VIEW = @"mainViewSegue";
     [self updateDisplay];
 }
 
-//- (void)dealloc
-//{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

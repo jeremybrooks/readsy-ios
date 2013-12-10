@@ -9,16 +9,17 @@
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
 #import "MasterViewController.h"
+#import "AppDelegate.h"
 
 @interface DetailViewController ()
+@property (nonatomic) CGFloat lastFactor;
+@property (nonatomic) CGFloat fontSize;
+@property (nonatomic) int fontResizeCount;
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
 
 @implementation DetailViewController
-@synthesize restClient = _restClient;
-@synthesize shortFormat = _shortFormat;
-@synthesize mmddFormat = _mmddFormat;
 
 #pragma mark - Managing the detail item
 
@@ -26,47 +27,29 @@
 {
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
-        NSLog(@"New detail item");
-        // Update the view.
-        [self loadDataForItem];
+        //        NSLog(@"New detail item");
+        //        // Update the view.
+        //        [self loadDataForItem];
     }
-
+    
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
+    }
 }
 
 - (void) loadDataForItem
 {
     NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
     NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
+    
+    [AppDelegate setActivityIndicatorsVisible:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.restClient loadFile:filename intoPath:tmpFile];
-}
-
-- (NSDateFormatter *) shortFormat
-{
-    if (!_shortFormat) {
-        _shortFormat = [[NSDateFormatter alloc] init];
-        [_shortFormat setDateFormat:@"EEEE MMMM dd, yyyy"];
-    }
-    return _shortFormat;
-}
-
-- (NSDateFormatter *) mmddFormat
-{
-    if (!_mmddFormat) {
-        _mmddFormat = [[NSDateFormatter alloc] init];
-        [_mmddFormat setDateFormat:@"MMdd"];
-    }
-    return _mmddFormat;
 }
 
 
 - (void)configureView
 {
-    // Update the user interface for the detail item.
-
     if (self.detailItem) {
         self.dateLabel.text = [self.shortFormat stringFromDate:self.detailItem.date];
         self.title = self.detailItem.fileShortDescription;
@@ -74,8 +57,11 @@
         self.title = @"";
     }
     if (self.entryItem) {
-        self.headingLabel.text = self.entryItem.heading;
+        self.contentTextView.font = [UIFont fontWithName:@"Helvetica" size:self.fontSize];
         self.contentTextView.text = self.entryItem.content;
+        [self.contentTextView scrollRangeToVisible:NSMakeRange(0, 1)];
+        
+        self.headingLabel.text = self.entryItem.heading;
         self.isReadSwitch.hidden = NO;
         self.isReadSwitchLabel.hidden = NO;
         self.isReadSwitch.on = [self.detailItem isRead:self.detailItem.date];
@@ -88,20 +74,45 @@
 
 - (void)viewDidLoad
 {
+    if (!self.restClient) {
+        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        self.restClient.delegate = self;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *size = [defaults objectForKey:@"kReadsyFontSize"];
+    
+    if (size) {
+        self.fontSize = [size floatValue];
+    } else {
+        self.fontSize = 14.0;
+        [defaults setObject:[NSNumber numberWithFloat:self.fontSize] forKey:@"kReadsyFontSize"];
+    }
+    
     [self becomeFirstResponder];
     [super viewDidLoad];
-    _mmddFormat = [[NSDateFormatter alloc] init];
-    [_mmddFormat setDateFormat:@"MMdd"];
+    self.mmddFormat = [[NSDateFormatter alloc] init];
+    [self.mmddFormat setDateFormat:@"MMdd"];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    self.paragraphStyle.alignment = NSTextAlignmentNatural;
+    self.shortFormat = [[NSDateFormatter alloc] init];
+    [self.shortFormat setDateFormat:@"EEEE MMMM d, yyyy"];
+    [self loadDataForItem];
     [self configureView];
 }
+
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self resignFirstResponder];
+    [AppDelegate stopAllActivityIndicators];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self.restClient cancelAllRequests];
     [super viewWillDisappear:animated];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -113,26 +124,27 @@
 - (IBAction)setReadFlag:(id)sender
 {
     [self.detailItem setReadFlag:self.isReadSwitch.on forDate:self.detailItem.date];
+    [AppDelegate setActivityIndicatorsVisible:YES];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
     NSLog(@"Loading metadata for file %@", remoteFile);
-    [_restClient loadMetadata:remoteFile];
+    [self.restClient loadMetadata:remoteFile];
 }
 
 - (void)navigateNumberOfDays:(int)days
 {
     // only navigate if there is a detail item
     if (self.detailItem) {
-    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-    dayComponent.day = days;
-    
-    NSCalendar *theCalendar = [NSCalendar currentCalendar];
-    NSDate *newDate = [theCalendar dateByAddingComponents:dayComponent
-                                                   toDate:_detailItem.date
-                                                  options:0];
-    _detailItem.date = newDate;
-    [self loadDataForItem];
+        NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+        dayComponent.day = days;
+        
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDate *newDate = [theCalendar dateByAddingComponents:dayComponent
+                                                       toDate:_detailItem.date
+                                                      options:0];
+        _detailItem.date = newDate;
+        [self loadDataForItem];
     }
 }
 
@@ -164,11 +176,16 @@
     }
 }
 
+/* Handle shake */
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    _detailItem.date = [NSDate date];
-    [self loadDataForItem];
+    if (motion == UIEventSubtypeMotionShake) {
+        _detailItem.date = [NSDate date];
+        [self loadDataForItem];
+    }
 }
+
+
 
 - (BOOL)canBecomeFirstResponder
 {
@@ -176,16 +193,19 @@
 }
 
 #pragma mark - Dropbox Access
-- (DBRestClient *)restClient {
-    if (!_restClient) {
-        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        _restClient.delegate = self;
-    }
-    return _restClient;
-}
+//- (DBRestClient *)restClient {
+//    if (!_restClient) {
+//        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+//        _restClient.delegate = self;
+//    }
+//    [self.navigationItem backBarButtonItem].enabled = NO;
+//    return _restClient;
+//}
 
+/* File was successfully loaded from Dropbox */
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
+    [AppDelegate setActivityIndicatorsVisible:NO];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     NSError *error;
     NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
@@ -201,34 +221,42 @@
         }
     }
     [self configureView];
+//    [self.navigationItem backBarButtonItem].enabled = YES;
 }
 
+/* File load failed */
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
+    [AppDelegate setActivityIndicatorsVisible:NO];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     NSLog(@"There was an error loading the file - %@", error);
+//    [self.navigationItem backBarButtonItem].enabled = YES;
     [self showErrorMessage];
 }
 
+/* Loaded metadata, so attempt to upload and replace metadata */
 - (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
 {
     NSLog(@"Metadata loaded; uploading new metadata file replacing rev %@", metadata.rev);
     NSString *tmpFile = [NSString stringWithFormat:@"%@metadata", NSTemporaryDirectory()];
     NSData *properties = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
     [properties writeToFile:tmpFile atomically:YES];
-    [_restClient uploadFile:@"metadata"
-                     toPath:[NSString stringWithFormat:@"/%@/", self.detailItem.sourceDirectory]
-              withParentRev:metadata.rev
-                   fromPath:tmpFile];
+    [self.restClient uploadFile:@"metadata"
+                         toPath:[NSString stringWithFormat:@"/%@/", self.detailItem.sourceDirectory]
+                  withParentRev:metadata.rev
+                       fromPath:tmpFile];
 }
 
+/* Load metadata failed */
 - (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error
 {
     NSLog(@"Metadata load failed with error %@", error);
+    [AppDelegate setActivityIndicatorsVisible:NO];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [self.navigationItem backBarButtonItem].enabled = YES;
     [self showErrorMessage];
 }
 
-
+/* Uploaded new metadata */
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     
@@ -238,11 +266,14 @@
     if (error) {
         NSLog(@"Could not delete temp file. %@", srcPath);
     }
+//    [self.navigationItem backBarButtonItem].enabled = YES;
+    [AppDelegate setActivityIndicatorsVisible:NO];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     NSLog(@"File upload failed with error - %@", error);
+//    [self.navigationItem backBarButtonItem].enabled = YES;
     [self showErrorMessage];
 }
 
@@ -256,10 +287,11 @@
     [alert show];
 }
 
-//-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-//{
-//    return NO;
-//}
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return [[DBSession sharedSession] isLinked];
+    //    return NO;
+}
 
 #pragma mark - Split view
 
