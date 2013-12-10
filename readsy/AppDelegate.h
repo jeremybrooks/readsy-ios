@@ -12,4 +12,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
++ (void)setActivityIndicatorsVisible:(BOOL)visible;
++ (void)stopAllActivityIndicators;
 @end
