@@ -8,7 +8,6 @@
 
 #import "Secrets.h"
 #import "WelcomeViewController.h"
-#import "SettingsViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
 
 @interface WelcomeViewController ()

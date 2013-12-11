@@ -200,6 +200,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="0dg-9a-t9m">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="9zn-E8-lfx"/>
                         <barButtonItem key="rightBarButtonItem" title="Library" id="hE9-CK-ggq">
                             <connections>
                                 <segue destination="7bK-jq-Zjz" kind="push" identifier="mainViewSegue" id="twX-Ow-QrE"/>

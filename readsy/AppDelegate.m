@@ -8,7 +8,9 @@
 
 #import "Secrets.h"
 #import "AppDelegate.h"
+#import "DropboxSetupViewController.h"
 #import <DropboxSDK/DropboxSDK.h>
+
 
 
 @implementation AppDelegate

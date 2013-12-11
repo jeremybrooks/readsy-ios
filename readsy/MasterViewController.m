@@ -32,38 +32,112 @@
     //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     //self.navigationItem.rightBarButtonItem = addButton;
     
-    // create Dropbox client
-    if (!self.restClient) {
-        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        self.restClient.delegate = self;
-        NSLog(@"Dropbox client created");
-    }
-
     if (!self.objects) {
-        NSLog(@"OBJECTS ARRAY IS NULL - WILL LOAD DATA");
         self.objects = [NSMutableArray array];
-        
-        [AppDelegate setActivityIndicatorsVisible:YES];
-        
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        [self.restClient loadMetadata:@"/"];
     }
-    
+    [self.refreshControl addTarget:self
+                            action:@selector(refresh)
+                  forControlEvents:UIControlEventValueChanged];
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
+
+/*
+ * When the view is ready to appear, call initDropbox.
+ * This will ensure that a dropbox client is created and the view is set up
+ * in the case where the user comes back from settings.
+ */
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"view will appear");
+    [super viewWillAppear:animated];
+    [self initDropbox];
+}
+
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [[self tableView] reloadData];
 }
 
+- (void)initDropbox
+{
+    if ([[DBSession sharedSession] isLinked]) {
+        if (!self.restClient) {
+            self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+            self.restClient.delegate = self;
+            NSLog(@"Dropbox client created");
+        }
+        
+        if (self.objects.count == 0) {
+            [self refresh];
+            //            [AppDelegate setActivityIndicatorsVisible:YES];
+            //
+            //            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            //            [self.restClient loadMetadata:@"/"];
+        }
+    } else {
+        // Dropbox is not linked
+        // if the user unlinked the account, we will need to get rid of any dropbox client,
+        // clear out the data model,
+        // and refresh the table view
+        [self.refreshControl endRefreshing];
+        if (self.restClient) {
+            self.restClient = nil;
+        }
+        if (self.objects.count > 0) {
+            [self.objects removeAllObjects];
+            [[self tableView] reloadData];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Not Linked"
+                                                        message:@"There is no Dropbox account linked with readsy. To link your Dropbox account, tap Settings."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+    
+}
+
+- (void)refresh
+{
+    if ([[DBSession sharedSession] isLinked]) {
+        [self.objects removeAllObjects];
+        [AppDelegate setActivityIndicatorsVisible:YES];
+        
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.restClient loadMetadata:@"/"];
+    } else {
+        // Dropbox is not linked
+        // if the user unlinked the account, we will need to get rid of any dropbox client,
+        // clear out the data model,
+        // and refresh the table view
+        [self.refreshControl endRefreshing];
+        if (self.restClient) {
+            self.restClient = nil;
+        }
+        if (self.objects.count > 0) {
+            [self.objects removeAllObjects];
+            [[self tableView] reloadData];
+        }
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Not Linked"
+                                                        message:@"There is no Dropbox account linked with readsy. To link your Dropbox account, tap Settings."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [self.refreshControl endRefreshing];
     [AppDelegate stopAllActivityIndicators];
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self.restClient cancelAllRequests];
     [super viewWillDisappear:animated];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -72,16 +146,16 @@
     NSLog(@"**********************MEMORY WARNING");
 }
 
-
-#pragma mark - Dropbox Access
-//- (DBRestClient *)restClient {
-//    if (!_restClient) {
-//        _restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-//        _restClient.delegate = self;
-//    }
-//    return _restClient;
+//- (void)refresh
+//{
+//    [self.objects removeAllObjects];
+//    [AppDelegate setActivityIndicatorsVisible:YES];
+//
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [self.restClient loadMetadata:@"/"];
 //}
 
+#pragma mark - Dropbox Access
 /*
  * Callback when directory metadata has been loaded.
  */
@@ -104,15 +178,12 @@
             [AppDelegate setActivityIndicatorsVisible:YES];
             [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file] intoPath:tmpFile];
         }
-        //        for (DBMetadata *file in metadata.contents) {
-        //            NSString *tmpFile = [NSString stringWithFormat:@"%@/%@", NSTemporaryDirectory(), file.filename];
-        //            [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file.filename] intoPath:tmpFile];
-        //        }
     }
 }
 
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
 {
+    [self.refreshControl endRefreshing];
     [AppDelegate setActivityIndicatorsVisible:NO];
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self showErrorMessage];
@@ -124,6 +195,7 @@
     [AppDelegate setActivityIndicatorsVisible:NO];
     self.workCounter--;
     if (self.workCounter == 0) {
+        [self.refreshControl endRefreshing];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
     NSError *error;

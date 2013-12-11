@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Jeremy Brooks. All rights reserved.
 //
 
-#import "SettingsViewController.h"
+#import "FontSizeViewController.h"
 
-@interface SettingsViewController ()
+@interface FontSizeViewController ()
 
 @end
 
-@implementation SettingsViewController
+@implementation FontSizeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UIViewController
+@interface FontSizeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *fontLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 

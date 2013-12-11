@@ -48,16 +48,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dlc-AK-U4i">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="5mh-yz-zsR">
-                            <connections>
-                                <segue destination="LNe-y0-PvG" kind="push" identifier="settingsSegue" id="NG7-WS-1bm"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Library" id="RHW-WG-zpe">
-                            <connections>
-                                <segue destination="pGg-6v-bdr" kind="push" identifier="mainViewSegue" id="qbY-mN-rio"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="5mh-yz-zsR"/>
+                        <barButtonItem key="rightBarButtonItem" title="Library" id="RHW-WG-zpe"/>
                     </navigationItem>
                     <connections>
                         <outlet property="actionButton" destination="8Hc-NQ-CIe" id="VpN-3e-cdY"/>
@@ -67,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wTB-X4-V3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="240" y="50"/>
+            <point key="canvasLocation" x="36" y="713"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cUi-kZ-frf">
@@ -77,17 +69,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="S9a-uN-Zgo" kind="relationship" relationship="rootViewController" id="mRE-fh-rNz"/>
+                        <segue destination="pGg-6v-bdr" kind="relationship" relationship="rootViewController" id="bZQ-jo-88i"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-249" y="50"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Font Size View Controller - Font Size-->
         <scene sceneID="y37-ff-eX1">
             <objects>
-                <viewController id="LNe-y0-PvG" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController id="LNe-y0-PvG" customClass="FontSizeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6lH-DJ-BZO"/>
                         <viewControllerLayoutGuide type="bottom" id="m0C-Tc-2y9"/>
@@ -124,7 +116,7 @@
                             <constraint firstItem="KOn-6X-J0P" firstAttribute="leading" secondItem="fts-UA-lPZ" secondAttribute="leading" constant="20" symbolic="YES" id="jn0-zJ-Zk1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3gp-wC-N3O"/>
+                    <navigationItem key="navigationItem" title="Font Size" id="3gp-wC-N3O"/>
                     <connections>
                         <outlet property="fontLabel" destination="tdA-qY-pNv" id="0xW-1T-zF8"/>
                         <outlet property="slider" destination="KOn-6X-J0P" id="KUb-aG-Epn"/>
@@ -132,7 +124,125 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGh-YO-IxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785" y="-663"/>
+            <point key="canvasLocation" x="1365" y="-1415"/>
+        </scene>
+        <!--Dropbox Setup View Controller - Dropbox Setup-->
+        <scene sceneID="eK1-Bf-M5a">
+            <objects>
+                <viewController id="wRz-oK-qKo" customClass="DropboxSetupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Dle-qv-k2k"/>
+                        <viewControllerLayoutGuide type="bottom" id="IdE-Ll-f0a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Eso-tB-z1E">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="854-zp-UK4">
+                                <rect key="frame" x="20" y="73" width="280" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="3Cq-Br-1YD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68s-Er-eJa">
+                                <rect key="frame" x="86" y="156" width="148" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkOrUnlinkDropbox:" destination="wRz-oK-qKo" eventType="touchUpInside" id="y6s-mJ-X70"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="854-zp-UK4" firstAttribute="top" secondItem="Dle-qv-k2k" secondAttribute="bottom" constant="9" id="17u-fM-2z1"/>
+                            <constraint firstItem="854-zp-UK4" firstAttribute="leading" secondItem="Eso-tB-z1E" secondAttribute="leading" constant="20" symbolic="YES" id="C72-Aj-lGR"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="leading" secondItem="Eso-tB-z1E" secondAttribute="leading" constant="86" id="Q8F-6q-ig3"/>
+                            <constraint firstAttribute="trailing" secondItem="854-zp-UK4" secondAttribute="trailing" constant="20" symbolic="YES" id="cvJ-tG-89h"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerX" secondItem="854-zp-UK4" secondAttribute="centerX" id="nPA-cm-gA1"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="top" secondItem="854-zp-UK4" secondAttribute="bottom" constant="41" id="y0d-PO-b9Y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dropbox Setup" id="llD-xN-S9X"/>
+                    <connections>
+                        <outlet property="button" destination="68s-Er-eJa" id="yax-dh-UbC"/>
+                        <outlet property="label" destination="854-zp-UK4" id="wPW-og-Rbf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Sf-av-uNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="-713"/>
+        </scene>
+        <!--Table View Controller - Settings-->
+        <scene sceneID="o67-ET-dCb">
+            <objects>
+                <tableViewController id="hRo-lJ-00D" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hhm-Op-Lq5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="yMb-z9-AzR">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="m72-az-l56" style="IBUITableViewCellStyleDefault" id="SmL-9Y-1qA">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SmL-9Y-1qA" id="TGI-Lw-D7y">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Font Size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m72-az-l56">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="LNe-y0-PvG" kind="push" identifier="fontSizeSegue" id="Jmp-Yl-kGf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="qvG-L4-bQZ" style="IBUITableViewCellStyleDefault" id="Yg8-kn-aWg">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yg8-kn-aWg" id="wnw-o1-juQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Dropbox Setup" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qvG-L4-bQZ">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wRz-oK-qKo" kind="push" identifier="dropboxSetupSegue" id="iN0-rD-Ha7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="hRo-lJ-00D" id="kJY-bG-1tJ"/>
+                            <outlet property="delegate" destination="hRo-lJ-00D" id="ean-0N-q3m"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="kzL-GA-XvZ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OkW-t7-nww" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="769" y="-713"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
@@ -178,11 +288,20 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Library" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Library" id="tQt-TN-PWz">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="F6E-zS-hYb">
+                            <connections>
+                                <segue destination="hRo-lJ-00D" kind="push" id="KNu-VH-SxY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="xts-Xz-lGl">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785" y="50"/>
+            <point key="canvasLocation" x="264" y="50"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="Cn3-H9-jdl">
@@ -282,6 +401,7 @@
                         <outlet property="dateLabel" destination="Lei-5M-9Gs" id="7cE-yt-uxR"/>
                         <outlet property="headingLabel" destination="CgR-PN-9So" id="iMP-5b-Gg1"/>
                         <outlet property="isReadSwitch" destination="rD7-rS-hXT" id="olk-8M-0Fo"/>
+                        <outlet property="isReadSwitchLabel" destination="bPw-au-3cP" id="gj7-AB-JAr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
@@ -306,7 +426,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1292" y="50"/>
+            <point key="canvasLocation" x="769" y="50"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
