@@ -7,12 +7,15 @@
 //
 
 #import "FontSizeViewController.h"
+#import "Constants.h"
 
 @interface FontSizeViewController ()
 
 @end
 
 @implementation FontSizeViewController
+NSInteger selectedFontRow;
+NSInteger selectedFontSizeRow;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,22 +30,67 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *fontSize = [defaults objectForKey:@"kReadsyFontSize"];
-    if (fontSize) {
-        self.slider.value = [fontSize floatValue];
-    } else {
-        self.slider.value = 14.0;
+    NSNumber *fontSize = [defaults objectForKey:kReadsyFontSize];
+    if (!fontSize) {
+        fontSize = [NSNumber numberWithLong:DefaultFontSize];
     }
     
-    [self changeFontSize:nil];
+    NSString *fontName = [defaults objectForKey:kReadsyFontName];
+    if (!fontName) {
+        fontName = DefaultFontName;
+    }
+        
+    self.availableFonts = [NSArray arrayWithObjects:
+                           @"American Typewriter",
+                           @"Avenir", @"Baskerville",
+                           @"Courier", @"Gill Sans", @"Helvetica",
+                           @"Helvetica Neue", @"Palatino",
+                           @"Thonburi", @"Verdana",
+                           nil];
+    self.boldFonts = [NSArray arrayWithObjects:
+                           @"AmericanTypewriter-Bold",
+                           @"Avenir-HeavyOblique", @"Baskerville-SemiBoldItalic",
+                           @"Courier-BoldOblique", @"GillSans-BoldItalic", @"Helvetica-BoldOblique",
+                           @"HelveticaNeue-MediumItalic", @"Palatino-BoldItalic",
+                           @"Thonburi-Bold", @"Verdana-BoldItalic",
+                           nil];
+    int row = 0;
+    for (NSString *name in self.availableFonts) {
+        if ([name isEqualToString:fontName]) {
+            selectedFontRow = row;
+        }
+        row++;
+    }
+    self.availableFontSizes = [NSMutableArray array];
+    for (int i = 9; i < 36; i++) {
+        if (i == [fontSize intValue]) {
+            selectedFontSizeRow = i - 9;
+        }
+        [self.availableFontSizes addObject:[NSNumber numberWithInt:i]];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // set the initial values for the picker, and update the sample text font/size
+    [self.picker selectRow:selectedFontRow inComponent:0 animated:YES];
+    [self.picker selectRow:selectedFontSizeRow inComponent:1 animated:YES];
+    NSNumber *size = [self.availableFontSizes objectAtIndex:selectedFontSizeRow];
+    self.fontLabel.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSNumber numberWithFloat:self.slider.value] forKey:@"kReadsyFontSize"];
-    
+    NSNumber *size = [self.availableFontSizes objectAtIndex:selectedFontSizeRow];
+    [defaults setObject:size forKey:kReadsyFontSize];
+    [defaults setObject:[self.availableFonts objectAtIndex:selectedFontRow] forKey:kReadsyFontName];
+    [defaults setObject:[self.boldFonts objectAtIndex:selectedFontRow] forKey:kReadsyBoldFontName];
+    [defaults synchronize];
     [super viewDidDisappear:animated];
 }
 
@@ -53,9 +101,57 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)changeFontSize:(id)sender
+
+#pragma mark - Picker delegate and datasource
+/*
+ * Picker has two components. Component zero is the font name, component 1 is the font size.
+ */
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    self.fontLabel.font = [UIFont fontWithName:@"Helvetica" size:self.slider.value];
+    return 2;
+}
+
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    NSInteger count;
+    switch (component) {
+        case 0:
+            count = self.availableFonts.count;
+            break;
+        case 1:
+            count = self.availableFontSizes.count;
+            break;
+    }
+    return count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *title;
+    switch (component) {
+        case 0:
+            title = [self.availableFonts objectAtIndex:row];
+            break;
+        case 1:
+            title = [NSString stringWithFormat:@"%@", [self.availableFontSizes objectAtIndex:row]];
+            break;
+    }
+    return title;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0:
+            selectedFontRow = row;
+            break;
+        case 1:
+            selectedFontSizeRow = row;
+            break;
+    }
+    NSNumber *size = [self.availableFontSizes objectAtIndex:selectedFontSizeRow];
+    self.fontLabel.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
 }
 
 @end

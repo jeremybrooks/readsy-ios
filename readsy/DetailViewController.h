@@ -21,7 +21,6 @@
 
 @property (strong, nonatomic) ReadsyMetadata *detailItem;
 @property (strong, nonatomic) ReadsyEntry *entryItem;
-@property (strong, nonatomic) NSMutableParagraphStyle *paragraphStyle;
 @property (strong, nonatomic) DBRestClient *restClient;
 @property (strong, nonatomic) NSDateFormatter *mmddFormat;
 @property (strong, nonatomic) NSDateFormatter *shortFormat;

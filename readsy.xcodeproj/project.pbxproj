@@ -30,6 +30,9 @@
 		7F5AB5DB183D67A300365006 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F5AB5D9183D67A300365006 /* InfoPlist.strings */; };
 		7F5AB5DD183D67A300365006 /* readsyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5DC183D67A300365006 /* readsyTests.m */; };
 		7F5EC8E918581EAC0029800F /* DropboxSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */; };
+		7F5EC8EC1858D53F0029800F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8EB1858D53F0029800F /* Constants.m */; };
+		7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8EE1858ED300029800F /* FeedbackViewController.m */; };
+		7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB9E9E61856CEBF000EB398 /* MessageUI.framework */; };
 		7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9E9E91856D058000EB398 /* FontSizeViewController.m */; };
 		7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCAE4CE183E7744000C2820 /* Secrets.m */; };
 /* End PBXBuildFile section */
@@ -79,6 +82,10 @@
 		7F5AB5DC183D67A300365006 /* readsyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = readsyTests.m; sourceTree = "<group>"; };
 		7F5EC8E718581EAC0029800F /* DropboxSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxSetupViewController.h; sourceTree = "<group>"; };
 		7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxSetupViewController.m; sourceTree = "<group>"; };
+		7F5EC8EA1858D53F0029800F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7F5EC8EB1858D53F0029800F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		7F5EC8ED1858ED300029800F /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		7F5EC8EE1858ED300029800F /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		7FB9E9E61856CEBF000EB398 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7FB9E9E81856D058000EB398 /* FontSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSizeViewController.h; sourceTree = "<group>"; };
 		7FB9E9E91856D058000EB398 /* FontSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSizeViewController.m; sourceTree = "<group>"; };
@@ -90,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */,
 				7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */,
 				7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */,
 				7F182680183DA7130064F7F8 /* DropboxSDK.framework in Frameworks */,
@@ -171,6 +179,10 @@
 				7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */,
 				7F1F515A1840405C00E0FF59 /* MBProgressHUD.h */,
 				7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */,
+				7F5EC8EA1858D53F0029800F /* Constants.h */,
+				7F5EC8EB1858D53F0029800F /* Constants.m */,
+				7F5EC8ED1858ED300029800F /* FeedbackViewController.h */,
+				7F5EC8EE1858ED300029800F /* FeedbackViewController.m */,
 			);
 			path = readsy;
 			sourceTree = "<group>";
@@ -302,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F5EC8EC1858D53F0029800F /* Constants.m in Sources */,
 				7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */,
 				7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */,
 				7F5AB5C5183D67A300365006 /* MasterViewController.m in Sources */,
@@ -312,6 +325,7 @@
 				7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */,
 				7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */,
 				7F1F515C1840405C00E0FF59 /* MBProgressHUD.m in Sources */,
+				7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

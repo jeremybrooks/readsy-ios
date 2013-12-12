@@ -9,6 +9,7 @@
 #import "Secrets.h"
 #import "AppDelegate.h"
 #import "DropboxSetupViewController.h"
+#import "Constants.h"
 #import <DropboxSDK/DropboxSDK.h>
 
 
@@ -52,7 +53,6 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    NSLog(@"became active");
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -66,13 +66,22 @@
     if ([[DBSession sharedSession] handleOpenURL:url]) {
         if ([[DBSession sharedSession] isLinked]) {
             NSLog(@"App linked successfully!");
-            // At this point you can start making API calls
+            NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultSuccess forKey:kLinkResult];
+            NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
         } else {
-            NSLog(@"App was not linked. Crap.");
+            NSLog(@"App was not linked.");
+            NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
+            NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
         }
         return YES;
     }
-    // Add whatever other url handling code your app requires here
+    
+    NSLog(@"App was not linked.");
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
+    NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
     return NO;
 }
 

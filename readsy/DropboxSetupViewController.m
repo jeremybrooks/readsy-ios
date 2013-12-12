@@ -7,13 +7,14 @@
 //
 
 #import "DropboxSetupViewController.h"
+#import "Constants.h"
 #import <DropboxSDK/DropboxSDK.h>
 
 @interface DropboxSetupViewController ()
-
 @end
 
 @implementation DropboxSetupViewController
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,17 +53,29 @@
         [[DBSession sharedSession] unlinkAll];
         [self updateView];
     } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receiveDropboxLinkNotification:)
+                                                     name:DropboxLinkNotification
+                                                   object:nil];
         [[DBSession sharedSession] linkFromController:self];
-        [self.navigationController popViewControllerAnimated:YES];
     }
 
 }
 
+- (void)receiveDropboxLinkNotification:(NSNotification *)notification
+{
+    [self updateView];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

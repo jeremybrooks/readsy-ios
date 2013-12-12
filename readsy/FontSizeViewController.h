@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FontSizeViewController : UIViewController
+@interface FontSizeViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *fontLabel;
-@property (weak, nonatomic) IBOutlet UISlider *slider;
+@property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
-- (IBAction)changeFontSize:(id)sender;
+@property (strong, nonatomic) NSArray *availableFonts;
+@property (strong, nonatomic) NSArray *boldFonts;
+@property (strong, nonatomic) NSMutableArray *availableFontSizes;
+
 @end

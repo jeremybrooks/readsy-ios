@@ -48,12 +48,9 @@
  */
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"view will appear");
     [super viewWillAppear:animated];
     [self initDropbox];
 }
-
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -71,10 +68,6 @@
         
         if (self.objects.count == 0) {
             [self refresh];
-            //            [AppDelegate setActivityIndicatorsVisible:YES];
-            //
-            //            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            //            [self.restClient loadMetadata:@"/"];
         }
     } else {
         // Dropbox is not linked
@@ -145,15 +138,6 @@
     // Dispose of any resources that can be recreated.
     NSLog(@"**********************MEMORY WARNING");
 }
-
-//- (void)refresh
-//{
-//    [self.objects removeAllObjects];
-//    [AppDelegate setActivityIndicatorsVisible:YES];
-//
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [self.restClient loadMetadata:@"/"];
-//}
 
 #pragma mark - Dropbox Access
 /*
