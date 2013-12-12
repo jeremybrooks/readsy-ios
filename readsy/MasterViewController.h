@@ -16,6 +16,7 @@
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) DBRestClient *restClient;
 @property (strong, nonatomic) NSMutableArray *objects;
-@property (nonatomic) int workCounter;
+
+//@property (nonatomic) int workCounter;
 
 @end

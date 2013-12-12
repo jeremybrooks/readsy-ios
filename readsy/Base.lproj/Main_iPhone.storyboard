@@ -339,12 +339,12 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="top" secondItem="6uK-kz-bej" secondAttribute="top" id="AuJ-fn-UcS"/>
-                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="centerY" secondItem="6uK-kz-bej" secondAttribute="centerY" id="ISE-4W-5to"/>
-                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="centerX" secondItem="6uK-kz-bej" secondAttribute="centerX" id="Lgc-Oo-ovz"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cv6-TR-eoP" secondAttribute="trailing" id="MLw-38-CkI"/>
-                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="leading" secondItem="6uK-kz-bej" secondAttribute="leading" id="PFE-Ps-aS8"/>
-                                    <constraint firstAttribute="bottom" secondItem="Cv6-TR-eoP" secondAttribute="bottom" id="sz8-or-dhm"/>
+                                    <constraint firstAttribute="bottom" secondItem="Cv6-TR-eoP" secondAttribute="bottom" id="AQX-8Y-ADO"/>
+                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="centerX" secondItem="6uK-kz-bej" secondAttribute="centerX" id="N0C-kl-HXf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cv6-TR-eoP" secondAttribute="trailing" id="PMM-Nn-XZG"/>
+                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="leading" secondItem="6uK-kz-bej" secondAttribute="leading" id="QN5-9z-fAX"/>
+                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="top" secondItem="6uK-kz-bej" secondAttribute="top" id="QnA-SG-C3u"/>
+                                    <constraint firstItem="Cv6-TR-eoP" firstAttribute="centerY" secondItem="6uK-kz-bej" secondAttribute="centerY" id="pSB-EE-4PK"/>
                                 </constraints>
                             </scrollView>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rD7-rS-hXT">
@@ -360,12 +360,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Xdi-ej-jtB">
+                                <rect key="frame" x="141" y="266" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Lei-5M-9Gs" firstAttribute="top" secondItem="2tu-ST-m7Y" secondAttribute="bottom" constant="7" id="1xi-il-Jnn"/>
                             <constraint firstItem="CgR-PN-9So" firstAttribute="top" secondItem="Lei-5M-9Gs" secondAttribute="bottom" constant="8" symbolic="YES" id="2ov-T0-wKz"/>
+                            <constraint firstAttribute="centerY" secondItem="Xdi-ej-jtB" secondAttribute="centerY" id="Azz-zD-jqr"/>
+                            <constraint firstAttribute="centerX" secondItem="Xdi-ej-jtB" secondAttribute="centerX" id="GkU-lq-yhT"/>
                             <constraint firstItem="6uK-kz-bej" firstAttribute="top" secondItem="CgR-PN-9So" secondAttribute="bottom" constant="8" symbolic="YES" id="K1m-Xe-UUf"/>
                             <constraint firstItem="bPw-au-3cP" firstAttribute="leading" secondItem="rD7-rS-hXT" secondAttribute="trailing" constant="8" symbolic="YES" id="Mrv-Pz-F4R"/>
                             <constraint firstItem="rD7-rS-hXT" firstAttribute="centerY" secondItem="bPw-au-3cP" secondAttribute="centerY" id="R6c-kl-Sv1"/>
@@ -388,6 +395,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Xdi-ej-jtB" id="aHf-5j-IhR"/>
                         <outlet property="contentTextView" destination="Cv6-TR-eoP" id="3k5-bM-eJi"/>
                         <outlet property="dateLabel" destination="Lei-5M-9Gs" id="7cE-yt-uxR"/>
                         <outlet property="headingLabel" destination="CgR-PN-9So" id="iMP-5b-Gg1"/>

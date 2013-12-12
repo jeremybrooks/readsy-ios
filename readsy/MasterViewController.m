@@ -74,7 +74,8 @@
         // if the user unlinked the account, we will need to get rid of any dropbox client,
         // clear out the data model,
         // and refresh the table view
-        [self.refreshControl endRefreshing];
+//        [self.refreshControl endRefreshing];
+        [self hideAllActivityIndicators];
         if (self.restClient) {
             self.restClient = nil;
         }
@@ -96,16 +97,18 @@
 {
     if ([[DBSession sharedSession] isLinked]) {
         [self.objects removeAllObjects];
-        [AppDelegate setActivityIndicatorsVisible:YES];
+        [self showActivityIndicators:YES];
+//        [AppDelegate setActivityIndicatorsVisible:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self.restClient loadMetadata:@"/"];
     } else {
         // Dropbox is not linked
         // if the user unlinked the account, we will need to get rid of any dropbox client,
         // clear out the data model,
         // and refresh the table view
-        [self.refreshControl endRefreshing];
+//        [self.refreshControl endRefreshing];
+        [self hideAllActivityIndicators];
         if (self.restClient) {
             self.restClient = nil;
         }
@@ -124,9 +127,10 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.refreshControl endRefreshing];
-    [AppDelegate stopAllActivityIndicators];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [self.refreshControl endRefreshing];
+    [self hideAllActivityIndicators];
+//    [AppDelegate stopAllActivityIndicators];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self.restClient cancelAllRequests];
     [super viewWillDisappear:animated];
 }
@@ -145,13 +149,14 @@
  */
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
 {
-    [AppDelegate setActivityIndicatorsVisible:NO];
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
     NSMutableArray *array = [NSMutableArray array];
     if (metadata.isDirectory) {
         for (DBMetadata *file in metadata.contents) {
             [array addObject:file.filename];
         }
-        self.workCounter = (int)array.count;
+//        self.workCounter = (int)array.count;
         NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
         
         for (NSString *file in sortedArray) {
@@ -159,7 +164,8 @@
             [self.objects addObject:rm];
             
             NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file];
-            [AppDelegate setActivityIndicatorsVisible:YES];
+            [self showActivityIndicators:YES];
+//            [AppDelegate setActivityIndicatorsVisible:YES];
             [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file] intoPath:tmpFile];
         }
     }
@@ -167,21 +173,23 @@
 
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
 {
-    [self.refreshControl endRefreshing];
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    [self.refreshControl endRefreshing];
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self showErrorMessage];
     NSLog(@"Error loading metadata: %@", error);
 }
 
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    self.workCounter--;
-    if (self.workCounter == 0) {
-        [self.refreshControl endRefreshing];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    self.workCounter--;
+//    if (self.workCounter == 0) {
+//        [self.refreshControl endRefreshing];
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    }
     NSError *error;
     NSString *readsyMetadata = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -202,11 +210,12 @@
 }
 
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    self.workCounter--;
-    if (self.workCounter == 0) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    }
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    self.workCounter--;
+//    if (self.workCounter == 0) {
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    }
     NSLog(@"There was an error loading the file - %@", error);
     [self showErrorMessage];
 }
@@ -290,5 +299,42 @@
     }
 }
 
+#pragma mark - Activity indicator stuff
+- (void)showActivityIndicators:(BOOL)showIndicators
+{
+    [self showActivityIndicators:showIndicators andReset:NO];
+}
+- (void)hideAllActivityIndicators
+{
+    [self showActivityIndicators:NO andReset:YES];
+}
+
+- (void)showActivityIndicators:(BOOL)showIndicators andReset:(BOOL)reset
+{
+    static NSInteger callCount = 0;
+    if (showIndicators) {
+        callCount++;
+    } else {
+        callCount--;
+    }
+    if (reset) {
+        callCount = 0;
+    }
+    
+    if (callCount > 0) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        self.navigationItem.title = @"Loading...";
+//        if (callCount == 1) {
+//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        }
+    }
+    if (callCount <= 0) {
+        callCount = 0;
+        [self.refreshControl endRefreshing];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        self.navigationItem.title = @"Library";
+//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    }
+}
 
 @end

@@ -83,7 +83,7 @@ NSInteger selectedFontSizeRow;
     self.fontLabel.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *size = [self.availableFontSizes objectAtIndex:selectedFontSizeRow];
@@ -91,7 +91,7 @@ NSInteger selectedFontSizeRow;
     [defaults setObject:[self.availableFonts objectAtIndex:selectedFontRow] forKey:kReadsyFontName];
     [defaults setObject:[self.boldFonts objectAtIndex:selectedFontRow] forKey:kReadsyBoldFontName];
     [defaults synchronize];
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 

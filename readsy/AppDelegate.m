@@ -85,38 +85,38 @@
     return NO;
 }
 
-+ (void)setActivityIndicatorsVisible:(BOOL)visible
-{
-    [AppDelegate setActivityIndicatorsVisible:visible andReset:NO];
-}
-
-+ (void)setActivityIndicatorsVisible:(BOOL)visible andReset:(BOOL)reset
-{
-    static NSInteger callCount = 0;
-    if (visible) {
-        callCount++;
-    } else {
-        callCount--;
-    }
-    
-    if (reset) {
-        callCount = 0;
-    }
-
-    // The assertion helps to find programmer errors in activity indicator management.
-    // Since a negative NumberOfCallsToSetVisible is not a fatal error,
-    // it should probably be removed from production code.
-//    NSAssert(callCount >= 0, @"Network Activity Indicator was asked to hide more often than shown");
-    if (callCount < 0 ) {
-        callCount = 0;
-    }
-    // Display the indicator as long as our static counter is > 0.
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(callCount > 0)];
-}
-
-+ (void)stopAllActivityIndicators
-{
-    [AppDelegate setActivityIndicatorsVisible:NO andReset:YES];
-}
+//+ (void)setActivityIndicatorsVisible:(BOOL)visible
+//{
+//    [AppDelegate setActivityIndicatorsVisible:visible andReset:NO];
+//}
+//
+//+ (void)setActivityIndicatorsVisible:(BOOL)visible andReset:(BOOL)reset
+//{
+//    static NSInteger callCount = 0;
+//    if (visible) {
+//        callCount++;
+//    } else {
+//        callCount--;
+//    }
+//    
+//    if (reset) {
+//        callCount = 0;
+//    }
+//
+//    // The assertion helps to find programmer errors in activity indicator management.
+//    // Since a negative NumberOfCallsToSetVisible is not a fatal error,
+//    // it should probably be removed from production code.
+////    NSAssert(callCount >= 0, @"Network Activity Indicator was asked to hide more often than shown");
+//    if (callCount < 0 ) {
+//        callCount = 0;
+//    }
+//    // Display the indicator as long as our static counter is > 0.
+//    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(callCount > 0)];
+//}
+//
+//+ (void)stopAllActivityIndicators
+//{
+//    [AppDelegate setActivityIndicatorsVisible:NO andReset:YES];
+//}
 
 @end

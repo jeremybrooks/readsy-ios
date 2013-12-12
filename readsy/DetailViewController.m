@@ -9,7 +9,6 @@
 #import "DetailViewController.h"
 #import "MBProgressHUD.h"
 #import "MasterViewController.h"
-#import "AppDelegate.h"
 #import "Constants.h"
 
 @interface DetailViewController ()
@@ -44,9 +43,10 @@
     if (self.detailItem) {
         NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
         NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
-        
-        [AppDelegate setActivityIndicatorsVisible:YES];
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self showActivityIndicators:YES];
+//        [AppDelegate setActivityIndicatorsVisible:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        self.navigationItem.hidesBackButton = YES;
         [self.restClient loadFile:filename intoPath:tmpFile];
     }
 }
@@ -107,9 +107,11 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view, typically from a nib.
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontName options:NSKeyValueObservingOptionNew context:NULL];
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontSize options:NSKeyValueObservingOptionNew context:NULL];
-    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyBoldFontName options:NSKeyValueObservingOptionNew context:NULL];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontName options:NSKeyValueObservingOptionNew context:NULL];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontSize options:NSKeyValueObservingOptionNew context:NULL];
+        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyBoldFontName options:NSKeyValueObservingOptionNew context:NULL];
+    }
     self.mmddFormat = [[NSDateFormatter alloc] init];
     [self.mmddFormat setDateFormat:@"MMdd"];
     self.shortFormat = [[NSDateFormatter alloc] init];
@@ -129,11 +131,15 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self resignFirstResponder];
-    [AppDelegate stopAllActivityIndicators];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self hideAllActivityIndicators];
+//    [AppDelegate stopAllActivityIndicators];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = NO;
     [self.restClient cancelAllRequests];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
-    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontSize];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
+        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontSize];
+    }
     [super viewWillDisappear:animated];
 }
 
@@ -161,8 +167,13 @@
 - (IBAction)setReadFlag:(id)sender
 {
     [self.detailItem setReadFlag:self.isReadSwitch.on forDate:self.detailItem.date];
-    [AppDelegate setActivityIndicatorsVisible:YES];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    self.navigationItem.hidesBackButton = YES;
+
+    [self showActivityIndicators:YES];
+//    [AppDelegate setActivityIndicatorsVisible:YES];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = YES;
     
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
     NSLog(@"Loading metadata for file %@", remoteFile);
@@ -233,8 +244,10 @@
 /* File was successfully loaded from Dropbox */
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = NO;
     NSError *error;
     NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -253,8 +266,10 @@
 
 /* File load failed */
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = NO;
     NSLog(@"There was an error loading the file - %@", error);
     [self showErrorMessage];
 }
@@ -276,26 +291,34 @@
 - (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error
 {
     NSLog(@"Metadata load failed with error %@", error);
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = NO;
     [self showErrorMessage];
 }
 
 /* Uploaded new metadata */
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = NO;
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
     NSError *error;
     [[NSFileManager defaultManager] removeItemAtPath:srcPath error:&error];
     if (error) {
         NSLog(@"Could not delete temp file. %@", srcPath);
     }
-    [AppDelegate setActivityIndicatorsVisible:NO];
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+    [self showActivityIndicators:NO];
+//    [AppDelegate setActivityIndicatorsVisible:NO];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    self.navigationItem.hidesBackButton = NO;
     NSLog(@"File upload failed with error - %@", error);
     [self showErrorMessage];
 }
@@ -335,4 +358,45 @@
     self.masterPopoverController = nil;
 }
 
+
+#pragma mark - Activity indicator stuff
+- (void)showActivityIndicators:(BOOL)showIndicators
+{
+    [self showActivityIndicators:showIndicators andReset:NO];
+}
+- (void)hideAllActivityIndicators
+{
+    [self showActivityIndicators:NO andReset:YES];
+}
+
+- (void)showActivityIndicators:(BOOL)showIndicators andReset:(BOOL)reset
+{
+    static NSInteger callCount = 0;
+    if (showIndicators) {
+        callCount++;
+    } else {
+        callCount--;
+    }
+    if (reset) {
+        callCount = 0;
+    }
+    
+    if (callCount > 0) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [self.activityIndicator startAnimating];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.navigationItem.hidesBackButton = YES;
+        }
+    }
+    if (callCount < 1) {
+        callCount = 0;
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        [self.activityIndicator stopAnimating];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+            self.navigationItem.hidesBackButton = NO;
+        }
+    }
+}
 @end

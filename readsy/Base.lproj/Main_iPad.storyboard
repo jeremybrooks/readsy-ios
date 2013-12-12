@@ -87,6 +87,11 @@
                                     <action selector="setReadFlag:" destination="JEX-9P-axG" eventType="valueChanged" id="yx5-qS-uuc"/>
                                 </connections>
                             </switch>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gZP-TK-6aN">
+                                <rect key="frame" x="333" y="366" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -100,11 +105,13 @@
                             <constraint firstItem="kde-sU-e6J" firstAttribute="leading" secondItem="aoT-DL-YL5" secondAttribute="trailing" constant="8" symbolic="YES" id="HpY-8j-AyP"/>
                             <constraint firstAttribute="bottom" secondItem="aoT-DL-YL5" secondAttribute="bottom" constant="20" symbolic="YES" id="IIZ-XR-Ni6"/>
                             <constraint firstItem="rgs-nt-Uc7" firstAttribute="trailing" secondItem="Lqb-SW-Byl" secondAttribute="trailing" id="IbB-qK-Tlq"/>
+                            <constraint firstAttribute="centerY" secondItem="gZP-TK-6aN" secondAttribute="centerY" id="Ml3-cX-DmV"/>
                             <constraint firstAttribute="trailing" secondItem="Lqb-SW-Byl" secondAttribute="trailing" constant="20" symbolic="YES" id="ap6-Ng-8Jj"/>
                             <constraint firstItem="Lqb-SW-Byl" firstAttribute="leading" secondItem="rgs-nt-Uc7" secondAttribute="leading" id="fel-na-Zxp"/>
                             <constraint firstItem="aoT-DL-YL5" firstAttribute="top" secondItem="RRi-N7-0k6" secondAttribute="bottom" constant="8" symbolic="YES" id="kgx-YS-NSD"/>
                             <constraint firstItem="RRi-N7-0k6" firstAttribute="leading" secondItem="rgs-nt-Uc7" secondAttribute="leading" id="qiF-kS-gND"/>
                             <constraint firstItem="Lqb-SW-Byl" firstAttribute="top" secondItem="ZmF-AV-bJa" secondAttribute="bottom" constant="16" id="vos-DP-4zT"/>
+                            <constraint firstAttribute="centerX" secondItem="gZP-TK-6aN" secondAttribute="centerX" id="xV8-sG-zmH"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
@@ -117,6 +124,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mOI-FS-AaM"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="gZP-TK-6aN" id="HaL-9u-pfP"/>
                         <outlet property="contentTextView" destination="ZsR-Ve-arN" id="cAn-Se-IUR"/>
                         <outlet property="dateLabel" destination="Lqb-SW-Byl" id="YjK-bu-6oc"/>
                         <outlet property="headingLabel" destination="rgs-nt-Uc7" id="kPe-he-jLa"/>

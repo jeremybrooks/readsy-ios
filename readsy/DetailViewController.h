@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *isReadSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *isReadSwitchLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property (strong, nonatomic) ReadsyMetadata *detailItem;
 @property (strong, nonatomic) ReadsyEntry *entryItem;
