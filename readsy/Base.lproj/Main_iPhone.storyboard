@@ -360,7 +360,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Xdi-ej-jtB">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Xdi-ej-jtB">
                                 <rect key="frame" x="141" y="266" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -371,10 +371,11 @@
                         <constraints>
                             <constraint firstItem="Lei-5M-9Gs" firstAttribute="top" secondItem="2tu-ST-m7Y" secondAttribute="bottom" constant="7" id="1xi-il-Jnn"/>
                             <constraint firstItem="CgR-PN-9So" firstAttribute="top" secondItem="Lei-5M-9Gs" secondAttribute="bottom" constant="8" symbolic="YES" id="2ov-T0-wKz"/>
-                            <constraint firstAttribute="centerY" secondItem="Xdi-ej-jtB" secondAttribute="centerY" id="Azz-zD-jqr"/>
-                            <constraint firstAttribute="centerX" secondItem="Xdi-ej-jtB" secondAttribute="centerX" id="GkU-lq-yhT"/>
+                            <constraint firstItem="Xdi-ej-jtB" firstAttribute="centerY" secondItem="MMQ-IT-qOo" secondAttribute="centerY" id="727-mW-e16"/>
+                            <constraint firstAttribute="centerX" secondItem="Xdi-ej-jtB" secondAttribute="centerX" id="8Wt-vu-Xqq"/>
                             <constraint firstItem="6uK-kz-bej" firstAttribute="top" secondItem="CgR-PN-9So" secondAttribute="bottom" constant="8" symbolic="YES" id="K1m-Xe-UUf"/>
                             <constraint firstItem="bPw-au-3cP" firstAttribute="leading" secondItem="rD7-rS-hXT" secondAttribute="trailing" constant="8" symbolic="YES" id="Mrv-Pz-F4R"/>
+                            <constraint firstItem="Xdi-ej-jtB" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="141" id="Obl-a3-r6x"/>
                             <constraint firstItem="rD7-rS-hXT" firstAttribute="centerY" secondItem="bPw-au-3cP" secondAttribute="centerY" id="R6c-kl-Sv1"/>
                             <constraint firstItem="rD7-rS-hXT" firstAttribute="leading" secondItem="MMQ-IT-qOo" secondAttribute="leading" constant="20" symbolic="YES" id="XhE-gD-edd"/>
                             <constraint firstAttribute="trailing" secondItem="Lei-5M-9Gs" secondAttribute="trailing" constant="20" symbolic="YES" id="lya-vS-pfI"/>
