@@ -11,7 +11,7 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <DBRestClientDelegate>
+@interface MasterViewController : UITableViewController <DBRestClientDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) DBRestClient *restClient;

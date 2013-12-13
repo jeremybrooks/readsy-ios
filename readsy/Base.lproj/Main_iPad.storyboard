@@ -62,12 +62,12 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="top" secondItem="RRi-N7-0k6" secondAttribute="top" id="Fxa-s7-hpV"/>
-                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="centerY" secondItem="RRi-N7-0k6" secondAttribute="centerY" id="Ofn-dA-RCe"/>
-                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="centerX" secondItem="RRi-N7-0k6" secondAttribute="centerX" id="UrZ-q8-kDr"/>
-                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="leading" secondItem="RRi-N7-0k6" secondAttribute="leading" id="WpV-zG-1LX"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZsR-Ve-arN" secondAttribute="bottom" id="XY6-co-Pi8"/>
-                                    <constraint firstAttribute="trailing" secondItem="ZsR-Ve-arN" secondAttribute="trailing" id="Zv9-70-Nwk"/>
+                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="top" secondItem="RRi-N7-0k6" secondAttribute="top" id="4Vg-XD-KK9"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZsR-Ve-arN" secondAttribute="trailing" id="TLf-eR-1iI"/>
+                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="centerX" secondItem="RRi-N7-0k6" secondAttribute="centerX" id="kmG-86-Cfa"/>
+                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="centerY" secondItem="RRi-N7-0k6" secondAttribute="centerY" id="l9Y-Us-TKe"/>
+                                    <constraint firstItem="ZsR-Ve-arN" firstAttribute="leading" secondItem="RRi-N7-0k6" secondAttribute="leading" id="pn3-Ve-Qrc"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZsR-Ve-arN" secondAttribute="bottom" id="qby-QR-hNu"/>
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I've read it" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kde-sU-e6J">
@@ -379,15 +379,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5Y-hG-yl2">
-                                <rect key="frame" x="20" y="76" width="280" height="21"/>
+                                <rect key="frame" x="20" y="215" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="nHS-4q-yaH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be8-tq-8Yd">
-                                <rect key="frame" x="67" y="188" width="186" height="30"/>
+                                <rect key="frame" x="67" y="289" width="186" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="186" id="OHn-fS-qcD"/>
+                                </constraints>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -395,21 +401,30 @@
                                     <action selector="linkOrUnlinkDropbox:" destination="x6d-KV-Vza" eventType="touchUpInside" id="iJg-SG-PzY"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unlinked" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-O4-A2d">
+                                <rect key="frame" x="20" y="67" width="280" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="HC4-re-3bY"/>
+                                    <constraint firstAttribute="height" constant="140" id="m50-lt-COa"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="a5Y-hG-yl2" secondAttribute="trailing" constant="20" symbolic="YES" id="15S-yq-0yR"/>
-                            <constraint firstItem="be8-tq-8Yd" firstAttribute="leading" secondItem="xnD-hV-yCN" secondAttribute="leading" constant="67" id="J05-lH-ejf"/>
-                            <constraint firstItem="be8-tq-8Yd" firstAttribute="top" secondItem="a5Y-hG-yl2" secondAttribute="bottom" constant="91" id="Kvj-iN-NA3"/>
-                            <constraint firstItem="a5Y-hG-yl2" firstAttribute="leading" secondItem="xnD-hV-yCN" secondAttribute="leading" constant="20" symbolic="YES" id="PHh-J9-eaF"/>
-                            <constraint firstItem="be8-tq-8Yd" firstAttribute="centerX" secondItem="a5Y-hG-yl2" secondAttribute="centerX" id="pjl-NK-zc4"/>
-                            <constraint firstItem="a5Y-hG-yl2" firstAttribute="top" secondItem="1Qy-xA-uQb" secondAttribute="bottom" constant="12" id="xxp-QB-FVK"/>
+                            <constraint firstItem="a5Y-hG-yl2" firstAttribute="top" secondItem="xnD-hV-yCN" secondAttribute="top" constant="215" id="CDY-8l-yGc"/>
+                            <constraint firstItem="yxc-O4-A2d" firstAttribute="top" secondItem="xnD-hV-yCN" secondAttribute="top" constant="67" id="TFg-Og-lbB"/>
+                            <constraint firstAttribute="centerX" secondItem="be8-tq-8Yd" secondAttribute="centerX" id="YfK-bx-Umv"/>
+                            <constraint firstItem="be8-tq-8Yd" firstAttribute="top" secondItem="xnD-hV-yCN" secondAttribute="top" constant="289" id="lVO-bG-chT"/>
+                            <constraint firstAttribute="centerX" secondItem="a5Y-hG-yl2" secondAttribute="centerX" id="nCD-Ho-pGM"/>
+                            <constraint firstAttribute="centerX" secondItem="yxc-O4-A2d" secondAttribute="centerX" id="zhG-Yc-YeA"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dropbox Setup" id="5sU-MA-eas"/>
                     <connections>
                         <outlet property="button" destination="be8-tq-8Yd" id="dPE-Ce-1ci"/>
+                        <outlet property="image" destination="yxc-O4-A2d" id="PSt-qQ-Kop"/>
                         <outlet property="label" destination="a5Y-hG-yl2" id="k0F-0P-j5F"/>
                     </connections>
                 </viewController>
@@ -462,6 +477,9 @@
             <point key="canvasLocation" x="554" y="168"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="unlinked" width="280" height="140"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>

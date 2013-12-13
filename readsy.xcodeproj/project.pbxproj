@@ -10,7 +10,6 @@
 		7F182680183DA7130064F7F8 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F18267F183DA7130064F7F8 /* DropboxSDK.framework */; };
 		7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182681183DA72C0064F7F8 /* Security.framework */; };
 		7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182683183DA7300064F7F8 /* QuartzCore.framework */; };
-		7F1F515C1840405C00E0FF59 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */; };
 		7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */; };
 		7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4D53181840098E0043A25A /* ReadsyMetadata.m */; };
 		7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AB183D67A300365006 /* Foundation.framework */; };
@@ -52,8 +51,6 @@
 		7F182681183DA72C0064F7F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7F182683183DA7300064F7F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		7F182685183DCF4F0064F7F8 /* Secrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
-		7F1F515A1840405C00E0FF59 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyEntry.h; sourceTree = "<group>"; };
 		7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyEntry.m; sourceTree = "<group>"; };
 		7F4D53171840098E0043A25A /* ReadsyMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyMetadata.h; sourceTree = "<group>"; };
@@ -177,8 +174,6 @@
 				7F4D53181840098E0043A25A /* ReadsyMetadata.m */,
 				7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */,
 				7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */,
-				7F1F515A1840405C00E0FF59 /* MBProgressHUD.h */,
-				7F1F515B1840405C00E0FF59 /* MBProgressHUD.m */,
 				7F5EC8EA1858D53F0029800F /* Constants.h */,
 				7F5EC8EB1858D53F0029800F /* Constants.m */,
 				7F5EC8ED1858ED300029800F /* FeedbackViewController.h */,
@@ -324,7 +319,6 @@
 				7F5EC8E918581EAC0029800F /* DropboxSetupViewController.m in Sources */,
 				7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */,
 				7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */,
-				7F1F515C1840405C00E0FF59 /* MBProgressHUD.m in Sources */,
 				7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

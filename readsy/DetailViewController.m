@@ -7,7 +7,6 @@
 //
 
 #import "DetailViewController.h"
-#import "MBProgressHUD.h"
 #import "MasterViewController.h"
 #import "Constants.h"
 
@@ -41,12 +40,12 @@
 - (void) loadDataForItem
 {
     if (self.detailItem) {
+        // is the file valid for the current year?
+        
+        
         NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
         NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
         [self showActivityIndicators:YES];
-//        [AppDelegate setActivityIndicatorsVisible:YES];
-//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        self.navigationItem.hidesBackButton = YES;
         [self.restClient loadFile:filename intoPath:tmpFile];
     }
 }
@@ -132,9 +131,6 @@
 {
     [self resignFirstResponder];
     [self hideAllActivityIndicators];
-//    [AppDelegate stopAllActivityIndicators];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = NO;
     [self.restClient cancelAllRequests];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
@@ -171,9 +167,6 @@
     self.navigationItem.hidesBackButton = YES;
 
     [self showActivityIndicators:YES];
-//    [AppDelegate setActivityIndicatorsVisible:YES];
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = YES;
     
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
     NSLog(@"Loading metadata for file %@", remoteFile);
@@ -245,9 +238,6 @@
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = NO;
     NSError *error;
     NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -267,9 +257,6 @@
 /* File load failed */
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = NO;
     NSLog(@"There was an error loading the file - %@", error);
     [self showErrorMessage];
 }
@@ -292,9 +279,6 @@
 {
     NSLog(@"Metadata load failed with error %@", error);
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = NO;
     [self showErrorMessage];
 }
 
@@ -302,9 +286,6 @@
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
               from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = NO;
     NSLog(@"File uploaded successfully to path: %@", metadata.path);
     NSError *error;
     [[NSFileManager defaultManager] removeItemAtPath:srcPath error:&error];
@@ -316,9 +297,6 @@
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-//    self.navigationItem.hidesBackButton = NO;
     NSLog(@"File upload failed with error - %@", error);
     [self showErrorMessage];
 }
@@ -383,7 +361,6 @@
     
     if (callCount > 0) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self.activityIndicator startAnimating];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             self.navigationItem.hidesBackButton = YES;
@@ -392,7 +369,6 @@
     if (callCount < 1) {
         callCount = 0;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
         [self.activityIndicator stopAnimating];
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
             self.navigationItem.hidesBackButton = NO;

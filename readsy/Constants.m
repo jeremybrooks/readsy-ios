@@ -23,4 +23,5 @@ NSString * const kLinkResult = @"kLinkResult";
 NSString * const DropboxLinkResultSuccess = @"YES";
 NSString * const DropboxLinkResultFailure = @"NO";
 
+NSString * const ReadsyHelpURL = @"http://jeremybrooks.net/readsy/faq.html";
 @end

@@ -82,19 +82,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="854-zp-UK4">
-                                <rect key="frame" x="20" y="73" width="280" height="42"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unlinked" translatesAutoresizingMaskIntoConstraints="NO" id="GH9-yV-Vaz">
+                                <rect key="frame" x="20" y="65" width="280" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="42" id="3Cq-Br-1YD"/>
+                                    <constraint firstAttribute="width" constant="280" id="Lum-Uz-MPY"/>
+                                    <constraint firstAttribute="height" constant="140" id="kPR-qr-mPS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="854-zp-UK4">
+                                <rect key="frame" x="20" y="213" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="HCl-A3-Izf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68s-Er-eJa">
-                                <rect key="frame" x="86" y="156" width="148" height="30"/>
+                                <rect key="frame" x="20" y="269" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="M7w-sQ-2sr"/>
+                                </constraints>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -103,19 +114,21 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="854-zp-UK4" firstAttribute="top" secondItem="Dle-qv-k2k" secondAttribute="bottom" constant="9" id="17u-fM-2z1"/>
-                            <constraint firstItem="854-zp-UK4" firstAttribute="leading" secondItem="Eso-tB-z1E" secondAttribute="leading" constant="20" symbolic="YES" id="C72-Aj-lGR"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="leading" secondItem="Eso-tB-z1E" secondAttribute="leading" constant="86" id="Q8F-6q-ig3"/>
-                            <constraint firstAttribute="trailing" secondItem="854-zp-UK4" secondAttribute="trailing" constant="20" symbolic="YES" id="cvJ-tG-89h"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerX" secondItem="854-zp-UK4" secondAttribute="centerX" id="nPA-cm-gA1"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="top" secondItem="854-zp-UK4" secondAttribute="bottom" constant="41" id="y0d-PO-b9Y"/>
+                            <constraint firstItem="GH9-yV-Vaz" firstAttribute="top" secondItem="Dle-qv-k2k" secondAttribute="bottom" constant="1" id="2C5-8d-7BI"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="top" secondItem="Eso-tB-z1E" secondAttribute="top" constant="269" id="BGT-NE-PpP"/>
+                            <constraint firstItem="854-zp-UK4" firstAttribute="top" secondItem="Eso-tB-z1E" secondAttribute="top" constant="213" id="Ef0-tl-sJJ"/>
+                            <constraint firstAttribute="centerX" secondItem="68s-Er-eJa" secondAttribute="centerX" id="H4f-nq-eto"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerY" secondItem="Eso-tB-z1E" secondAttribute="centerY" id="LES-iG-ZnU"/>
+                            <constraint firstAttribute="centerX" secondItem="GH9-yV-Vaz" secondAttribute="centerX" id="T4b-D6-Gj6"/>
+                            <constraint firstAttribute="centerX" secondItem="854-zp-UK4" secondAttribute="centerX" id="gsT-e8-9DE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dropbox Setup" id="llD-xN-S9X"/>
                     <connections>
                         <outlet property="button" destination="68s-Er-eJa" id="yax-dh-UbC"/>
+                        <outlet property="image" destination="GH9-yV-Vaz" id="B3I-gz-pu5"/>
                         <outlet property="label" destination="854-zp-UK4" id="wPW-og-Rbf"/>
                     </connections>
                 </viewController>
@@ -429,6 +442,9 @@
             <point key="canvasLocation" x="769" y="50"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="unlinked" width="280" height="140"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

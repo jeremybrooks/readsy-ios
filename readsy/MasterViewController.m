@@ -9,8 +9,8 @@
 #import "MasterViewController.h"
 #import "DetailViewController.h"
 #import "ReadsyMetadata.h"
-#import "MBProgressHUD.h"
 #import "AppDelegate.h"
+#import "Constants.h"
 
 @implementation MasterViewController
 
@@ -74,7 +74,6 @@
         // if the user unlinked the account, we will need to get rid of any dropbox client,
         // clear out the data model,
         // and refresh the table view
-//        [self.refreshControl endRefreshing];
         [self hideAllActivityIndicators];
         if (self.restClient) {
             self.restClient = nil;
@@ -95,26 +94,21 @@
 
 - (void)refresh
 {
-    if ([[DBSession sharedSession] isLinked]) {
+    if (self.objects.count > 0) {
         [self.objects removeAllObjects];
+        [[self tableView] reloadData];
+    }
+    if ([[DBSession sharedSession] isLinked]) {
         [self showActivityIndicators:YES];
-//        [AppDelegate setActivityIndicatorsVisible:YES];
-//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
         [self.restClient loadMetadata:@"/"];
     } else {
         // Dropbox is not linked
         // if the user unlinked the account, we will need to get rid of any dropbox client,
         // clear out the data model,
         // and refresh the table view
-//        [self.refreshControl endRefreshing];
         [self hideAllActivityIndicators];
         if (self.restClient) {
             self.restClient = nil;
-        }
-        if (self.objects.count > 0) {
-            [self.objects removeAllObjects];
-            [[self tableView] reloadData];
         }
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Dropbox Not Linked"
                                                         message:@"There is no Dropbox account linked with readsy. To link your Dropbox account, tap Settings."
@@ -127,10 +121,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    [self.refreshControl endRefreshing];
     [self hideAllActivityIndicators];
-//    [AppDelegate stopAllActivityIndicators];
-//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [self.restClient cancelAllRequests];
     [super viewWillDisappear:animated];
 }
@@ -143,6 +134,15 @@
     NSLog(@"**********************MEMORY WARNING");
 }
 
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ReadsyHelpURL]];
+    }
+}
+
+
 #pragma mark - Dropbox Access
 /*
  * Callback when directory metadata has been loaded.
@@ -150,23 +150,30 @@
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
 {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
     NSMutableArray *array = [NSMutableArray array];
     if (metadata.isDirectory) {
         for (DBMetadata *file in metadata.contents) {
             [array addObject:file.filename];
         }
-//        self.workCounter = (int)array.count;
-        NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-        
-        for (NSString *file in sortedArray) {
-            ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:file];
-            [self.objects addObject:rm];
+        if (array.count == 0) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nothing To Read"
+                                                            message:@"It looks like you do not have any data files in Dropbox. To learn more about how to install and create data files, visit the readsy website."
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Not Now"
+                                                  otherButtonTitles:@"Visit Website", nil];
+            [alert show];
+        } else {
+            NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
             
-            NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file];
-            [self showActivityIndicators:YES];
-//            [AppDelegate setActivityIndicatorsVisible:YES];
-            [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file] intoPath:tmpFile];
+            for (NSString *file in sortedArray) {
+                ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:file];
+                [self.objects addObject:rm];
+                
+                NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file];
+                [self showActivityIndicators:YES];
+                //            [AppDelegate setActivityIndicatorsVisible:YES];
+                [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file] intoPath:tmpFile];
+            }
         }
     }
 }
@@ -184,12 +191,6 @@
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
        contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    self.workCounter--;
-//    if (self.workCounter == 0) {
-//        [self.refreshControl endRefreshing];
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    }
     NSError *error;
     NSString *readsyMetadata = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -211,11 +212,6 @@
 
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    self.workCounter--;
-//    if (self.workCounter == 0) {
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    }
     NSLog(@"There was an error loading the file - %@", error);
     [self showErrorMessage];
 }
@@ -324,16 +320,12 @@
     if (callCount > 0) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         self.navigationItem.title = @"Loading...";
-//        if (callCount == 1) {
-//            [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        }
     }
     if (callCount <= 0) {
         callCount = 0;
         [self.refreshControl endRefreshing];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         self.navigationItem.title = @"Library";
-//        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     }
 }
 

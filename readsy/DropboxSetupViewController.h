@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DropboxSetupViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIButton *button;
 

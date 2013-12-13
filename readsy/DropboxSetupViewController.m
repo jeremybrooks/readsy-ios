@@ -34,15 +34,14 @@
 - (void)updateView
 {
     if ([[DBSession sharedSession] isLinked]) {
-        self.label.text = @"Dropbox is linked";
+
+        self.image.image = [UIImage imageNamed:@"linked.png"];
+        self.label.text = @"Linked with Dropbox";
         [self.button setTitle:@"Unlink Dropbox" forState:UIControlStateNormal];
-        [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        self.button.backgroundColor = [UIColor redColor];
     } else {
-        self.label.text = @"Dropbox is not linked";
+        self.image.image = [UIImage imageNamed:@"unlinked.png"];
+        self.label.text = @"Not linked with Dropbox";
         [self.button setTitle:@"Link Dropbox" forState:UIControlStateNormal];
-        [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        self.button.backgroundColor = [UIColor greenColor];
     }
 }
 
