@@ -40,13 +40,16 @@
 - (void) loadDataForItem
 {
     if (self.detailItem) {
-        // is the file valid for the current year?
-        
-        
-        NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
-        NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
-        [self showActivityIndicators:YES];
-        [self.restClient loadFile:filename intoPath:tmpFile];
+        if ([self.detailItem dataValidForDate:self.detailItem.date]) {
+            NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
+            NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
+            [self showActivityIndicators:YES];
+            [self.restClient loadFile:filename intoPath:tmpFile];
+        } else {
+            self.dateLabel.text = [self.shortFormat stringFromDate:self.detailItem.date];
+            self.headingLabel.text = @"";
+            self.contentTextView.text = @"No entry found for this date.";
+        }
     }
 }
 
