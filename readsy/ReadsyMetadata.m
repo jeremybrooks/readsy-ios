@@ -92,12 +92,6 @@ static NSString * const kRead = @"read";
     [self.readBytes getBytes:&buffer range:range];
 
     int mask = pow(2, (dayOfYear-1)%8);
-//    int theByte = (int)buffer[0];
-    
-//    NSData *byte = [NSData dataWithBytes:buffer length:1];
-//    NSLog(@"%@", self.readBytes);
-//    int x = buffer[0] & mask;
-//    BOOL isread = (buffer[0] & mask) == mask;
     return (buffer[0] & mask) == mask;
 }
 
@@ -125,15 +119,6 @@ static NSString * const kRead = @"read";
 /*
  * Get the number of unread items from day 1 up to and including the current day of the year.
  */
-/*
- Calendar theDay = new GregorianCalendar();
- theDay.set(Calendar.DAY_OF_YEAR, 1);
- while (theDay.get(Calendar.DAY_OF_YEAR) <= stopDay) {
- if (!isRead(theDay.getTime())) {
- count++;
- }
- theDay.add(Calendar.DAY_OF_YEAR, 1);
- }*/
 - (int)getUnreadCountForDate:(NSDate *)date
 {
     int count = 0;
@@ -152,21 +137,6 @@ static NSString * const kRead = @"read";
             }
             day++;
         }
-//        
-//        NSCalendar *calendar = [NSCalendar currentCalendar];
-//        NSInteger year = [[calendar components:NSCalendarUnitYear fromDate:now] year];
-//        NSDateComponents *comps = [[NSDateComponents alloc] init];
-//        [comps setYear:year];
-//        [comps setDay:dayOfYear];
-//        NSLog(@"####################   for %@: year=%ld, dayofyear=%lu",self.sourceDirectory, (long)year, (unsigned long)dayOfYear);
-//        do {
-//            if (![self isRead:[calendar dateFromComponents:comps]]) {
-//                count++;
-//            }
-//            dayOfYear--;
-//        } while (dayOfYear != 0);
-    } else {
-        NSLog(@"not valid");
     }
     return count;
 }
