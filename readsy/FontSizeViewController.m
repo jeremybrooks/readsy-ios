@@ -64,7 +64,7 @@ NSInteger selectedFontSizeRow;
         row++;
     }
     self.availableFontSizes = [NSMutableArray array];
-    for (int i = 9; i < 36; i++) {
+    for (int i = 9; i <= 36; i++) {
         if (i == [fontSize intValue]) {
             selectedFontSizeRow = i - 9;
         }
