@@ -44,7 +44,7 @@
                                
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Send Mail"
-                                                        message:[NSString stringWithFormat:@"This device is not congfigured to send email. You can send feedback to %@", FeedbackEmailAddress]
+                                                        message:[NSString stringWithFormat:@"This device is not configured to send email. You can send feedback to %@", FeedbackEmailAddress]
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
