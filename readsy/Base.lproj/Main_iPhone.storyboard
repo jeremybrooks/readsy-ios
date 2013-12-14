@@ -512,8 +512,6 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="NMA-ks-xdd" appends="YES" id="oef-Z1-YjR"/>
                             <outletCollection property="gestureRecognizers" destination="WaV-KK-7T6" appends="YES" id="xvh-e9-2CA"/>
-                            <outletCollection property="gestureRecognizers" destination="YcM-Lj-6R6" appends="YES" id="v4X-vy-54I"/>
-                            <outletCollection property="gestureRecognizers" destination="ZBt-Jv-hnc" appends="YES" id="KXp-4u-TaR"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
@@ -535,16 +533,6 @@
                 <swipeGestureRecognizer direction="right" id="WaV-KK-7T6">
                     <connections>
                         <action selector="swipeRight:" destination="Ah7-4n-0Wa" id="DyM-xO-K0O"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" numberOfTouchesRequired="2" id="YcM-Lj-6R6">
-                    <connections>
-                        <action selector="swipeLeft:" destination="Ah7-4n-0Wa" id="j6O-7E-jJJ"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" numberOfTouchesRequired="2" id="ZBt-Jv-hnc">
-                    <connections>
-                        <action selector="swipeRight:" destination="Ah7-4n-0Wa" id="a3K-Lq-nxj"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

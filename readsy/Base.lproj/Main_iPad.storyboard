@@ -116,9 +116,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bJU-qy-tpO" appends="YES" id="vhh-vW-gln"/>
-                            <outletCollection property="gestureRecognizers" destination="MHL-Fd-9ua" appends="YES" id="hbU-PA-VS5"/>
                             <outletCollection property="gestureRecognizers" destination="u9v-m8-4Wg" appends="YES" id="M0e-iS-p9x"/>
-                            <outletCollection property="gestureRecognizers" destination="RN9-u7-XUx" appends="YES" id="2pR-vw-f4s"/>
                         </connections>
                     </view>
                     <toolbarItems/>
@@ -138,19 +136,9 @@
                         <action selector="swipeRight:" destination="JEX-9P-axG" id="TDY-8c-xiY"/>
                     </connections>
                 </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="right" numberOfTouchesRequired="2" id="MHL-Fd-9ua">
-                    <connections>
-                        <action selector="swipeRight:" destination="JEX-9P-axG" id="5VA-iG-DKj"/>
-                    </connections>
-                </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="u9v-m8-4Wg">
                     <connections>
                         <action selector="swipeLeft:" destination="JEX-9P-axG" id="oeX-IM-aF8"/>
-                    </connections>
-                </swipeGestureRecognizer>
-                <swipeGestureRecognizer direction="left" numberOfTouchesRequired="2" id="RN9-u7-XUx">
-                    <connections>
-                        <action selector="swipeLeft:" destination="JEX-9P-axG" id="8i7-Vy-lRt"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>

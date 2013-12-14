@@ -78,7 +78,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults objectForKey:kDidShowTipDetailView]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tip"
-                                                        message:@"To navigate to the next/previous day, swipe with one finger. To navigate to the next/previous week, swipe with two fingers. To navigate to today, shake the device."
+                                                        message:@"To navigate to the next or previous day, swipe left or right. To navigate to today, shake the device."
                                                        delegate:nil
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -203,32 +203,41 @@
     }
 }
 
+/*
+ * NOTE: two-touch swipes seem to be causing crashes.
+ *       commenting out the switch to detect the number of touches
+ *       until this can get sorted out.
+ */
 - (IBAction)swipeLeft:(id)sender
 {
-    switch ([sender numberOfTouches]) {
-        case 1:
-            [self navigateNumberOfDays:1];
-            break;
-        case 2:
-            [self navigateNumberOfDays:7];
-            break;
-        default:
-            break;
-    }
+    [self navigateNumberOfDays:1];
+    
+//    switch ([sender numberOfTouches]) {
+//        case 1:
+//            [self navigateNumberOfDays:1];
+//            break;
+//        case 2:
+//            [self navigateNumberOfDays:7];
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 - (IBAction)swipeRight:(id)sender
 {
-    switch ([sender numberOfTouches]) {
-        case 1:
-            [self navigateNumberOfDays:-1];
-            break;
-        case 2:
-            [self navigateNumberOfDays:-7];
-            break;
-        default:
-            break;
-    }
+    [self navigateNumberOfDays:-1];
+    
+//    switch ([sender numberOfTouches]) {
+//        case 1:
+//            [self navigateNumberOfDays:-1];
+//            break;
+//        case 2:
+//            [self navigateNumberOfDays:-7];
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 /* Handle shake */
