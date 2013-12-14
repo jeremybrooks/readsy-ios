@@ -96,7 +96,7 @@
         [defaults setObject:[NSNumber numberWithFloat:self.fontSize] forKey:kReadsyFontSize];
         [defaults synchronize];
     }
-    NSLog(@"Using font size %f", self.fontSize);
+
     if (!self.fontName) {
         self.fontName = DefaultFontName;
         [defaults setObject:self.fontName forKey:kReadsyFontName];
