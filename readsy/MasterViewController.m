@@ -27,10 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
-    
-    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    //self.navigationItem.rightBarButtonItem = addButton;
     
     if (!self.objects) {
         self.objects = [NSMutableArray array];
@@ -180,10 +176,7 @@
 
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
 {
-//    [self.refreshControl endRefreshing];
     [self showActivityIndicators:NO];
-//    [AppDelegate setActivityIndicatorsVisible:NO];
-//    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self showErrorMessage];
     NSLog(@"Error loading metadata: %@", error);
 }

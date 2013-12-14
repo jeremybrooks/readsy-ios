@@ -164,12 +164,6 @@
 				7FB9E9E91856D058000EB398 /* FontSizeViewController.m */,
 				7F5EC8E718581EAC0029800F /* DropboxSetupViewController.h */,
 				7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */,
-				7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */,
-				7F5AB5C0183D67A300365006 /* Main_iPad.storyboard */,
-				7F5AB5C9183D67A300365006 /* Images.xcassets */,
-				7F5AB5B2183D67A300365006 /* Supporting Files */,
-				7F182685183DCF4F0064F7F8 /* Secrets.h */,
-				7FCAE4CE183E7744000C2820 /* Secrets.m */,
 				7F4D53171840098E0043A25A /* ReadsyMetadata.h */,
 				7F4D53181840098E0043A25A /* ReadsyMetadata.m */,
 				7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */,
@@ -178,6 +172,12 @@
 				7F5EC8EB1858D53F0029800F /* Constants.m */,
 				7F5EC8ED1858ED300029800F /* FeedbackViewController.h */,
 				7F5EC8EE1858ED300029800F /* FeedbackViewController.m */,
+				7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */,
+				7F5AB5C0183D67A300365006 /* Main_iPad.storyboard */,
+				7F5AB5C9183D67A300365006 /* Images.xcassets */,
+				7F5AB5B2183D67A300365006 /* Supporting Files */,
+				7F182685183DCF4F0064F7F8 /* Secrets.h */,
+				7FCAE4CE183E7744000C2820 /* Secrets.m */,
 			);
 			path = readsy;
 			sourceTree = "<group>";
@@ -434,7 +434,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

@@ -53,9 +53,12 @@
     }
 }
 
-- (void)alertViewCancel:(UIAlertView *)alertView
+/* alert view is shown when we can't send email. double check and then dismiss view */
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (![MFMailComposeViewController canSendMail]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
