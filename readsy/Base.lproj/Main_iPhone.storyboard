@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lGh-YO-IxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="-1391"/>
+            <point key="canvasLocation" x="1365" y="-2071"/>
         </scene>
         <!--Dropbox Setup View Controller - Dropbox Setup-->
         <scene sceneID="eK1-Bf-M5a">
@@ -134,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Sf-av-uNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="-689"/>
+            <point key="canvasLocation" x="1365" y="-1383"/>
         </scene>
         <!--Feedback View Controller - Send Feedback-->
         <scene sceneID="xoJ-B9-SLS">
@@ -161,7 +161,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aY-cO-3eM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="6"/>
+            <point key="canvasLocation" x="1365" y="-689"/>
+        </scene>
+        <!--Help View Controller - Help-->
+        <scene sceneID="lAg-fH-Tq6">
+            <objects>
+                <viewController id="EL0-4T-ixF" customClass="HelpViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SGc-1q-FpB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eze-rz-JZu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sFL-lL-81h">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQp-s9-sxj">
+                                <rect key="frame" x="20" y="518" width="281" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Reset Tips">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetTips:" destination="EL0-4T-ixF" eventType="touchUpInside" id="pso-sS-6gv"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oCJ-gL-TMb">
+                                <rect key="frame" x="20" y="62" width="280" height="443"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Help Text Goes Here" translatesAutoresizingMaskIntoConstraints="NO" id="dpn-gK-mJK">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="443"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dpn-gK-mJK" firstAttribute="centerY" secondItem="oCJ-gL-TMb" secondAttribute="centerY" id="1EI-n9-icl"/>
+                                    <constraint firstItem="dpn-gK-mJK" firstAttribute="leading" secondItem="oCJ-gL-TMb" secondAttribute="leading" id="GHH-pS-Xw2"/>
+                                    <constraint firstAttribute="bottom" secondItem="dpn-gK-mJK" secondAttribute="bottom" id="I4G-CI-LhN"/>
+                                    <constraint firstItem="dpn-gK-mJK" firstAttribute="centerX" secondItem="oCJ-gL-TMb" secondAttribute="centerX" id="h0f-Zl-n0O"/>
+                                    <constraint firstAttribute="trailing" secondItem="dpn-gK-mJK" secondAttribute="trailing" id="kob-hb-HMf"/>
+                                    <constraint firstItem="dpn-gK-mJK" firstAttribute="top" secondItem="oCJ-gL-TMb" secondAttribute="top" id="sGj-GL-2fO"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oCJ-gL-TMb" secondAttribute="trailing" constant="20" id="Dhd-OU-uaw"/>
+                            <constraint firstItem="oCJ-gL-TMb" firstAttribute="leading" secondItem="EQp-s9-sxj" secondAttribute="leading" id="GDO-Fe-ljG"/>
+                            <constraint firstItem="EQp-s9-sxj" firstAttribute="leading" secondItem="sFL-lL-81h" secondAttribute="leading" constant="20" id="QXq-tQ-ArF"/>
+                            <constraint firstItem="oCJ-gL-TMb" firstAttribute="centerX" secondItem="EQp-s9-sxj" secondAttribute="centerX" id="Qu2-C3-oX9"/>
+                            <constraint firstItem="oCJ-gL-TMb" firstAttribute="top" secondItem="sFL-lL-81h" secondAttribute="top" constant="62" id="TKe-xn-KNe"/>
+                            <constraint firstAttribute="bottom" secondItem="EQp-s9-sxj" secondAttribute="bottom" constant="20" id="XyH-P7-FlO"/>
+                            <constraint firstItem="oCJ-gL-TMb" firstAttribute="leading" secondItem="sFL-lL-81h" secondAttribute="leading" constant="20" id="aPT-bf-eYv"/>
+                            <constraint firstItem="EQp-s9-sxj" firstAttribute="top" secondItem="oCJ-gL-TMb" secondAttribute="bottom" constant="13" id="hNj-cW-HWp"/>
+                            <constraint firstAttribute="centerX" secondItem="EQp-s9-sxj" secondAttribute="centerX" id="hNn-VM-HYp"/>
+                            <constraint firstAttribute="centerX" secondItem="oCJ-gL-TMb" secondAttribute="centerX" id="soN-Df-2or"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Help" id="xu0-ao-K0N"/>
+                    <connections>
+                        <outlet property="resetButton" destination="EQp-s9-sxj" id="kTj-aq-QJd"/>
+                        <outlet property="textView" destination="dpn-gK-mJK" id="d23-nf-Ebg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="frf-a6-Bq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1365" y="-9"/>
         </scene>
         <!--Table View Controller - Settings-->
         <scene sceneID="o67-ET-dCb">
@@ -244,6 +313,30 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="WNX-VJ-HhP" kind="push" id="9Nd-kz-MAe"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fK4-Ij-nL4" imageView="DuV-pf-VAW" style="IBUITableViewCellStyleDefault" id="gi2-gJ-tFw">
+                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gi2-gJ-tFw" id="4aG-AD-eg1">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Help" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fK4-Ij-nL4">
+                                                    <rect key="frame" x="58" y="0.0" width="227" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="451-help-symbol2" id="DuV-pf-VAW">
+                                                    <rect key="frame" x="15" y="7" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="EL0-4T-ixF" kind="push" id="1wt-KD-Km1"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -456,6 +549,7 @@
     </scenes>
     <resources>
         <image name="350-text" width="18" height="20"/>
+        <image name="451-help-symbol2" width="28" height="28"/>
         <image name="730-envelope" width="28" height="18"/>
         <image name="dropbox_small" width="28" height="28"/>
         <image name="unlinked" width="280" height="140"/>

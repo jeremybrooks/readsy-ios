@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F1613B5185C1AD100B1E74E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1613B4185C1AD100B1E74E /* HelpViewController.m */; };
 		7F182680183DA7130064F7F8 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F18267F183DA7130064F7F8 /* DropboxSDK.framework */; };
 		7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182681183DA72C0064F7F8 /* Security.framework */; };
 		7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182683183DA7300064F7F8 /* QuartzCore.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F1613B3185C1AD100B1E74E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		7F1613B4185C1AD100B1E74E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		7F18267F183DA7130064F7F8 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		7F182681183DA72C0064F7F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7F182683183DA7300064F7F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -158,6 +161,8 @@
 				7F5AB5BB183D67A300365006 /* AppDelegate.m */,
 				7F5AB5C3183D67A300365006 /* MasterViewController.h */,
 				7F5AB5C4183D67A300365006 /* MasterViewController.m */,
+				7F1613B3185C1AD100B1E74E /* HelpViewController.h */,
+				7F1613B4185C1AD100B1E74E /* HelpViewController.m */,
 				7F5AB5C6183D67A300365006 /* DetailViewController.h */,
 				7F5AB5C7183D67A300365006 /* DetailViewController.m */,
 				7FB9E9E81856D058000EB398 /* FontSizeViewController.h */,
@@ -316,6 +321,7 @@
 				7F5AB5B8183D67A300365006 /* main.m in Sources */,
 				7F5AB5C8183D67A300365006 /* DetailViewController.m in Sources */,
 				7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */,
+				7F1613B5185C1AD100B1E74E /* HelpViewController.m in Sources */,
 				7F5EC8E918581EAC0029800F /* DropboxSetupViewController.m in Sources */,
 				7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */,
 				7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */,

@@ -75,6 +75,17 @@
         self.isReadSwitch.hidden = YES;
         self.isReadSwitchLabel.hidden = YES;
     }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults objectForKey:kDidShowTipDetailView]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tip"
+                                                        message:@"To navigate to the next/previous day, swipe with one finger. To navigate to the next/previous week, swipe with two fingers. To navigate to today, shake the device."
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [defaults setObject:@"Y" forKey:kDidShowTipDetailView];
+        [defaults synchronize];
+    }
 }
 
 

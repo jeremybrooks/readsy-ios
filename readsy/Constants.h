@@ -12,6 +12,8 @@
 extern NSString* const kReadsyFontSize;
 extern NSString* const kReadsyFontName;
 extern NSString* const kReadsyBoldFontName;
+extern NSString * const kDidShowTipDetailView;
+
 extern NSString* const DefaultFontName;
 extern NSString* const DefaultBoldFontName;
 extern NSInteger const DefaultFontSize;
@@ -24,4 +26,6 @@ extern NSString * const DropboxLinkResultSuccess;
 extern NSString * const DropboxLinkResultFailure;
 
 extern NSString * const ReadsyHelpURL;
+
+extern NSString * const HelpText;
 @end
