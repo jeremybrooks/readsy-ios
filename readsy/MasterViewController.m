@@ -248,7 +248,11 @@
         if (count == 0) {
             cell.detailTextLabel.text = @"You are all up to date!";
         } else {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"There are %d unread items", count];
+            if (count == 1) {
+                cell.detailTextLabel.text = @"There is 1 unread item";
+            } else {
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"There are %d unread items", count];
+            }
         }
     }
     return cell;
