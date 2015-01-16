@@ -164,7 +164,7 @@
             for (NSString *file in sortedArray) {
                 ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:file];
                 [self.objects addObject:rm];
-                
+                [self.tableView reloadData];
                 NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file];
                 [self showActivityIndicators:YES];
                 //            [AppDelegate setActivityIndicatorsVisible:YES];

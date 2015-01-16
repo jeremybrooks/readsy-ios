@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -33,7 +34,6 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqb-SW-Byl">
                                 <rect key="frame" x="20" y="80" width="663" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8p7-Xg-iEf"/>
                                 </constraints>
@@ -42,7 +42,6 @@
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="select a file from the library to see the entry" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="663" translatesAutoresizingMaskIntoConstraints="NO" id="rgs-nt-Uc7">
                                 <rect key="frame" x="20" y="115" width="663" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="0TC-cf-cLZ"/>
                                 </constraints>
@@ -51,11 +50,9 @@
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RRi-N7-0k6">
                                 <rect key="frame" x="20" y="167" width="663" height="542"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsR-Ve-arN">
                                         <rect key="frame" x="0.0" y="0.0" width="663" height="542"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -72,7 +69,6 @@
                             </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I've read it" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kde-sU-e6J">
                                 <rect key="frame" x="77" y="722" width="272" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="272" id="gA2-yr-KLk"/>
                                 </constraints>
@@ -82,14 +78,12 @@
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aoT-DL-YL5">
                                 <rect key="frame" x="20" y="717" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="setReadFlag:" destination="JEX-9P-axG" eventType="valueChanged" id="yx5-qS-uuc"/>
                                 </connections>
                             </switch>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gZP-TK-6aN">
                                 <rect key="frame" x="333" y="366" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -113,7 +107,6 @@
                             <constraint firstItem="Lqb-SW-Byl" firstAttribute="top" secondItem="ZmF-AV-bJa" secondAttribute="bottom" constant="16" id="vos-DP-4zT"/>
                             <constraint firstAttribute="centerX" secondItem="gZP-TK-6aN" secondAttribute="centerX" id="xV8-sG-zmH"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="bJU-qy-tpO" appends="YES" id="vhh-vW-gln"/>
                             <outletCollection property="gestureRecognizers" destination="u9v-m8-4Wg" appends="YES" id="M0e-iS-p9x"/>
@@ -160,7 +153,7 @@
             </objects>
             <point key="canvasLocation" x="-947" y="-1078"/>
         </scene>
-        <!--Master View Controller - Library-->
+        <!--Library-->
         <scene sceneID="smW-Zh-WAh">
             <objects>
                 <tableViewController title="Library" clearsSelectionOnViewWillAppear="NO" id="7bK-jq-Zjz" customClass="MasterViewController" sceneMemberID="viewController">
@@ -168,7 +161,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Arm-wq-HPj" detailTextLabel="qEz-Gm-9XX" style="IBUITableViewCellStyleSubtitle" id="WCw-Qf-5nD">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -184,7 +176,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qEz-Gm-9XX">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text=". . . ." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qEz-Gm-9XX">
                                             <rect key="frame" x="15" y="25" width="43" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -225,7 +217,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <sections>
                             <tableViewSection id="gmm-8G-veF">
                                 <cells>
@@ -339,7 +330,7 @@
             </objects>
             <point key="canvasLocation" x="1468" y="-1078"/>
         </scene>
-        <!--Font Size View Controller - Font-->
+        <!--Font-->
         <scene sceneID="uMD-ac-Tis">
             <objects>
                 <viewController id="BNf-GY-FCQ" customClass="FontSizeViewController" sceneMemberID="viewController">
@@ -353,7 +344,6 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample text font size" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RG-Kq-nM6">
                                 <rect key="frame" x="20" y="81" width="280" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="0XU-RZ-YEv"/>
                                 </constraints>
@@ -363,7 +353,6 @@
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qke-BP-VD5">
                                 <rect key="frame" x="0.0" y="552" width="320" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BNf-GY-FCQ" id="ARc-oq-42h"/>
                                     <outlet property="delegate" destination="BNf-GY-FCQ" id="5yf-DX-X2f"/>
@@ -378,7 +367,6 @@
                             <constraint firstItem="1RG-Kq-nM6" firstAttribute="leading" secondItem="7Q0-oY-1mz" secondAttribute="leading" constant="20" symbolic="YES" id="bKn-fU-mf5"/>
                             <constraint firstItem="1RG-Kq-nM6" firstAttribute="top" secondItem="9vC-XX-rJm" secondAttribute="bottom" constant="17" id="y16-sl-hP5"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Font" id="G0R-8d-L4v"/>
                     <connections>
@@ -390,7 +378,7 @@
             </objects>
             <point key="canvasLocation" x="1860" y="-1907"/>
         </scene>
-        <!--Dropbox Setup View Controller - Dropbox Setup-->
+        <!--Dropbox Setup-->
         <scene sceneID="t7b-FI-j5U">
             <objects>
                 <viewController id="x6d-KV-Vza" customClass="DropboxSetupViewController" sceneMemberID="viewController">
@@ -404,7 +392,6 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5Y-hG-yl2">
                                 <rect key="frame" x="20" y="215" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="nHS-4q-yaH"/>
                                 </constraints>
@@ -414,7 +401,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="be8-tq-8Yd">
                                 <rect key="frame" x="67" y="289" width="186" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="186" id="OHn-fS-qcD"/>
                                 </constraints>
@@ -427,7 +413,6 @@
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unlinked" translatesAutoresizingMaskIntoConstraints="NO" id="yxc-O4-A2d">
                                 <rect key="frame" x="20" y="67" width="280" height="140"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="HC4-re-3bY"/>
                                     <constraint firstAttribute="height" constant="140" id="m50-lt-COa"/>
@@ -443,7 +428,6 @@
                             <constraint firstAttribute="centerX" secondItem="a5Y-hG-yl2" secondAttribute="centerX" id="nCD-Ho-pGM"/>
                             <constraint firstAttribute="centerX" secondItem="yxc-O4-A2d" secondAttribute="centerX" id="zhG-Yc-YeA"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dropbox Setup" id="5sU-MA-eas"/>
                     <connections>
@@ -456,7 +440,7 @@
             </objects>
             <point key="canvasLocation" x="2326" y="-1664"/>
         </scene>
-        <!--Help View Controller - Help-->
+        <!--Help-->
         <scene sceneID="GAZ-gm-jtL">
             <objects>
                 <viewController id="Qad-hd-Yfu" customClass="HelpViewController" sceneMemberID="viewController">
@@ -470,7 +454,6 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvU-9H-ScD">
                                 <rect key="frame" x="124" y="718" width="73" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Reset Tips">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -480,11 +463,9 @@
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-cg-Rs6">
                                 <rect key="frame" x="20" y="67" width="281" height="643"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" editable="NO" text="Help text goes here" translatesAutoresizingMaskIntoConstraints="NO" id="rV1-qc-65i">
                                         <rect key="frame" x="0.0" y="5" width="281" height="634"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -502,7 +483,6 @@
                             <constraint firstItem="MvU-9H-ScD" firstAttribute="top" secondItem="zFK-cg-Rs6" secondAttribute="bottom" constant="8" symbolic="YES" id="jhA-31-fMu"/>
                             <constraint firstItem="zFK-cg-Rs6" firstAttribute="centerX" secondItem="MvU-9H-ScD" secondAttribute="centerX" id="xa6-wq-At5"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Help" id="yoi-6u-agi"/>
                     <connections>
@@ -514,7 +494,7 @@
             </objects>
             <point key="canvasLocation" x="2092" y="-770"/>
         </scene>
-        <!--Feedback View Controller - Send Feedback-->
+        <!--Send Feedback-->
         <scene sceneID="oha-Kp-dpE">
             <objects>
                 <viewController id="61l-3m-XT9" customClass="FeedbackViewController" sceneMemberID="viewController">
@@ -528,7 +508,6 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preparing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vek-9C-Cii">
                                 <rect key="frame" x="116" y="374" width="89" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -539,7 +518,6 @@
                             <constraint firstAttribute="centerX" secondItem="vek-9C-Cii" secondAttribute="centerX" id="NDb-C1-z79"/>
                             <constraint firstAttribute="centerY" secondItem="vek-9C-Cii" secondAttribute="centerY" id="U7T-xz-asB"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Send Feedback" id="tTU-y0-QHw"/>
                 </viewController>
