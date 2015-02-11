@@ -8,6 +8,7 @@
 
 #import "Secrets.h"
 #import "AppDelegate.h"
+#import "MasterViewController.h"
 #import "DropboxSetupViewController.h"
 #import "Constants.h"
 #import <DropboxSDK/DropboxSDK.h>
@@ -29,7 +30,7 @@
                                                    appSecret:kDbAppSecret
                                                         root:kDBRootAppFolder];
     [DBSession setSharedSession:dbSession];
-
+    
     return YES;
 }
 							
@@ -61,9 +62,21 @@
 }
 
 /* Called when user has authorized Dropbox */
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    if ([[DBSession sharedSession] handleOpenURL:url]) {
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    if (url.isFileURL && [url.path hasSuffix:@".readsy"]) {
+        NSLog(@"TRYING TO HANDLE %@", url);
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            UINavigationController *myNavCon = (UINavigationController*)self.window.rootViewController;
+            MasterViewController *masterView = (MasterViewController *) [[[[myNavCon viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
+            [masterView handleDataFile:url];
+        } else {
+            UINavigationController *myNavCon = (UINavigationController*)self.window.rootViewController;
+            MasterViewController *masterView = (MasterViewController*) [[myNavCon viewControllers] objectAtIndex:0];
+            [masterView handleDataFile:url];
+        }
+        return YES;
+    } else if ([[DBSession sharedSession] handleOpenURL:url]) {
         if ([[DBSession sharedSession] isLinked]) {
             NSLog(@"App linked successfully!");
             NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultSuccess forKey:kLinkResult];
@@ -84,4 +97,7 @@
     [[NSNotificationCenter defaultCenter] postNotification:notification];
     return NO;
 }
+
+
+
 @end

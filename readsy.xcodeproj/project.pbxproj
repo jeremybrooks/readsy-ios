@@ -33,6 +33,13 @@
 		7F5EC8EC1858D53F0029800F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8EB1858D53F0029800F /* Constants.m */; };
 		7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8EE1858ED300029800F /* FeedbackViewController.m */; };
 		7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB9E9E61856CEBF000EB398 /* MessageUI.framework */; };
+		7F9B30D01A69B33A00568E4C /* DataFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */; };
+		7FB942951A6EF4B100F696EF /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9428B1A6EF4B100F696EF /* ioapi.c */; };
+		7FB942961A6EF4B100F696EF /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9428D1A6EF4B100F696EF /* mztools.c */; };
+		7FB942971A6EF4B100F696EF /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9428F1A6EF4B100F696EF /* unzip.c */; };
+		7FB942981A6EF4B100F696EF /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB942911A6EF4B100F696EF /* zip.c */; };
+		7FB942991A6EF4B100F696EF /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB942941A6EF4B100F696EF /* SSZipArchive.m */; };
+		7FB9429B1A6EFAD200F696EF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB9429A1A6EFAD200F696EF /* libz.dylib */; };
 		7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9E9E91856D058000EB398 /* FontSizeViewController.m */; };
 		7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCAE4CE183E7744000C2820 /* Secrets.m */; };
 /* End PBXBuildFile section */
@@ -86,6 +93,20 @@
 		7F5EC8EB1858D53F0029800F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		7F5EC8ED1858ED300029800F /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		7F5EC8EE1858ED300029800F /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		7F9B30CE1A69B33A00568E4C /* DataFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFileViewController.h; path = ../DataFileViewController.h; sourceTree = "<group>"; };
+		7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFileViewController.m; path = ../DataFileViewController.m; sourceTree = "<group>"; };
+		7FB9428A1A6EF4B100F696EF /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		7FB9428B1A6EF4B100F696EF /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		7FB9428C1A6EF4B100F696EF /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		7FB9428D1A6EF4B100F696EF /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		7FB9428E1A6EF4B100F696EF /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		7FB9428F1A6EF4B100F696EF /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		7FB942901A6EF4B100F696EF /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		7FB942911A6EF4B100F696EF /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		7FB942921A6EF4B100F696EF /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		7FB942931A6EF4B100F696EF /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		7FB942941A6EF4B100F696EF /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		7FB9429A1A6EFAD200F696EF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7FB9E9E61856CEBF000EB398 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7FB9E9E81856D058000EB398 /* FontSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSizeViewController.h; sourceTree = "<group>"; };
 		7FB9E9E91856D058000EB398 /* FontSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSizeViewController.m; sourceTree = "<group>"; };
@@ -97,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB9429B1A6EFAD200F696EF /* libz.dylib in Frameworks */,
 				7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */,
 				7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */,
 				7F5B7EC21A68A2C300341DAF /* DropboxSDK.framework in Frameworks */,
@@ -142,6 +164,7 @@
 		7F5AB5AA183D67A300365006 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FB9429A1A6EFAD200F696EF /* libz.dylib */,
 				7F5B7EC11A68A2C300341DAF /* DropboxSDK.framework */,
 				7FB9E9E61856CEBF000EB398 /* MessageUI.framework */,
 				7F182683183DA7300064F7F8 /* QuartzCore.framework */,
@@ -157,8 +180,13 @@
 		7F5AB5B1183D67A300365006 /* readsy */ = {
 			isa = PBXGroup;
 			children = (
+				7FB942891A6EF4B100F696EF /* minizip */,
+				7FB942931A6EF4B100F696EF /* SSZipArchive.h */,
+				7FB942941A6EF4B100F696EF /* SSZipArchive.m */,
 				7F5AB5BA183D67A300365006 /* AppDelegate.h */,
 				7F5AB5BB183D67A300365006 /* AppDelegate.m */,
+				7F9B30CE1A69B33A00568E4C /* DataFileViewController.h */,
+				7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */,
 				7F5AB5C3183D67A300365006 /* MasterViewController.h */,
 				7F5AB5C4183D67A300365006 /* MasterViewController.m */,
 				7F1613B3185C1AD100B1E74E /* HelpViewController.h */,
@@ -216,6 +244,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7FB942891A6EF4B100F696EF /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				7FB9428A1A6EF4B100F696EF /* crypt.h */,
+				7FB9428B1A6EF4B100F696EF /* ioapi.c */,
+				7FB9428C1A6EF4B100F696EF /* ioapi.h */,
+				7FB9428D1A6EF4B100F696EF /* mztools.c */,
+				7FB9428E1A6EF4B100F696EF /* mztools.h */,
+				7FB9428F1A6EF4B100F696EF /* unzip.c */,
+				7FB942901A6EF4B100F696EF /* unzip.h */,
+				7FB942911A6EF4B100F696EF /* zip.c */,
+				7FB942921A6EF4B100F696EF /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -263,6 +307,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Jeremy Brooks";
 				TargetAttributes = {
+					7F5AB5A7183D67A300365006 = {
+						DevelopmentTeam = N4WAZRFT26;
+					};
 					7F5AB5CE183D67A300365006 = {
 						TestTargetID = 7F5AB5A7183D67A300365006;
 					};
@@ -316,9 +363,13 @@
 			files = (
 				7F5EC8EC1858D53F0029800F /* Constants.m in Sources */,
 				7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */,
+				7FB942991A6EF4B100F696EF /* SSZipArchive.m in Sources */,
+				7F9B30D01A69B33A00568E4C /* DataFileViewController.m in Sources */,
 				7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */,
 				7F5AB5C5183D67A300365006 /* MasterViewController.m in Sources */,
 				7F5AB5B8183D67A300365006 /* main.m in Sources */,
+				7FB942981A6EF4B100F696EF /* zip.c in Sources */,
+				7FB942951A6EF4B100F696EF /* ioapi.c in Sources */,
 				7F5AB5C8183D67A300365006 /* DetailViewController.m in Sources */,
 				7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */,
 				7F1613B5185C1AD100B1E74E /* HelpViewController.m in Sources */,
@@ -326,6 +377,8 @@
 				7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */,
 				7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */,
 				7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */,
+				7FB942971A6EF4B100F696EF /* unzip.c in Sources */,
+				7FB942961A6EF4B100F696EF /* mztools.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +513,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jeremyb/development/readsy-ios/readsy",
@@ -469,6 +524,7 @@
 				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
 				INFOPLIST_FILE = "readsy/readsy-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -478,6 +534,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/jeremyb/development/readsy-ios/readsy",
@@ -487,6 +545,7 @@
 				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
 				INFOPLIST_FILE = "readsy/readsy-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

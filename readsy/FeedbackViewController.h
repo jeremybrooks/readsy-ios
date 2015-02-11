@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-@interface FeedbackViewController : UIViewController <UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface FeedbackViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @end

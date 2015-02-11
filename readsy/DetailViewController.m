@@ -77,20 +77,34 @@
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults objectForKey:kDidShowTipDetailView]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tip"
-                                                        message:@"To navigate to the next or previous day, swipe left or right. To navigate to today, shake the device."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-        [defaults setObject:@"Y" forKey:kDidShowTipDetailView];
-        [defaults synchronize];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tip"
+                                                                        message:@"To navigate to the next or previous day, swipe left or right. To navigate to today, shake the device."
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+        [alert addAction:ok];
+        [self.navigationController presentViewController:alert
+                                                animated:YES
+                                              completion:^{
+                                                  [defaults setObject:@"Y" forKey:kDidShowTipDetailView];
+                                                  [defaults synchronize];
+                                              }];
+        
     }
 }
 
 
 - (void)viewDidLoad
 {
+    //If in portrait mode, display the master view
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action withObject:self.navigationItem];
+        #pragma clang diagnostic pop
+    }
+    
     if (!self.restClient) {
         self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
         self.restClient.delegate = self;
@@ -326,14 +340,19 @@
 
 - (void)showErrorMessage
 {
-    self.headingLabel.text = @"";
-    self.contentTextView.text = @"There was an error while communicating with Dropbox. Do you have a network connection?";
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                    message:@"There was an error while communicating with Dropbox. There may be a network problem."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    // probably should not replace content; a pop up is sufficient
+//    self.headingLabel.text = @"";
+//    self.contentTextView.text = @"There was an error while communicating with Dropbox. Do you have a network connection?";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:@"There was an error while communicating with Dropbox. There may be a network problem."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alert addAction:ok];
+    [self.navigationController presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
 }
 
 

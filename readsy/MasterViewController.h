@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <DropboxSDK/DropboxSDK.h>
+#import "DataFileViewController.h"
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController <DBRestClientDelegate, UIAlertViewDelegate>
+@interface MasterViewController : UITableViewController <DBRestClientDelegate, DataFileViewControllerDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) DBRestClient *restClient;
 @property (strong, nonatomic) NSMutableArray *objects;
+
+-(void) handleDataFile:(NSURL *)dataFile;
 
 @end

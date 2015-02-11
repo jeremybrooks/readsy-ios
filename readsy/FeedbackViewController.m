@@ -43,35 +43,40 @@
         [self presentViewController:mail animated:YES completion:NULL];
                                
     } else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Cannot Send Mail"
-                                                        message:[NSString stringWithFormat:@"This device is not configured to send email. You can send feedback to %@", FeedbackEmailAddress]
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Send Mail"
+                                                                       message:[NSString stringWithFormat:@"This device is not configured to send email. You can send feedback to %@", FeedbackEmailAddress]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+        [alert addAction:ok];
+        [self.navigationController presentViewController:alert
+                                                animated:YES
+                                              completion:^{
+                                                    if (![MFMailComposeViewController canSendMail]) {
+                                                        [self.navigationController popViewControllerAnimated:YES];
+                                                    }
+                                                }];
         
-        [alert show];
     }
 }
 
-/* alert view is shown when we can't send email. double check and then dismiss view */
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if (![MFMailComposeViewController canSendMail]) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     if (result == MFMailComposeResultSent) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback Sent"
-                                                        message:@"Your message was sent. Thanks!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Feedback Sent"
+                                                                       message:@"Your message was sent. Thanks!"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+        [alert addAction:ok];
+        [self.navigationController presentViewController:alert
+                                                animated:YES
+                                              completion:nil];
     }
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

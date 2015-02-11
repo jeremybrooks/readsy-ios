@@ -36,12 +36,17 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:kDidShowTipDetailView];
     [defaults synchronize];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tips Reset"
-                                                    message:@"Tips have been reset."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tips Reset"
+                                                                   message:@"Tips have been reset."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alert addAction:ok];
+    [self.navigationController presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning

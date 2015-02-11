@@ -13,6 +13,7 @@ NSString* const kReadsyFontSize = @"kReadsyFontSize";
 NSString* const kReadsyFontName = @"kReadsyFontName";
 NSString* const kReadsyBoldFontName = @"kReadsyBoldFontName";
 NSString * const kDidShowTipDetailView = @"kDidShowTipDetailView";
+NSString *const kDataUploadInProgress = @"kDataUploadInProgress";
 
 NSString* const DefaultFontName = @"Helvetica Neue";
 NSString* const DefaultBoldFontName = @"HelveticaNeue-MediumItalic";
