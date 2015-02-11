@@ -167,7 +167,7 @@
     if (error) {
         [self handleError:@"Error getting listing of files."];
     } else {
-        self.statusLabel.text = @"Uploading 1/365, please wait...";
+        self.statusLabel.text = @"Preparing to upload, please wait...";
         [self.statusSpinner stopAnimating];
         self.statusProgress.progress = 0.0;
         self.statusProgress.hidden = NO;
