@@ -27,6 +27,7 @@ extern NSString * const DropboxLinkResultSuccess;
 extern NSString * const DropboxLinkResultFailure;
 
 extern NSString * const ReadsyHelpURL;
+extern NSString * const ReadsyMobileDownloadURL;
 
 extern NSString * const HelpText;
 @end

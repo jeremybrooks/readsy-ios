@@ -183,7 +183,7 @@
             UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Visit Website"
                                                           style:UIAlertActionStyleDefault
                                                         handler:^(UIAlertAction *action) {
-                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ReadsyHelpURL]];
+                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ReadsyMobileDownloadURL]];
                                                         }];
             UIAlertAction *no = [UIAlertAction actionWithTitle:@"Not Now"
                                                          style:UIAlertActionStyleCancel

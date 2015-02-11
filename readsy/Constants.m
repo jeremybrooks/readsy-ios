@@ -27,6 +27,7 @@ NSString * const DropboxLinkResultSuccess = @"YES";
 NSString * const DropboxLinkResultFailure = @"NO";
 
 NSString * const ReadsyHelpURL = @"http://jeremybrooks.net/readsy/faq.html";
+NSString * const ReadsyMobileDownloadURL = @"http://jeremybrooks.net/readsy/mobile.html";
 
 NSString * const HelpText = @"readsy is designed to help you read something every day.\n\nThe Library view will show the readsy data that is in your Dropbox. Tap a row to see the entry for the day.\n\nWhen viewing an entry, you can navigate to previous and next days by swiping left and right on the screen. To return to the current day's entry, shake the device.\n\nWhen you have read the entry for a day, tap the switch to mark it as read. The main screen will let you know if you have any unread items.\n\nFor more information about readsy, visit the web site at http://jeremybrooks.net/readsy";
 @end
