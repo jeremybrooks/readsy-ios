@@ -134,7 +134,7 @@
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath
           metadata:(DBMetadata*)metadata {
     NSLog(@"UPLOADED FILE %@", destPath);
-    // todo delete source file
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSString *file = [NSString stringWithFormat:@"/%@/%@", self.dataDirectoryPath, [destPath lastPathComponent]];
@@ -144,7 +144,10 @@
         NSLog(@"Error deleting file %@: %@", file, error);
     }
   
-    self.statusProgress.progress = (365 - self.uploadFileList.count)/365.0;
+    NSInteger number = 365 - self.uploadFileList.count;
+    
+    self.statusProgress.progress = number/365.0;
+    self.statusLabel.text = [NSString stringWithFormat:@"Uploading %ld/365, please wait...", (long)number];
     [self uploadAFile];
 }
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
@@ -164,7 +167,7 @@
     if (error) {
         [self handleError:@"Error getting listing of files."];
     } else {
-        self.statusLabel.text = @"Uploading files, please wait...";
+        self.statusLabel.text = @"Uploading 1/365, please wait...";
         [self.statusSpinner stopAnimating];
         self.statusProgress.progress = 0.0;
         self.statusProgress.hidden = NO;
@@ -219,7 +222,7 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-// Dropbox callbacl -- this indicates that the temp directory move failed
+// Dropbox callback -- this indicates that the temp directory move failed
 - (void)restClient:(DBRestClient *)client movePathFailedWithError:(NSError *)error {
     [self handleError:@"Files have been copied to Dropbox, but directory rename failed. You may be able to rename the directory manually on Dropbox. Look for a directory that ends with '_tmp_', and remove the '_tmp'."];
 }
