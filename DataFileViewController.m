@@ -145,6 +145,12 @@
     }
   
     NSInteger number = 365 - self.uploadFileList.count;
+    if (number < 1) {
+        number = 1;
+    }
+    if (number > 365) {
+        number = 365;
+    }
     
     self.statusProgress.progress = number/365.0;
     self.statusLabel.text = [NSString stringWithFormat:@"Uploading %ld/365, please wait...", (long)number];
