@@ -84,15 +84,11 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unlinked" translatesAutoresizingMaskIntoConstraints="NO" id="GH9-yV-Vaz">
                                 <rect key="frame" x="20" y="65" width="280" height="140"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="Lum-Uz-MPY"/>
-                                    <constraint firstAttribute="height" constant="140" id="kPR-qr-mPS"/>
-                                </constraints>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="854-zp-UK4">
                                 <rect key="frame" x="20" y="213" width="280" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="HCl-A3-Izf"/>
+                                    <constraint firstAttribute="height" constant="21" id="ceU-1o-6yS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -100,9 +96,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68s-Er-eJa">
                                 <rect key="frame" x="20" y="269" width="280" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="M7w-sQ-2sr"/>
-                                </constraints>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -113,13 +106,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GH9-yV-Vaz" firstAttribute="top" secondItem="Dle-qv-k2k" secondAttribute="bottom" constant="1" id="2C5-8d-7BI"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="top" secondItem="Eso-tB-z1E" secondAttribute="top" constant="269" id="BGT-NE-PpP"/>
-                            <constraint firstItem="854-zp-UK4" firstAttribute="top" secondItem="Eso-tB-z1E" secondAttribute="top" constant="213" id="Ef0-tl-sJJ"/>
-                            <constraint firstAttribute="centerX" secondItem="68s-Er-eJa" secondAttribute="centerX" id="H4f-nq-eto"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerY" secondItem="Eso-tB-z1E" secondAttribute="centerY" id="LES-iG-ZnU"/>
-                            <constraint firstAttribute="centerX" secondItem="GH9-yV-Vaz" secondAttribute="centerX" id="T4b-D6-Gj6"/>
-                            <constraint firstAttribute="centerX" secondItem="854-zp-UK4" secondAttribute="centerX" id="gsT-e8-9DE"/>
+                            <constraint firstItem="GH9-yV-Vaz" firstAttribute="top" secondItem="Dle-qv-k2k" secondAttribute="bottom" constant="1" id="N47-9J-m5e"/>
+                            <constraint firstItem="GH9-yV-Vaz" firstAttribute="leading" secondItem="854-zp-UK4" secondAttribute="leading" id="WSs-ze-G1x"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerY" secondItem="Eso-tB-z1E" secondAttribute="centerY" id="Yna-Jm-znP"/>
+                            <constraint firstItem="854-zp-UK4" firstAttribute="trailing" secondItem="GH9-yV-Vaz" secondAttribute="trailing" id="btv-bk-6Gk"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="leading" secondItem="854-zp-UK4" secondAttribute="leading" id="eTz-Jb-5EC"/>
+                            <constraint firstItem="854-zp-UK4" firstAttribute="top" secondItem="GH9-yV-Vaz" secondAttribute="bottom" constant="8" symbolic="YES" id="h1j-Zp-q2u"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="trailing" secondItem="854-zp-UK4" secondAttribute="trailing" id="jPL-66-Q30"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerX" secondItem="Eso-tB-z1E" secondAttribute="centerX" id="wre-nI-VJ9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dropbox Setup" id="llD-xN-S9X"/>
