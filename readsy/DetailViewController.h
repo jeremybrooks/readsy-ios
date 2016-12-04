@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ReadsyMetadata.h"
 #import "ReadsyEntry.h"
-#import <DropboxSDK/DropboxSDK.h>
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, DBRestClientDelegate>
+
+//@interface DetailViewController : UIViewController <UISplitViewControllerDelegate, DBRestClientDelegate>
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headingLabel;
@@ -22,7 +24,7 @@
 
 @property (strong, nonatomic) ReadsyMetadata *detailItem;
 @property (strong, nonatomic) ReadsyEntry *entryItem;
-@property (strong, nonatomic) DBRestClient *restClient;
+//@property (strong, nonatomic) DBRestClient *restClient;
 @property (strong, nonatomic) NSDateFormatter *mmddFormat;
 @property (strong, nonatomic) NSDateFormatter *shortFormat;
 

@@ -11,7 +11,8 @@
 #import "MasterViewController.h"
 #import "DropboxSetupViewController.h"
 #import "Constants.h"
-#import <DropboxSDK/DropboxSDK.h>
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
+
 
 
 
@@ -19,18 +20,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+{    
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-    }
-    DBSession *dbSession = [[DBSession alloc] initWithAppKey:kDbAppKey
-                                                   appSecret:kDbAppSecret
-                                                        root:kDBRootAppFolder];
-    [DBSession setSharedSession:dbSession];
+    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+     //   UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+     //   UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+     //   splitViewController.delegate = (id)navigationController.topViewController;
+    //}
     
+    //DBSession *dbSession = [[DBSession alloc] initWithAppKey:kDbAppKey
+    //                                               appSecret:kDbAppSecret
+    //                                                    root:kDBRootAppFolder];
+    //[DBSession setSharedSession:dbSession];
+ 
+    [DropboxClientsManager setupWithAppKey:kDbAppKey];
     return YES;
 }
 							
@@ -61,7 +64,21 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-/* Called when user has authorized Dropbox */
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    DBOAuthResult *authResult = [DropboxClientsManager handleRedirectURL:url];
+    if (authResult != nil) {
+        if ([authResult isSuccess]) {
+            NSLog(@"Success! User is logged into Dropbox.");
+        } else if ([authResult isCancel]) {
+            NSLog(@"Authorization flow was manually canceled by user!");
+        } else if ([authResult isError]) {
+            NSLog(@"Error: %@", authResult);
+        }
+    }
+    return NO;
+}
+
+/* Called when user has authorized Dropbox
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
     if (url.isFileURL && [url.path hasSuffix:@".readsy"]) {
@@ -76,6 +93,27 @@
             [masterView handleDataFile:url];
         }
         return YES;
+    } else {
+        DBOAuthResult *authResult = [DropboxClientsManager handleRedirectURL:url];
+        if (authResult != nil) {
+            if ([authResult isSuccess]) {
+                NSLog(@"App linked successfully!");
+                NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultSuccess forKey:kLinkResult];
+                NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
+            } else if ([authResult isCancel]) {
+                NSLog(@"Authorization flow was manually canceled by user!");
+            } else if ([authResult isError]) {
+                NSLog(@"App was not linked.");
+                NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
+                NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
+            }
+        }
+        return YES;
+    }
+ */
+    /*
     } else if ([[DBSession sharedSession] handleOpenURL:url]) {
         if ([[DBSession sharedSession] isLinked]) {
             NSLog(@"App linked successfully!");
@@ -90,13 +128,14 @@
         }
         return YES;
     }
+     
     
     NSLog(@"App was not linked.");
     NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
     NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
     return NO;
-}
+}*/
 
 
 

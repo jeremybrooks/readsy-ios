@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <DropboxSDK/DropboxSDK.h>
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
+
 
 @protocol DataFileViewControllerDelegate <NSObject>
 -(void)dataLoadFinished:(BOOL)finished;
 @end
 
-@interface DataFileViewController : UIViewController <DBRestClientDelegate>
+@interface DataFileViewController : UIViewController
 
-@property (strong, nonatomic) DBRestClient *restClient;
 @property (weak, nonatomic) id <DataFileViewControllerDelegate> dataFileDelegate;
 
 @property NSURL *dataFile;

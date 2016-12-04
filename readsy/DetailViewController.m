@@ -44,7 +44,7 @@
             NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
             NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
             [self showActivityIndicators:YES];
-            [self.restClient loadFile:filename intoPath:tmpFile];
+//            [self.restClient loadFile:filename intoPath:tmpFile];
         } else {
             self.dateLabel.text = [self.shortFormat stringFromDate:self.detailItem.date];
             self.headingLabel.text = @"";
@@ -105,10 +105,10 @@
         #pragma clang diagnostic pop
     }
     
-    if (!self.restClient) {
-        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        self.restClient.delegate = self;
-    }
+//    if (!self.restClient) {
+//        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+//        self.restClient.delegate = self;
+//    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *size = [defaults objectForKey:kReadsyFontSize];
@@ -159,7 +159,7 @@
 {
     [self resignFirstResponder];
     [self hideAllActivityIndicators];
-    [self.restClient cancelAllRequests];
+//    [self.restClient cancelAllRequests];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
         [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontSize];
@@ -198,7 +198,7 @@
     
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
     NSLog(@"Loading metadata for file %@", remoteFile);
-    [self.restClient loadMetadata:remoteFile];
+//    [self.restClient loadMetadata:remoteFile];
 }
 
 - (void)navigateNumberOfDays:(int)days
@@ -272,71 +272,71 @@
 
 #pragma mark - Dropbox Access
 /* File was successfully loaded from Dropbox */
-- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
-       contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
-    [self showActivityIndicators:NO];
-    NSError *error;
-    NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
-    if (error) {
-        NSLog(@"There was an error reading the file - %@", error);
-        [self showErrorMessage];
-    } else {
-        self.entryItem = [[ReadsyEntry alloc] initWithString:entry];
-        
-        [[NSFileManager defaultManager] removeItemAtPath:localPath error:&error];
-        if (error) {
-            NSLog(@"Could not delete temp file. %@", error);
-        }
-    }
-    [self configureView];
-}
-
-/* File load failed */
-- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
-    [self showActivityIndicators:NO];
-    NSLog(@"There was an error loading the file - %@", error);
-    [self showErrorMessage];
-}
-
-/* Loaded metadata, so attempt to upload and replace metadata */
-- (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
-{
-    NSLog(@"Metadata loaded; uploading new metadata file replacing rev %@", metadata.rev);
-    NSString *tmpFile = [NSString stringWithFormat:@"%@metadata", NSTemporaryDirectory()];
-    NSData *properties = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
-    [properties writeToFile:tmpFile atomically:YES];
-    [self.restClient uploadFile:@"metadata"
-                         toPath:[NSString stringWithFormat:@"/%@/", self.detailItem.sourceDirectory]
-                  withParentRev:metadata.rev
-                       fromPath:tmpFile];
-}
-
-/* Load metadata failed */
-- (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error
-{
-    NSLog(@"Metadata load failed with error %@", error);
-    [self showActivityIndicators:NO];
-    [self showErrorMessage];
-}
-
-/* Uploaded new metadata */
-- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-    [self showActivityIndicators:NO];
-    NSLog(@"File uploaded successfully to path: %@", metadata.path);
-    NSError *error;
-    [[NSFileManager defaultManager] removeItemAtPath:srcPath error:&error];
-    if (error) {
-        NSLog(@"Could not delete temp file. %@", srcPath);
-    }
-    
-}
-
-- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
-    [self showActivityIndicators:NO];
-    NSLog(@"File upload failed with error - %@", error);
-    [self showErrorMessage];
-}
+//- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
+//       contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
+//    [self showActivityIndicators:NO];
+//    NSError *error;
+//    NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
+//    if (error) {
+//        NSLog(@"There was an error reading the file - %@", error);
+//        [self showErrorMessage];
+//    } else {
+//        self.entryItem = [[ReadsyEntry alloc] initWithString:entry];
+//        
+//        [[NSFileManager defaultManager] removeItemAtPath:localPath error:&error];
+//        if (error) {
+//            NSLog(@"Could not delete temp file. %@", error);
+//        }
+//    }
+//    [self configureView];
+//}
+//
+///* File load failed */
+//- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
+//    [self showActivityIndicators:NO];
+//    NSLog(@"There was an error loading the file - %@", error);
+//    [self showErrorMessage];
+//}
+//
+///* Loaded metadata, so attempt to upload and replace metadata */
+//- (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
+//{
+//    NSLog(@"Metadata loaded; uploading new metadata file replacing rev %@", metadata.rev);
+//    NSString *tmpFile = [NSString stringWithFormat:@"%@metadata", NSTemporaryDirectory()];
+//    NSData *properties = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
+//    [properties writeToFile:tmpFile atomically:YES];
+//    [self.restClient uploadFile:@"metadata"
+//                         toPath:[NSString stringWithFormat:@"/%@/", self.detailItem.sourceDirectory]
+//                  withParentRev:metadata.rev
+//                       fromPath:tmpFile];
+//}
+//
+///* Load metadata failed */
+//- (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error
+//{
+//    NSLog(@"Metadata load failed with error %@", error);
+//    [self showActivityIndicators:NO];
+//    [self showErrorMessage];
+//}
+//
+///* Uploaded new metadata */
+//- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
+//              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
+//    [self showActivityIndicators:NO];
+//    NSLog(@"File uploaded successfully to path: %@", metadata.path);
+//    NSError *error;
+//    [[NSFileManager defaultManager] removeItemAtPath:srcPath error:&error];
+//    if (error) {
+//        NSLog(@"Could not delete temp file. %@", srcPath);
+//    }
+//    
+//}
+//
+//- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
+//    [self showActivityIndicators:NO];
+//    NSLog(@"File upload failed with error - %@", error);
+//    [self showErrorMessage];
+//}
 
 - (void)showErrorMessage
 {

@@ -8,7 +8,7 @@
 
 #import "DropboxSetupViewController.h"
 #import "Constants.h"
-#import <DropboxSDK/DropboxSDK.h>
+#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 @interface DropboxSetupViewController ()
 @end
@@ -31,10 +31,15 @@
     [self updateView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self updateView];
+}
+
 - (void)updateView
 {
-    if ([[DBSession sharedSession] isLinked]) {
-
+    if ([DropboxClientsManager authorizedClient] != nil) {
         self.image.image = [UIImage imageNamed:@"linked.png"];
         self.label.text = @"Linked with Dropbox";
         [self.button setTitle:@"Unlink Dropbox" forState:UIControlStateNormal];
@@ -45,25 +50,20 @@
     }
 }
 
-
 - (IBAction)linkOrUnlinkDropbox:(id)sender
 {
-    if ([[DBSession sharedSession] isLinked]) {
-        [[DBSession sharedSession] unlinkAll];
-        [self updateView];
+    if ([DropboxClientsManager authorizedClient] == nil) {
+        [DropboxClientsManager authorizeFromController:[UIApplication sharedApplication]
+                                            controller:self
+                                               openURL:^(NSURL *url) {
+                                                   [[UIApplication sharedApplication] openURL:url];
+                                               }
+                                           browserAuth:NO];
     } else {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(receiveDropboxLinkNotification:)
-                                                     name:DropboxLinkNotification
-                                                   object:nil];
-        [[DBSession sharedSession] linkFromController:self];
+        [DropboxClientsManager unlinkClients];
+        [self updateView];
     }
 
-}
-
-- (void)receiveDropboxLinkNotification:(NSNotification *)notification
-{
-    [self updateView];
 }
 
 - (void)didReceiveMemoryWarning

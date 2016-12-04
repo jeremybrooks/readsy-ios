@@ -144,8 +144,8 @@ static NSString * const kRead = @"read";
 
 - (NSUInteger) calculateDayOfYear:(NSDate *)date
 {
-    NSUInteger dayOfYear = [[NSCalendar currentCalendar] ordinalityOfUnit:NSDayCalendarUnit
-                                                                   inUnit:NSYearCalendarUnit
+    NSUInteger dayOfYear = [[NSCalendar currentCalendar] ordinalityOfUnit:NSCalendarUnitDay
+                                                                   inUnit:NSCalendarUnitYear
                                                                   forDate:date];
     return dayOfYear;
 }
