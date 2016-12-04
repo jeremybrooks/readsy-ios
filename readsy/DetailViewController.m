@@ -173,18 +173,18 @@
     [super viewWillDisappear:animated];
 }
 
-/* Respond to changes in font name/size when this view is visible. */
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:kReadsyFontName]) {
-        self.fontName = [change objectForKey:NSKeyValueChangeNewKey];
-    } else if ([keyPath isEqualToString:kReadsyFontSize]) {
-        self.fontSize = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
-    } else if ([keyPath isEqualToString:kReadsyBoldFontName]) {
-        self.boldFontName = [change objectForKey:NSKeyValueChangeNewKey];
-    }
-    [self updateFonts];
-}
+///* Respond to changes in font name/size when this view is visible. */
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    if ([keyPath isEqualToString:kReadsyFontName]) {
+//        self.fontName = [change objectForKey:NSKeyValueChangeNewKey];
+//    } else if ([keyPath isEqualToString:kReadsyFontSize]) {
+//        self.fontSize = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
+//    } else if ([keyPath isEqualToString:kReadsyBoldFontName]) {
+//        self.boldFontName = [change objectForKey:NSKeyValueChangeNewKey];
+//    }
+//    [self updateFonts];
+//}
 
 
 - (void)didReceiveMemoryWarning
@@ -198,14 +198,15 @@
 {
     [self.detailItem setReadFlag:self.isReadSwitch.on forDate:self.detailItem.date];
     
-    self.navigationItem.hidesBackButton = YES;
-
-    [self showActivityIndicators:YES];
+    
     
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
     NSData *data = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
     DropboxClient *client = [DropboxClientsManager authorizedClient];
     DBFILESWriteMode *mode = [[DBFILESWriteMode alloc] initWithOverwrite];
+    
+    self.navigationItem.hidesBackButton = YES;
+    [self showActivityIndicators:YES];
     
     [[client.filesRoutes uploadData:remoteFile
                                mode:mode
@@ -214,6 +215,7 @@
                                mute:nil
                           inputData:data]
      response:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBError *error) {
+         self.navigationItem.hidesBackButton = NO;
          [self showActivityIndicators:NO];
          if (result) {
              NSLog(@"Upload of '%@' successful", remoteFile);

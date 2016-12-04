@@ -54,16 +54,24 @@
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Continue?"
                                                                        message:@"There is a data file upload in progress. Would you like to continue uploading files now?"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes"
+        [alert addAction:[UIAlertAction actionWithTitle:@"Yes"
                                                       style:UIAlertActionStyleDefault
                                                     handler:^(UIAlertAction *action) {
                                                         [self performSegueWithIdentifier:@"handleDataFile" sender:nil];
-                                                    }];
-        UIAlertAction *no = [UIAlertAction actionWithTitle:@"No"
+                                                    }]];
+        [alert addAction: [UIAlertAction actionWithTitle:@"Later"
                                                      style:UIAlertActionStyleCancel
-                                                   handler:nil];
-        [alert addAction:yes];
-        [alert addAction:no];
+                                                   handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Stop Trying"
+                                                  style:UIAlertActionStyleDestructive
+                                                handler:^(UIAlertAction *action) {
+                                                    //TODO
+                                                    // delete data files
+                                                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                                    NSString *dataDirectory = [defaults objectForKey:kDataUploadInProgress];
+                                                    [defaults removeObjectForKey:kDataUploadInProgress];
+                                                    [defaults synchronize];
+                                                }]];
         [self.navigationController presentViewController:alert
                                                 animated:YES
                                               completion:nil];
