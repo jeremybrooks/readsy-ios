@@ -41,21 +41,53 @@ NSInteger selectedFontSizeRow;
     if (!fontName) {
         fontName = DefaultFontName;
     }
-        
+    
     self.availableFonts = [NSArray arrayWithObjects:
+                           @"Al Nile",
                            @"American Typewriter",
-                           @"Avenir", @"Baskerville",
-                           @"Courier", @"Gill Sans", @"Helvetica",
-                           @"Helvetica Neue", @"Palatino",
-                           @"Thonburi", @"Verdana",
+                           @"Avenir",
+                           @"Baskerville",
+                           @"Cochin",
+                           @"Courier",
+                           @"Damascus",
+                           @"Georgia",
+                           @"Gill Sans",
+                           @"Helvetica",
+                           @"Helvetica Neue",
+                           @"Kailasa",
+                           @"Marion",
+                           @"Menlo",
+                           @"Noteworthy",
+                           @"Optima",
+                           @"Palatino",
+                           @"Thonburi",
+                           @"Times New Roman",
+                           @"Verdana",
+                           @"Zapfino",
                            nil];
     self.boldFonts = [NSArray arrayWithObjects:
-                           @"AmericanTypewriter-Bold",
-                           @"Avenir-HeavyOblique", @"Baskerville-SemiBoldItalic",
-                           @"Courier-BoldOblique", @"GillSans-BoldItalic", @"Helvetica-BoldOblique",
-                           @"HelveticaNeue-MediumItalic", @"Palatino-BoldItalic",
-                           @"Thonburi-Bold", @"Verdana-BoldItalic",
-                           nil];
+                      @"AlNile-Bold",
+                      @"AmericanTypewriter-Bold",
+                      @"Avenir-HeavyOblique",
+                      @"Baskerville-SemiBoldItalic",
+                      @"Cochin-Bold",
+                      @"Courier-BoldOblique",
+                      @"Damascus-Bold",
+                      @"Georgia-Bold",
+                      @"GillSans-BoldItalic",
+                      @"Helvetica-BoldOblique",
+                      @"HelveticaNeue-MediumItalic",
+                      @"Kailasa-Bold",
+                      @"Marion-Bold",
+                      @"Menlo-BoldItalic",
+                      @"Noteworthy-Bold",
+                      @"Optima-Bold",
+                      @"Palatino-BoldItalic",
+                      @"Thonburi-Bold",
+                      @"TimesNewRomanPS-BoldItalicMT",
+                      @"Verdana-BoldItalic",
+                      @"Zapfino",
+                      nil];
     int row = 0;
     for (NSString *name in self.availableFonts) {
         if ([name isEqualToString:fontName]) {
@@ -80,7 +112,7 @@ NSInteger selectedFontSizeRow;
     [self.picker selectRow:selectedFontRow inComponent:0 animated:YES];
     [self.picker selectRow:selectedFontSizeRow inComponent:1 animated:YES];
     NSNumber *size = [self.availableFontSizes objectAtIndex:selectedFontSizeRow];
-    self.fontLabel.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
+    self.textView.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -151,7 +183,7 @@ NSInteger selectedFontSizeRow;
             break;
     }
     NSNumber *size = [self.availableFontSizes objectAtIndex:selectedFontSizeRow];
-    self.fontLabel.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
+    self.textView.font = [UIFont fontWithName:[self.availableFonts objectAtIndex:selectedFontRow] size:[size floatValue]];
 }
 
 @end

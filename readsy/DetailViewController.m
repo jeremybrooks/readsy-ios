@@ -29,12 +29,12 @@
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
     }
-     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-         [self loadDataForItem];
-     }
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }
+//     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//         [self loadDataForItem];
+//     }
+//    if (self.masterPopoverController != nil) {
+//        [self.masterPopoverController dismissPopoverAnimated:YES];
+//    }
 }
 
 - (void) loadDataForItem
@@ -42,9 +42,21 @@
     if (self.detailItem) {
         if ([self.detailItem dataValidForDate:self.detailItem.date]) {
             NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
-            NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), self.detailItem.fileShortDescription];
             [self showActivityIndicators:YES];
-//            [self.restClient loadFile:filename intoPath:tmpFile];
+            DropboxClient *client = [DropboxClientsManager authorizedClient];
+            [[client.filesRoutes downloadData:filename]
+             response:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBError *error, NSData *fileData) {
+                 [self showActivityIndicators:NO];
+                 if (result) {
+                     NSString *entry = [[NSString alloc] initWithData:fileData
+                                                                encoding:NSUTF8StringEncoding];
+                     self.entryItem = [[ReadsyEntry alloc] initWithString:entry];
+                     [self configureView];
+                 } else {
+                     NSString *errorMessage = [NSString stringWithFormat:@"Error reading file '%@' from Dropbox.", filename];
+                     [self showErrorMessage:errorMessage];
+                 }
+             }];
         } else {
             self.dateLabel.text = [self.shortFormat stringFromDate:self.detailItem.date];
             self.headingLabel.text = @"";
@@ -98,16 +110,11 @@
 - (void)viewDidLoad
 {
     //If in portrait mode, display the master view
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action withObject:self.navigationItem];
-        #pragma clang diagnostic pop
-    }
-    
-//    if (!self.restClient) {
-//        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-//        self.restClient.delegate = self;
+//    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
+//        #pragma clang diagnostic push
+//        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//        [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action withObject:self.navigationItem];
+//        #pragma clang diagnostic pop
 //    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -134,11 +141,11 @@
     [super viewDidLoad];
 
     // Do any additional setup after loading the view, typically from a nib.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontName options:NSKeyValueObservingOptionNew context:NULL];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontSize options:NSKeyValueObservingOptionNew context:NULL];
-        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyBoldFontName options:NSKeyValueObservingOptionNew context:NULL];
-    }
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontName options:NSKeyValueObservingOptionNew context:NULL];
+//        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontSize options:NSKeyValueObservingOptionNew context:NULL];
+//        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyBoldFontName options:NSKeyValueObservingOptionNew context:NULL];
+//    }
     self.mmddFormat = [[NSDateFormatter alloc] init];
     [self.mmddFormat setDateFormat:@"MMdd"];
     self.shortFormat = [[NSDateFormatter alloc] init];
@@ -159,11 +166,10 @@
 {
     [self resignFirstResponder];
     [self hideAllActivityIndicators];
-//    [self.restClient cancelAllRequests];
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
-        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontSize];
-    }
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
+//        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontSize];
+//    }
     [super viewWillDisappear:animated];
 }
 
@@ -197,8 +203,26 @@
     [self showActivityIndicators:YES];
     
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
-    NSLog(@"Loading metadata for file %@", remoteFile);
-//    [self.restClient loadMetadata:remoteFile];
+    NSData *data = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
+    DropboxClient *client = [DropboxClientsManager authorizedClient];
+    DBFILESWriteMode *mode = [[DBFILESWriteMode alloc] initWithOverwrite];
+    
+    [[client.filesRoutes uploadData:remoteFile
+                               mode:mode
+                         autorename:nil
+                     clientModified:nil
+                               mute:nil
+                          inputData:data]
+     response:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBError *error) {
+         [self showActivityIndicators:NO];
+         if (result) {
+             NSLog(@"Upload of '%@' successful", remoteFile);
+         } else {
+             NSLog(@"Upload error. routeError=%@, error=%@", routeError, error);
+             NSString *errorMessage = [NSString stringWithFormat:@"There was an error communicating with Dropbox."];
+             [self showErrorMessage:errorMessage];
+         }
+     }];
 }
 
 - (void)navigateNumberOfDays:(int)days
@@ -340,16 +364,13 @@
 
 - (void)showErrorMessage
 {
-    // probably should not replace content; a pop up is sufficient
-//    self.headingLabel.text = @"";
-//    self.contentTextView.text = @"There was an error while communicating with Dropbox. Do you have a network connection?";
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
                                                                    message:@"There was an error while communicating with Dropbox. There may be a network problem."
                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
                                                  style:UIAlertActionStyleDefault
-                                               handler:nil];
-    [alert addAction:ok];
+                                               handler:nil]];
+    
     [self.navigationController presentViewController:alert
                                             animated:YES
                                           completion:nil];
@@ -363,20 +384,20 @@
 //    return [[DBSession sharedSession] isLinked];
 //    //    return NO;
 //}
-
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-{
-    barButtonItem.title = NSLocalizedString(@"Library", @"Library");
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
-}
-
-- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-    self.masterPopoverController = nil;
-}
+//
+//- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+//{
+//    barButtonItem.title = NSLocalizedString(@"Library", @"Library");
+//    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+//    self.masterPopoverController = popoverController;
+//}
+//
+//- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+//{
+//    // Called when the view is shown again in the split view, invalidating the button and popover controller.
+//    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+//    self.masterPopoverController = nil;
+//}
 
 
 #pragma mark - Activity indicator stuff
@@ -416,5 +437,22 @@
             self.navigationItem.hidesBackButton = NO;
         }
     }
+}
+
+- (void)showErrorMessage: (NSString *)message {
+    if (!message) {
+        message = @"There was an error while communicating with Dropbox. There may be a network problem.";
+    }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alert addAction:ok];
+    [self.navigationController presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
 }
 @end

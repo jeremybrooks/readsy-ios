@@ -69,6 +69,16 @@
     if (authResult != nil) {
         if ([authResult isSuccess]) {
             NSLog(@"Success! User is logged into Dropbox.");
+            // Get the current view controller; it is most likely the dropbox setup view controller
+            // If it IS the dropbox setup view controller, update the view to show
+            // the state of the Dropbox link
+            UIViewController* viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+            UIViewController *currentController = [AppDelegate findBestViewController:viewController];
+            if ([currentController isKindOfClass:[DropboxSetupViewController class]]) {
+                DropboxSetupViewController *dsvc = (DropboxSetupViewController*)currentController;
+                [dsvc updateView];
+            }
+            
         } else if ([authResult isCancel]) {
             NSLog(@"Authorization flow was manually canceled by user!");
         } else if ([authResult isError]) {
@@ -137,6 +147,48 @@
     return NO;
 }*/
 
++(UIViewController*) findBestViewController:(UIViewController*)vc {
+    
+    if (vc.presentedViewController) {
+        
+        // Return presented view controller
+        return [AppDelegate findBestViewController:vc.presentedViewController];
+        
+    } else if ([vc isKindOfClass:[UISplitViewController class]]) {
+        
+        // Return right hand side
+        UISplitViewController* svc = (UISplitViewController*) vc;
+        if (svc.viewControllers.count > 0)
+            return [AppDelegate findBestViewController:svc.viewControllers.lastObject];
+        else
+            return vc;
+        
+    } else if ([vc isKindOfClass:[UINavigationController class]]) {
+        
+        // Return top view
+        UINavigationController* svc = (UINavigationController*) vc;
+        if (svc.viewControllers.count > 0)
+            return [AppDelegate findBestViewController:svc.topViewController];
+        else
+            return vc;
+        
+    } else if ([vc isKindOfClass:[UITabBarController class]]) {
+        
+        // Return visible view
+        UITabBarController* svc = (UITabBarController*) vc;
+        if (svc.viewControllers.count > 0)
+            return [AppDelegate findBestViewController:svc.selectedViewController];
+        else
+            return vc;
+        
+    } else {
+        
+        // Unknown view controller type, return last child view controller
+        return vc;
+        
+    }
+    
+}
 
 
 @end

@@ -17,17 +17,13 @@
 
 - (void)awakeFromNib
 {
-    /*if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.clearsSelectionOnViewWillAppear = NO;
-        self.preferredContentSize = CGSizeMake(320.0, 600.0);
-    }*/
     [super awakeFromNib];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
     
     if (!self.objects) {
         self.objects = [NSMutableArray array];
@@ -35,7 +31,6 @@
     [self.refreshControl addTarget:self
                             action:@selector(refresh)
                   forControlEvents:UIControlEventValueChanged];
-//    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 /*
@@ -84,33 +79,11 @@
             [[self tableView] reloadData];
         }
         [self showDropboxNotLinkedAlert];
+    } else {
+        if (self.objects.count == 0) {
+            [self refresh];
+        }
     }
-//    if ([[DBSession sharedSession] isLinked]) {
-//        if (!self.restClient) {
-//            self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-//            self.restClient.delegate = self;
-//            NSLog(@"Dropbox client created");
-//        }
-//        
-//        if (self.objects.count == 0) {
-//            [self refresh];
-//        }
-//    } else {
-//        // Dropbox is not linked
-//        // if the user unlinked the account, we will need to get rid of any dropbox client,
-//        // clear out the data model,
-//        // and refresh the table view
-//        [self hideAllActivityIndicators];
-//        if (self.restClient) {
-//            self.restClient = nil;
-//        }
-//        if (self.objects.count > 0) {
-//            [self.objects removeAllObjects];
-//            [[self tableView] reloadData];
-//        }
-//        [self showDropboxNotLinkedAlert];
-//    }
-    
 }
 
 - (void)refresh
@@ -119,36 +92,81 @@
         [self.objects removeAllObjects];
         [[self tableView] reloadData];
     }
-//    if ([[DBSession sharedSession] isLinked]) {
-//        [self showActivityIndicators:YES];
-//        [self.restClient loadMetadata:@"/"];
-//    } else {
-//        // Dropbox is not linked
-//        // if the user unlinked the account, we will need to get rid of any dropbox client,
-//        // clear out the data model,
-//        // and refresh the table view
-//        [self hideAllActivityIndicators];
-//        if (self.restClient) {
-//            self.restClient = nil;
-//        }
-//        [self showDropboxNotLinkedAlert];
-//    }
+    DropboxClient * client = [DropboxClientsManager authorizedClient];
+    if (client == nil) {
+        [self hideAllActivityIndicators];
+        [self showDropboxNotLinkedAlert];
+    } else {
+        [self showActivityIndicators:YES];
+        [[client.filesRoutes listFolder:@""] response:^(DBFILESListFolderResult *result, DBFILESListFolderError *routeError, DBError *error) {
+            if (result) {
+                if (result.entries.count == 0) {
+                    [self hideAllActivityIndicators];
+                    [self showNoContentMessage];
+                } else {
+                    // add entries to an array, then sort
+                    NSMutableArray *array = [NSMutableArray array];
+                    for (DBFILESMetadata *entry in result.entries) {
+                        if ([entry.name hasSuffix:@"_tmp_"]) {
+                            NSLog(@"Skipping incomplete upload '%@'", entry.name);
+                        } else {
+                            [array addObject:entry.name];
+                        }
+                    }
+                    NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+                    
+                    // now get metadata for the sorted entries
+                    for (NSString *name in sortedArray) {
+                        ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:name];
+                        [self.objects addObject:rm];
+                        [self.tableView reloadData];
+                        NSString *metadataPath = [NSString stringWithFormat:@"/%@/metadata", name];
+                        [[client.filesRoutes downloadData:metadataPath]
+                         response:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBError *error, NSData *fileData) {
+                             if (result) {
+                                 NSString *metadata = [[NSString alloc] initWithData:fileData
+                                                                            encoding:NSUTF8StringEncoding];
+                                 [rm setMetadata:metadata];
+                                 [self.tableView reloadData];
+                             } else {
+                                 NSString *errorMessage = [NSString stringWithFormat:@"Error reading file '/%@/metadata' from Dropbox.", name];
+                                 [self showErrorMessage:errorMessage];
+                             }
+                         }];
+                    }
+                    
+                    [self hideAllActivityIndicators];
+                }
+            } else {
+                [self hideAllActivityIndicators];
+                UIAlertController *alert =
+                [UIAlertController alertControllerWithTitle:@"Error"
+                                                    message:@"Error reading directory"
+                                             preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:nil]];
+                [self presentViewController:alert
+                                   animated:YES
+                                 completion:nil];
+            }
+        }];
+    }
 }
 
 -(void)showDropboxNotLinkedAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Dropbox Not Linked"
                                                                    message:@"There is no Dropbox account linked with readsy. To link your Dropbox account, tap Settings. Would you like to go to settings now?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes"
+    [alert addAction:[UIAlertAction actionWithTitle:@"Yes"
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
                                                     [self performSegueWithIdentifier:@"showSettingsSegue" sender:nil];
-                                                }];
-    UIAlertAction *no = [UIAlertAction actionWithTitle:@"No"
+                                                }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"No"
                                                  style:UIAlertActionStyleCancel
-                                               handler:nil];
-    [alert addAction:yes];
-    [alert addAction:no];
+                                               handler:nil]];
     
     [self.navigationController presentViewController:alert
                                             animated:YES
@@ -158,7 +176,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self hideAllActivityIndicators];
-//    [self.restClient cancelAllRequests];
     [super viewWillDisappear:animated];
 }
 
@@ -166,11 +183,46 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
     NSLog(@"**********************MEMORY WARNING");
 }
 
+- (void)showNoContentMessage
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Nothing To Read"
+                                                                   message:@"It looks like you do not have any data files in Dropbox. To learn more about how to install and create data files, visit the readsy website."
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Visit Website"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ReadsyMobileDownloadURL]];
+                                                }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"Not Now"
+                                                 style:UIAlertActionStyleCancel
+                                               handler:nil]];
+    
+    [self.navigationController presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
+}
 
+- (void)showErrorMessage: (NSString *)message {
+    if (!message) {
+        message = @"There was an error while communicating with Dropbox. There may be a network problem.";
+    }
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+                                                 style:UIAlertActionStyleDefault
+                                               handler:nil];
+    [alert addAction:ok];
+    [self.navigationController presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
+}
 
 #pragma mark - Dropbox Access
 /*
@@ -203,7 +255,7 @@
 //                                                  completion:nil];
 //        } else {
 //            NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-//            
+//
 //            for (NSString *file in sortedArray) {
 //                if ([file hasSuffix:@"_tmp_"]) {
 //                    NSLog(@"Skipping incomplete upload '%@'", file);
@@ -271,7 +323,7 @@
 //            [self.tableView reloadData];
 //        }
 //    }
-//    
+//
 //    [self showErrorMessage:message];
 //}
 //
@@ -294,28 +346,13 @@
 //                     completion:nil];
 //}
 
-- (void)showErrorMessage: (NSString *)message {
-    if (!message) {
-        message = @"There was an error while communicating with Dropbox. There may be a network problem.";
-    }
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                 style:UIAlertActionStyleDefault
-                                               handler:nil];
-    [alert addAction:ok];
-    [self.navigationController presentViewController:alert
-                                            animated:YES
-                                          completion:nil];
-}
 
--(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-{
-    NSLog(@"IN MASTER VIEW: shouldHideViewController");
-    return NO;
-}
+
+//-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+//{
+//    NSLog(@"IN MASTER VIEW: shouldHideViewController");
+//    return NO;
+//}
 
 #pragma mark - Table View
 
@@ -385,7 +422,9 @@
         UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDestructive
                                                    handler:^(UIAlertAction *action) {
-//                                                       [self.restClient deletePath:[NSString stringWithFormat:@"/%@", rm.sourceDirectory]];
+                                                       DropboxClient *client = [DropboxClientsManager authorizedClient];
+                                                       [client.filesRoutes delete_:[NSString stringWithFormat:@"/%@", rm.sourceDirectory]];
+                                                       
                                                        [self.objects removeObjectAtIndex:indexPath.row];
                                                        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                                                                         withRowAnimation:UITableViewRowAnimationFade];

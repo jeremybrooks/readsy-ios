@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FontSizeViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *fontLabel;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
 @property (strong, nonatomic) NSArray *availableFonts;
