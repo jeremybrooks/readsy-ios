@@ -65,10 +65,11 @@
         [alert addAction:[UIAlertAction actionWithTitle:@"Stop Trying"
                                                   style:UIAlertActionStyleDestructive
                                                 handler:^(UIAlertAction *action) {
-                                                    //TODO
-                                                    // delete data files
+                                                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                                                    NSString *documentsDirectory = [paths objectAtIndex:0];
+                                                    NSString *installDirectory = [documentsDirectory stringByAppendingPathComponent:@"/install"];
+                                                    [[NSFileManager defaultManager] removeItemAtPath:installDirectory error:nil];
                                                     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                                                    NSString *dataDirectory = [defaults objectForKey:kDataUploadInProgress];
                                                     [defaults removeObjectForKey:kDataUploadInProgress];
                                                     [defaults synchronize];
                                                 }]];

@@ -20,19 +20,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
-    // Override point for customization after application launch.
-    //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-     //   UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-     //   UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-     //   splitViewController.delegate = (id)navigationController.topViewController;
-    //}
-    
-    //DBSession *dbSession = [[DBSession alloc] initWithAppKey:kDbAppKey
-    //                                               appSecret:kDbAppSecret
-    //                                                    root:kDBRootAppFolder];
-    //[DBSession setSharedSession:dbSession];
- 
+{
     [DropboxClientsManager setupWithAppKey:kDbAppKey];
     return YES;
 }
@@ -64,88 +52,40 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    DBOAuthResult *authResult = [DropboxClientsManager handleRedirectURL:url];
-    if (authResult != nil) {
-        if ([authResult isSuccess]) {
-            NSLog(@"Success! User is logged into Dropbox.");
-            // Get the current view controller; it is most likely the dropbox setup view controller
-            // If it IS the dropbox setup view controller, update the view to show
-            // the state of the Dropbox link
-            UIViewController* viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
-            UIViewController *currentController = [AppDelegate findBestViewController:viewController];
-            if ([currentController isKindOfClass:[DropboxSetupViewController class]]) {
-                DropboxSetupViewController *dsvc = (DropboxSetupViewController*)currentController;
-                [dsvc updateView];
-            }
-            
-        } else if ([authResult isCancel]) {
-            NSLog(@"Authorization flow was manually canceled by user!");
-        } else if ([authResult isError]) {
-            NSLog(@"Error: %@", authResult);
-        }
-    }
-    return NO;
-}
-
-/* Called when user has authorized Dropbox
+/*
+ * Handles the case of:
+ *   1) User opening a .readsy file
+ *   2) Authorization from Dropbox
+ */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
     if (url.isFileURL && [url.path hasSuffix:@".readsy"]) {
         NSLog(@"TRYING TO HANDLE %@", url);
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            UINavigationController *myNavCon = (UINavigationController*)self.window.rootViewController;
-            MasterViewController *masterView = (MasterViewController *) [[[[myNavCon viewControllers] objectAtIndex:0] viewControllers] objectAtIndex:0];
-            [masterView handleDataFile:url];
-        } else {
-            UINavigationController *myNavCon = (UINavigationController*)self.window.rootViewController;
-            MasterViewController *masterView = (MasterViewController*) [[myNavCon viewControllers] objectAtIndex:0];
-            [masterView handleDataFile:url];
-        }
-        return YES;
+        UINavigationController *myNavCon = (UINavigationController*)self.window.rootViewController;
+        MasterViewController *masterView = (MasterViewController*) [[myNavCon viewControllers] objectAtIndex:0];
+        [masterView handleDataFile:url];
     } else {
         DBOAuthResult *authResult = [DropboxClientsManager handleRedirectURL:url];
         if (authResult != nil) {
             if ([authResult isSuccess]) {
-                NSLog(@"App linked successfully!");
-                NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultSuccess forKey:kLinkResult];
-                NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
-                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                NSLog(@"Success! User is logged into Dropbox.");
+                // Get the current view controller; it is most likely the dropbox setup view controller
+                // If it IS the dropbox setup view controller, update the view to show
+                // the state of the Dropbox link
+                UIViewController* viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
+                UIViewController *currentController = [AppDelegate findBestViewController:viewController];
+                if ([currentController isKindOfClass:[DropboxSetupViewController class]]) {
+                    DropboxSetupViewController *dsvc = (DropboxSetupViewController*)currentController;
+                    [dsvc updateView];
+                }
             } else if ([authResult isCancel]) {
                 NSLog(@"Authorization flow was manually canceled by user!");
             } else if ([authResult isError]) {
-                NSLog(@"App was not linked.");
-                NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
-                NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
-                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                NSLog(@"Error: %@", authResult);
             }
         }
-        return YES;
     }
- */
-    /*
-    } else if ([[DBSession sharedSession] handleOpenURL:url]) {
-        if ([[DBSession sharedSession] isLinked]) {
-            NSLog(@"App linked successfully!");
-            NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultSuccess forKey:kLinkResult];
-            NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
-            [[NSNotificationCenter defaultCenter] postNotification:notification];
-        } else {
-            NSLog(@"App was not linked.");
-            NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
-            NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
-            [[NSNotificationCenter defaultCenter] postNotification:notification];
-        }
-        return YES;
-    }
-     
-    
-    NSLog(@"App was not linked.");
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:DropboxLinkResultFailure forKey:kLinkResult];
-    NSNotification *notification = [NSNotification notificationWithName:DropboxLinkNotification object:nil userInfo:dict];
-    [[NSNotificationCenter defaultCenter] postNotification:notification];
-    return NO;
-}*/
+    return YES;
+}
 
 +(UIViewController*) findBestViewController:(UIViewController*)vc {
     

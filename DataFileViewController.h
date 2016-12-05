@@ -22,6 +22,9 @@
 @property NSString *dataDirectory;
 @property NSString *dataDirectoryPath;
 @property NSMutableArray *uploadFileList;
+@property NSString *installDirectory;
+@property NSInteger uploadCount;
+@property NSInteger listSize;
 
 @property IBOutlet UILabel *statusLabel;
 @property IBOutlet UIActivityIndicatorView *statusSpinner;

@@ -19,31 +19,59 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    /*
-    if (!self.restClient) {
-        self.restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
-        self.restClient.delegate = self;
-    }
-     */
-    
-    // Do any additional setup after loading the view.
     NSLog(@"DATA FILE IS %@", self.dataFile);
-    
-    if (self.dataFile) {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    self.installDirectory = [documentsDirectory stringByAppendingPathComponent:@"/install"];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // if a data file was provided, AND the install directory already exists,
+    // confirm that the process should continue
+    if (self.dataFile && [[NSFileManager defaultManager] fileExistsAtPath:self.installDirectory]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Install In Progress"
+                                                                       message:@"There may be a different data file installation that has not completed. Would you like to continue with this installation and abandon the other one?"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Yes"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [[NSFileManager defaultManager] removeItemAtPath:self.installDirectory
+                                                                                               error:nil];
+                                                    [self startInstall];
+                                                }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"No"
+                                                  style:UIAlertActionStyleCancel
+                                                handler:^(UIAlertAction *action) {
+                                                    [self.navigationController popViewControllerAnimated:YES];
+                                                }]];
+        [self.navigationController presentViewController:alert
+                                                animated:YES
+                                              completion:nil];
+        
+    // else if a data file was provided, start the install process
+    } else if (self.dataFile) {
         [self startInstall];
+        
+    // else continue any in progress installs
     } else {
-        // a nil dataFile indicates that an upload was in progress
-        // attempt to set the data directory based on the value saved in UserDefaults
+        // set the data directory based on the value saved in UserDefaults
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.dataDirectory = [defaults objectForKey:kDataUploadInProgress];
         if (self.dataDirectory) {
-            NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"data"];
-            self.dataDirectoryPath = [NSString stringWithFormat:@"%@/%@", tmpFile, self.dataDirectory];
-//            [self startFileUploads];//TODO
+            self.dataDirectoryPath = [self.installDirectory stringByAppendingPathComponent:self.dataDirectory];
+            [self startFileUpload];
+        } else {
+            // this should not happen... no data file to work on, and no value saved in user defaults
+            // to tell us what we were uploading.
+            // warn user, and try to clean things up.
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kDataUploadInProgress];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [[NSFileManager defaultManager] removeItemAtPath:self.installDirectory error:nil];
+            [self handleError:@"Data file upload is in an inconsistent state. Please try installing the data file again."];
         }
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,20 +82,29 @@
 
 - (void) startInstall {
     // unzip files
-    NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"data"];
-    NSString *source = [NSString stringWithFormat:@"%s", [self.dataFile fileSystemRepresentation]];
-    [SSZipArchive unzipFileAtPath:source toDestination:tmpFile];
-    
-    // delete data file archive
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
-    [fileManager removeItemAtURL:self.dataFile error:&error];
-    if (error) {
-        [self handleError:@"Unable to delete source file."];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:self.installDirectory]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:self.installDirectory
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:&error];
     }
     
+    if (error) {
+        [self handleError:@"Unable to create local install directory."];
+    }
+    
+    NSString *source = [NSString stringWithFormat:@"%s", [self.dataFile fileSystemRepresentation]];
+    [SSZipArchive unzipFileAtPath:source toDestination:self.installDirectory];
+    
+    // delete data file archive
+    // ignore errors - they won't affect operation
+    [[NSFileManager defaultManager] removeItemAtURL:self.dataFile
+                                              error:nil];
+    
     // get the directory that was unzipped
-    NSArray *files = [fileManager contentsOfDirectoryAtPath:tmpFile error:&error];
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.installDirectory
+                                                      error:&error];
     if (error) {
         [self handleError:@"Error listing archive contents."];
     } else if (files.count == 0) {
@@ -77,7 +114,7 @@
         self.dataDirectory = [files objectAtIndex:0];
         
         // this is the full path to the data directory
-        self.dataDirectoryPath = [NSString stringWithFormat:@"%@/%@", tmpFile, self.dataDirectory];
+        self.dataDirectoryPath = [self.installDirectory stringByAppendingPathComponent:self.dataDirectory];
         
         // save the data directory to indicate an upload is in progress
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -88,162 +125,122 @@
     // update UI
     self.statusLabel.text = @"Checking dropbox...";
     
-    // kick off a dropbox file listing
-//    [self.restClient loadMetadata:@"/"];//TODO
+    DropboxClient *client = [DropboxClientsManager authorizedClient];
+    [[client.filesRoutes listFolder:@""] response:^(DBFILESListFolderResult *result, DBFILESListFolderError *routeError, DBError *error) {
+        if (result) {
+            BOOL installed = NO;
+            for (DBFILESMetadata *entry in result.entries) {
+                if ([entry.name isEqualToString:self.dataDirectory]) {
+                    installed = YES;
+                }
+            }
+            if (installed) {
+                // already installed, so remove install directory and in progress key
+                [[NSFileManager defaultManager] removeItemAtPath:self.installDirectory
+                                                           error:nil];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:kDataUploadInProgress];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [self handleError:[NSString stringWithFormat:@"Data for '%@' is already installed.", self.dataDirectory]];
+            } else {
+                // not installed, check for existing temp directory
+                NSString *tmpDir = [NSString stringWithFormat:@"/%@_tmp_", self.dataDirectory];
+                for (DBFILESMetadata *entry in result.entries) {
+                    if ([entry.name isEqualToString:tmpDir]) {
+                        tmpDir = nil;   // set to nil if it exists
+                    }
+                }
+                // if tmpdir is not nil, it does not exist, so we create it
+                if (tmpDir) {
+                    [[client.filesRoutes createFolder:tmpDir] response:^(DBFILESFolderMetadata *result, DBFILESCreateFolderError *routeError, DBError *error) {
+                        if (routeError || error) {
+                            [self handleError:[NSString stringWithFormat:@"Could not create directory '%@' on Dropbox.", tmpDir]];
+                        } else {
+                            [self startFileUpload];
+                        }
+                    }];
+                }
+            }
+            
+        } else {
+            [self handleError:@"Error communicating with Dropbox."];
+        }
+    }];
 }
 
+- (void)startFileUpload
+{
+    NSError *error;
+    self.uploadFileList = [NSMutableArray arrayWithArray:
+                           [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.dataDirectoryPath
+                                                                               error:&error]];
 
-#pragma  mark - Dropbox callbacks
-
-//- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
-//    if (metadata.isDirectory) {
-//        for (DBMetadata *file in metadata.contents) {
-//            NSLog(@"GOT %@", file.filename);
-//            if ([file.filename isEqualToString:self.dataDirectory]) {
-//                [self handleError:[NSString stringWithFormat:@"Data for '%@' is already installed.", self.dataDirectory]];
-//            }
-//        }
-//        
-//        // no match, see if we have started copying to a temp directory
-//        NSString *tempDir = [NSString stringWithFormat:@"/%@_tmp_", self.dataDirectory];
-//        for (DBMetadata *file in metadata.contents) {
-//            if ([file.filename isEqualToString:tempDir]) {
-//                tempDir = nil;
-//            }
-//        }
-//        // if tempDir was not set to nil, we can create it
-//        // otherwise, continue with file uploads
-//        if (tempDir) {
-//            [self.restClient createFolder:tempDir];
-//        } else {
-//            [self startFileUploads];
-//        }
-//    }
-//}
-//
-//- (void)restClient:(DBRestClient*)client createdFolder:(DBMetadata*)folder {
-//    // folder was created, so start uploading files
-//    NSLog(@"Created folder %@", folder);
-//    [self startFileUploads];
-//}
-
-
-
-//- (void)restClient:(DBRestClient*)client createFolderFailedWithError:(NSError*)error {
-//    [self handleError:[NSString stringWithFormat:@"Unable to create folder in Dropbox."]];
-//}
-
-//- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath
-//          metadata:(DBMetadata*)metadata {
-//    NSLog(@"UPLOADED FILE %@", destPath);
-//    
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSError *error;
-//    NSString *file = [NSString stringWithFormat:@"/%@/%@", self.dataDirectoryPath, [destPath lastPathComponent]];
-//    NSLog(@"DELETE %@", file);
-//    [fileManager removeItemAtPath:file error:&error];
-//    if (error) {
-//        NSLog(@"Error deleting file %@: %@", file, error);
-//    }
-//  
-//    NSInteger number = 365 - self.uploadFileList.count;
-//    if (number < 1) {
-//        number = 1;
-//    }
-//    if (number > 365) {
-//        number = 365;
-//    }
-//    
-//    self.statusProgress.progress = number/365.0;
-//    self.statusLabel.text = [NSString stringWithFormat:@"Uploading %ld/365, please wait...", (long)number];
-//    [self uploadAFile];
-//}
-//- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
-//    NSLog(@"ERROR UPLOADING FILE %@", error);
-//    [self handleError:@"Error uploading files."];
-//}
-
-
-//- (void)startFileUploads {
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSError *error;
-//    
-//    self.uploadFileList = [NSMutableArray arrayWithArray:[fileManager contentsOfDirectoryAtPath:self.dataDirectoryPath
-//                                                                                          error:&error]];
-//    
-//    
-//    if (error) {
-//        [self handleError:@"Error getting listing of files."];
-//    } else {
-//        self.statusLabel.text = @"Preparing to upload, please wait...";
-//        [self.statusSpinner stopAnimating];
-//        self.statusProgress.progress = 0.0;
-//        self.statusProgress.hidden = NO;
-//        
-//        [self uploadAFile];
-//    }
-//}
-
-
-//- (void) uploadAFile {
-//    if (self.uploadFileList.count > 0) {
-//        NSString *destPath = [NSString stringWithFormat:@"/%@_tmp_", self.dataDirectory];
-//        NSString *filename = [self.uploadFileList objectAtIndex:0];
-//        [self.uploadFileList removeObjectAtIndex:0];
-//        NSString *source = [NSString stringWithFormat:@"%@/%@", self.dataDirectoryPath, filename];
-//        [self.restClient uploadFile:filename toPath:destPath withParentRev:nil fromPath:source];
-//    } else {
-//        self.statusLabel.text = @"Cleaning up...";
-//        
-//        // delete local temp data on the device
-//        NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), @"data"];
-//        NSFileManager *fileManager = [NSFileManager defaultManager];
-//        NSError *error;
-//        [fileManager removeItemAtPath:tmpFile error:&error];
-//        if (error) {
-//            NSLog(@"Unable to delete temp directory %@", tmpFile);
-//        }
-//        
-//        // move the temp directory on Dropbox to the correct name
-//        [self.restClient moveFrom:[NSString stringWithFormat:@"/%@_tmp_", self.dataDirectory]
-//                           toPath:[NSString stringWithFormat:@"/%@", self.dataDirectory]];
-//    }
-//}
-
-// Dropbox callback -- this indicates that the temp directory has been moved successfully, and we are done
-//- (void)restClient:(DBRestClient *)client movedPath:(NSString *)from_path to:(DBMetadata *)result {
-//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//    [defaults removeObjectForKey:kDataUploadInProgress];
-//    [defaults synchronize];
-//    
-//    self.statusLabel.text = @"Complete";
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Complete"
-//                                                                   message:@"Files have been uploaded"
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-//                                                 style:UIAlertActionStyleDefault
-//                                               handler:^(UIAlertAction *action) {
-//                                                   [self.dataFileDelegate dataLoadFinished:YES];
-//                                                   [self.navigationController popViewControllerAnimated:YES];
-//                                               }];
-//    [alert addAction:ok];
-//    [self presentViewController:alert animated:YES completion:nil];
-//}
-
-// Dropbox callback -- this indicates that the temp directory move failed
-//- (void)restClient:(DBRestClient *)client movePathFailedWithError:(NSError *)error {
-//    [self handleError:@"Files have been copied to Dropbox, but directory rename failed. You may be able to rename the directory manually on Dropbox. Look for a directory that ends with '_tmp_', and remove the '_tmp'."];
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (error) {
+        [self handleError:@"Error getting listing of files."];
+    } else {
+        self.statusLabel.text = @"Preparing to upload, please wait...";
+        [self.statusSpinner stopAnimating];
+        self.statusProgress.progress = 0.0;
+        self.statusProgress.hidden = NO;
+        self.listSize = self.uploadFileList.count;
+        self.uploadCount = 1;
+        
+        [self uploadNextFile];
+    }
 }
-*/
+
+- (void)uploadNextFile
+{
+    DropboxClient *client = [DropboxClientsManager authorizedClient];
+    DBFILESWriteMode *mode = [[DBFILESWriteMode alloc] initWithOverwrite];
+    self.statusLabel.text = [NSString stringWithFormat:@"Uploading %ld/%ld, please wait...", self.uploadCount, self.listSize];
+    
+    if (self.uploadFileList.count > 0) {
+        NSString *file = [self.uploadFileList objectAtIndex:0];
+        [self.uploadFileList removeObjectAtIndex:0];
+        
+        NSString *remoteFile = [NSString stringWithFormat:@"/%@_tmp_/%@", self.dataDirectory, file];
+        NSString *localFile = [NSString stringWithFormat:@"%@/%@", self.dataDirectoryPath, file];
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:localFile];
+        [[client.filesRoutes uploadData:remoteFile
+                                   mode:mode
+                             autorename:nil
+                         clientModified:nil
+                                   mute:nil
+                              inputData:data]
+         response:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBError *error) {
+             if (result) {
+                 [[NSFileManager defaultManager] removeItemAtPath:localFile
+                                                            error:nil];
+                 self.statusProgress.progress = self.uploadCount/(float)self.listSize;
+                 self.uploadCount = self.uploadCount + 1;
+                 [self uploadNextFile];
+             } else {
+                 [self handleError:@"There was a error during upload. Please try again later."];
+             }
+         }];
+    } else {
+        self.statusProgress.progress = 1.0;
+        self.statusLabel.text = @"Upload complete.";
+        [[NSFileManager defaultManager] removeItemAtPath:self.installDirectory error:nil];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kDataUploadInProgress];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [client.filesRoutes move:[NSString stringWithFormat:@"/%@_tmp_", self.dataDirectory]
+                          toPath:[NSString stringWithFormat:@"/%@", self.dataDirectory]];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Finished"
+                                                                       message:[NSString stringWithFormat:@"Upload of data for %@ is complete. Refresh the Library list to see the new content.", self.dataDirectory]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [self.navigationController popViewControllerAnimated:YES];
+                                                }]];
+        [self.navigationController presentViewController:alert
+                                                animated:YES
+                                              completion:nil];
+    }
+}
 
 -(void)handleError:(NSString *)message {
     [self.statusSpinner stopAnimating];

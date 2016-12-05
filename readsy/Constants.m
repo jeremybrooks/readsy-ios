@@ -21,10 +21,10 @@ NSInteger const DefaultFontSize = 14;
 NSString * const FeedbackEmailAddress = @"readsy@jeremybrooks.net";
 NSString * const FeedbackEmailSubject = @"readsy feedback";
 
-NSString * const DropboxLinkNotification = @"DropboxLinkNotification";
-NSString * const kLinkResult = @"kLinkResult";
-NSString * const DropboxLinkResultSuccess = @"YES";
-NSString * const DropboxLinkResultFailure = @"NO";
+//NSString * const DropboxLinkNotification = @"DropboxLinkNotification";
+//NSString * const kLinkResult = @"kLinkResult";
+//NSString * const DropboxLinkResultSuccess = @"YES";
+//NSString * const DropboxLinkResultFailure = @"NO";
 
 NSString * const ReadsyHelpURL = @"http://jeremybrooks.net/readsy/faq.html";
 NSString * const ReadsyMobileDownloadURL = @"http://jeremybrooks.net/readsy/mobile.html";
