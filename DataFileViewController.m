@@ -3,7 +3,7 @@
 //  readsy
 //
 //  Created by Jeremy Brooks on 1/16/15.
-//  Copyright (c) 2015 Jeremy Brooks. All rights reserved.
+//  Copyright (c) 2013-2016 Jeremy Brooks. All rights reserved.
 //
 
 #import "DataFileViewController.h"
