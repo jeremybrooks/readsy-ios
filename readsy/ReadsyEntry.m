@@ -3,7 +3,7 @@
 //  readsy
 //
 //  Created by Jeremy Brooks on 11/22/13.
-//  Copyright (c) 2013 Jeremy Brooks. All rights reserved.
+//  Copyright (c) 2013-2016 Jeremy Brooks. All rights reserved.
 //
 
 #import "ReadsyEntry.h"
