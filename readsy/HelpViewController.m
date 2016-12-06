@@ -28,7 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.textView.text = HelpText;
+    self.textView.text = [NSString stringWithFormat:@"%@\n\nVersion %@ (%@)", HelpText,
+                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                          [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
+                          ];
 }
 
 - (IBAction)resetTips:(id)sender
