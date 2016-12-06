@@ -15,7 +15,6 @@
 @interface MasterViewController : UITableViewController <DataFileViewControllerDelegate>
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-//@property (strong, nonatomic) DBRestClient *restClient;
 @property (strong, nonatomic) NSMutableArray *objects;
 
 -(void) handleDataFile:(NSURL *)dataFile;
