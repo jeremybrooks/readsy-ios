@@ -126,7 +126,7 @@
     self.statusLabel.text = @"Checking dropbox...";
     
     DropboxClient *client = [DropboxClientsManager authorizedClient];
-    [[client.filesRoutes listFolder:@""] response:^(DBFILESListFolderResult *result, DBFILESListFolderError *routeError, DBError *error) {
+    [[client.filesRoutes listFolder:@""] response:^(DBFILESListFolderResult * result, DBFILESListFolderError * routeError, DBRequestError * error) {
         if (result) {
             BOOL installed = NO;
             for (DBFILESMetadata *entry in result.entries) {
@@ -151,7 +151,7 @@
                 }
                 // if tmpdir is not nil, it does not exist, so we create it
                 if (tmpDir) {
-                    [[client.filesRoutes createFolder:tmpDir] response:^(DBFILESFolderMetadata *result, DBFILESCreateFolderError *routeError, DBError *error) {
+                    [[client.filesRoutes createFolder:tmpDir] response:^(DBFILESFolderMetadata *result, DBFILESCreateFolderError *routeError, DBRequestError *error) {
                         if (routeError || error) {
                             [self handleError:[NSString stringWithFormat:@"Could not create directory '%@' on Dropbox.", tmpDir]];
                         } else {
@@ -206,18 +206,17 @@
                              autorename:nil
                          clientModified:nil
                                    mute:nil
-                              inputData:data]
-         response:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBError *error) {
-             if (result) {
-                 [[NSFileManager defaultManager] removeItemAtPath:localFile
-                                                            error:nil];
-                 self.statusProgress.progress = self.uploadCount/(float)self.listSize;
-                 self.uploadCount = self.uploadCount + 1;
-                 [self uploadNextFile];
-             } else {
-                 [self handleError:@"There was a error during upload. Please try again later."];
-             }
-         }];
+                              inputData:data] response:^(DBFILESFileMetadata * _Nullable result, DBFILESUploadError * _Nullable routeError, DBRequestError * _Nullable error) {
+            if (result) {
+                [[NSFileManager defaultManager] removeItemAtPath:localFile
+                                                           error:nil];
+                self.statusProgress.progress = self.uploadCount/(float)self.listSize;
+                self.uploadCount = self.uploadCount + 1;
+                [self uploadNextFile];
+            } else {
+                [self handleError:@"There was a error during upload. Please try again later."];
+            }
+        }];
     } else {
         self.statusProgress.progress = 1.0;
         self.statusLabel.text = @"Upload complete.";

@@ -107,7 +107,7 @@
         [self showDropboxNotLinkedAlert];
     } else {
         [self showActivityIndicators:YES];
-        [[client.filesRoutes listFolder:@""] response:^(DBFILESListFolderResult *result, DBFILESListFolderError *routeError, DBError *error) {
+        [[client.filesRoutes listFolder:@""] response:^(DBFILESListFolderResult *result, DBFILESListFolderError *routeError, DBRequestError *error) {
             if (result) {
                 if (result.entries.count == 0) {
                     [self hideAllActivityIndicators];
@@ -130,8 +130,7 @@
                         [self.objects addObject:rm];
                         [self.tableView reloadData];
                         NSString *metadataPath = [NSString stringWithFormat:@"/%@/metadata", name];
-                        [[client.filesRoutes downloadData:metadataPath]
-                         response:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBError *error, NSData *fileData) {
+                        [[client.filesRoutes downloadData:metadataPath] response:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *error, NSData *fileData) {
                              if (result) {
                                  NSString *metadata = [[NSString alloc] initWithData:fileData
                                                                             encoding:NSUTF8StringEncoding];
@@ -232,136 +231,6 @@
                                             animated:YES
                                           completion:nil];
 }
-
-#pragma mark - Dropbox Access
-/*
- * Callback when directory metadata has been loaded.
- */
-//- (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata
-//{
-//    [self showActivityIndicators:NO];
-//    NSMutableArray *array = [NSMutableArray array];
-//    if (metadata.isDirectory) {
-//        for (DBMetadata *file in metadata.contents) {
-//            [array addObject:file.filename];
-//        }
-//        if (array.count == 0) {
-//            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Nothing To Read"
-//                                                                           message:@"It looks like you do not have any data files in Dropbox. To learn more about how to install and create data files, visit the readsy website."
-//                                                                    preferredStyle:UIAlertControllerStyleAlert];
-//            UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Visit Website"
-//                                                          style:UIAlertActionStyleDefault
-//                                                        handler:^(UIAlertAction *action) {
-//                                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ReadsyMobileDownloadURL]];
-//                                                        }];
-//            UIAlertAction *no = [UIAlertAction actionWithTitle:@"Not Now"
-//                                                         style:UIAlertActionStyleCancel
-//                                                       handler:nil];
-//            [alert addAction:yes];
-//            [alert addAction:no];
-//            [self.navigationController presentViewController:alert
-//                                                    animated:YES
-//                                                  completion:nil];
-//        } else {
-//            NSArray *sortedArray = [array sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-//
-//            for (NSString *file in sortedArray) {
-//                if ([file hasSuffix:@"_tmp_"]) {
-//                    NSLog(@"Skipping incomplete upload '%@'", file);
-//                } else {
-//                    ReadsyMetadata *rm = [[ReadsyMetadata alloc] initWithSourceDirectory:file];
-//                    [self.objects addObject:rm];
-//                    [self.tableView reloadData];
-//                    NSString *tmpFile = [NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), file];
-//                    [self showActivityIndicators:YES];
-//                    //            [AppDelegate setActivityIndicatorsVisible:YES];
-//                    [self.restClient loadFile:[NSString stringWithFormat:@"/%@/metadata", file] intoPath:tmpFile];
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//- (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error
-//{
-//    [self showActivityIndicators:NO];
-//    [self showErrorMessage:nil];
-//    NSLog(@"Error loading metadata: %@", error);
-//}
-//
-//- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
-//       contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
-//    [self showActivityIndicators:NO];
-//    NSError *error;
-//    NSString *readsyMetadata = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
-//    if (error) {
-//        [self showErrorMessage:[NSString stringWithFormat:@"Unable to read file '%@'.", localPath]];
-//    } else {
-//        for (ReadsyMetadata *rm in self.objects) {
-//            if ([rm.sourceDirectory isEqualToString:[localPath lastPathComponent]]) {
-//                [rm setMetadata:readsyMetadata];
-//            }
-//        }
-//        [[NSFileManager defaultManager] removeItemAtPath:localPath error:&error];
-//        if (error) {
-//            NSLog(@"Could not delete temp file. %@", error);
-//        }
-//    }
-//    [self.tableView reloadData];
-//}
-//
-//- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
-//    [self showActivityIndicators:NO];
-//    NSString *message = nil;
-//    // if we cannot load metadata, we look at the error message
-//    // and determine the path of the file we were loading.
-//    //
-//    // Then, we try to remove that ReadsyMetadata object from the data model,
-//    // and refresh the table view so that it doesn't show a stuck "Loading" message
-//    // for the failed load.
-//    //
-//    // The path dictionary entry looks like this: "path=/Test/metadata" -- we need path component number 1, not 0,
-//    // because 0 would be the leading "/"
-//    NSString *sourceDirFailed = [[[[error userInfo] objectForKey:@"path"] pathComponents] objectAtIndex:1];
-//    if (sourceDirFailed) {
-//        message = [NSString stringWithFormat:@"Unable to load file '%@' from Dropbox. This may be due to a network error, or to missing files on Dropbox.", sourceDirFailed];
-//        for (ReadsyMetadata *rm in self.objects) {
-//            if ([rm.sourceDirectory isEqualToString:sourceDirFailed]) {
-//                [self.objects removeObject:rm];
-//            }
-//            [self.tableView reloadData];
-//        }
-//    }
-//
-//    [self showErrorMessage:message];
-//}
-//
-//- (void)restClient:(DBRestClient *)client deletedPath:(NSString *)path {
-//    NSLog(@"Delete path '%@' successful", path);
-//}
-//
-//- (void)restClient:(DBRestClient *)client deletePathFailedWithError:(NSError *)error {
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Failed"
-//                                                                   message:@"Unable to delete the data from Dropbox at this time. Try again later."
-//                                                            preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-//                                                 style:UIAlertActionStyleDefault
-//                                               handler:^(UIAlertAction *action) {
-//                                                   [self refresh];
-//                                               }];
-//    [alert addAction:ok];
-//    [self presentViewController:alert
-//                       animated:YES
-//                     completion:nil];
-//}
-
-
-
-//-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-//{
-//    NSLog(@"IN MASTER VIEW: shouldHideViewController");
-//    return NO;
-//}
 
 #pragma mark - Table View
 

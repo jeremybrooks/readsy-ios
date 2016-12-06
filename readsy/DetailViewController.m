@@ -29,12 +29,6 @@
     if (_detailItem != newDetailItem) {
         _detailItem = newDetailItem;
     }
-//     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//         [self loadDataForItem];
-//     }
-//    if (self.masterPopoverController != nil) {
-//        [self.masterPopoverController dismissPopoverAnimated:YES];
-//    }
 }
 
 - (void) loadDataForItem
@@ -44,8 +38,7 @@
             NSString *filename = [NSString stringWithFormat:@"/%@/%@", self.detailItem.sourceDirectory, [self.mmddFormat stringFromDate:self.detailItem.date]];
             [self showActivityIndicators:YES];
             DropboxClient *client = [DropboxClientsManager authorizedClient];
-            [[client.filesRoutes downloadData:filename]
-             response:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBError *error, NSData *fileData) {
+            [[client.filesRoutes downloadData:filename] response:^(DBFILESFileMetadata *result, DBFILESDownloadError *routeError, DBRequestError *error, NSData *fileData) {
                  [self showActivityIndicators:NO];
                  if (result) {
                      NSString *entry = [[NSString alloc] initWithData:fileData
@@ -109,13 +102,6 @@
 
 - (void)viewDidLoad
 {
-    //If in portrait mode, display the master view
-//    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-//        #pragma clang diagnostic push
-//        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-//        [self.navigationItem.leftBarButtonItem.target performSelector:self.navigationItem.leftBarButtonItem.action withObject:self.navigationItem];
-//        #pragma clang diagnostic pop
-//    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *size = [defaults objectForKey:kReadsyFontSize];
@@ -140,12 +126,6 @@
     [self becomeFirstResponder];
     [super viewDidLoad];
 
-    // Do any additional setup after loading the view, typically from a nib.
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontName options:NSKeyValueObservingOptionNew context:NULL];
-//        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyFontSize options:NSKeyValueObservingOptionNew context:NULL];
-//        [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:kReadsyBoldFontName options:NSKeyValueObservingOptionNew context:NULL];
-//    }
     self.mmddFormat = [[NSDateFormatter alloc] init];
     [self.mmddFormat setDateFormat:@"MMdd"];
     self.shortFormat = [[NSDateFormatter alloc] init];
@@ -166,25 +146,8 @@
 {
     [self resignFirstResponder];
     [self hideAllActivityIndicators];
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontName];
-//        [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:kReadsyFontSize];
-//    }
     [super viewWillDisappear:animated];
 }
-
-///* Respond to changes in font name/size when this view is visible. */
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    if ([keyPath isEqualToString:kReadsyFontName]) {
-//        self.fontName = [change objectForKey:NSKeyValueChangeNewKey];
-//    } else if ([keyPath isEqualToString:kReadsyFontSize]) {
-//        self.fontSize = [[change objectForKey:NSKeyValueChangeNewKey] floatValue];
-//    } else if ([keyPath isEqualToString:kReadsyBoldFontName]) {
-//        self.boldFontName = [change objectForKey:NSKeyValueChangeNewKey];
-//    }
-//    [self updateFonts];
-//}
 
 
 - (void)didReceiveMemoryWarning
@@ -198,8 +161,6 @@
 {
     [self.detailItem setReadFlag:self.isReadSwitch.on forDate:self.detailItem.date];
     
-    
-    
     NSString *remoteFile = [NSString stringWithFormat:@"/%@/metadata", self.detailItem.sourceDirectory];
     NSData *data = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
     DropboxClient *client = [DropboxClientsManager authorizedClient];
@@ -207,14 +168,12 @@
     
     self.navigationItem.hidesBackButton = YES;
     [self showActivityIndicators:YES];
-    
     [[client.filesRoutes uploadData:remoteFile
                                mode:mode
                          autorename:nil
                      clientModified:nil
                                mute:nil
-                          inputData:data]
-     response:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBError *error) {
+                          inputData:data] response:^(DBFILESFileMetadata *result, DBFILESUploadError *routeError, DBRequestError *error) {
          self.navigationItem.hidesBackButton = NO;
          [self showActivityIndicators:NO];
          if (result) {
@@ -296,74 +255,6 @@
     return YES;
 }
 
-#pragma mark - Dropbox Access
-/* File was successfully loaded from Dropbox */
-//- (void)restClient:(DBRestClient*)client loadedFile:(NSString*)localPath
-//       contentType:(NSString*)contentType metadata:(DBMetadata*)metadata {
-//    [self showActivityIndicators:NO];
-//    NSError *error;
-//    NSString *entry = [NSString stringWithContentsOfFile:localPath encoding:NSUTF8StringEncoding error:&error];
-//    if (error) {
-//        NSLog(@"There was an error reading the file - %@", error);
-//        [self showErrorMessage];
-//    } else {
-//        self.entryItem = [[ReadsyEntry alloc] initWithString:entry];
-//        
-//        [[NSFileManager defaultManager] removeItemAtPath:localPath error:&error];
-//        if (error) {
-//            NSLog(@"Could not delete temp file. %@", error);
-//        }
-//    }
-//    [self configureView];
-//}
-//
-///* File load failed */
-//- (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error {
-//    [self showActivityIndicators:NO];
-//    NSLog(@"There was an error loading the file - %@", error);
-//    [self showErrorMessage];
-//}
-//
-///* Loaded metadata, so attempt to upload and replace metadata */
-//- (void)restClient:(DBRestClient*)client loadedMetadata:(DBMetadata*)metadata
-//{
-//    NSLog(@"Metadata loaded; uploading new metadata file replacing rev %@", metadata.rev);
-//    NSString *tmpFile = [NSString stringWithFormat:@"%@metadata", NSTemporaryDirectory()];
-//    NSData *properties = [[self.detailItem descriptionInPropertiesFormat] dataUsingEncoding:NSUTF8StringEncoding];
-//    [properties writeToFile:tmpFile atomically:YES];
-//    [self.restClient uploadFile:@"metadata"
-//                         toPath:[NSString stringWithFormat:@"/%@/", self.detailItem.sourceDirectory]
-//                  withParentRev:metadata.rev
-//                       fromPath:tmpFile];
-//}
-//
-///* Load metadata failed */
-//- (void)restClient:(DBRestClient*)client loadMetadataFailedWithError:(NSError*)error
-//{
-//    NSLog(@"Metadata load failed with error %@", error);
-//    [self showActivityIndicators:NO];
-//    [self showErrorMessage];
-//}
-//
-///* Uploaded new metadata */
-//- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath
-//              from:(NSString*)srcPath metadata:(DBMetadata*)metadata {
-//    [self showActivityIndicators:NO];
-//    NSLog(@"File uploaded successfully to path: %@", metadata.path);
-//    NSError *error;
-//    [[NSFileManager defaultManager] removeItemAtPath:srcPath error:&error];
-//    if (error) {
-//        NSLog(@"Could not delete temp file. %@", srcPath);
-//    }
-//    
-//}
-//
-//- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error {
-//    [self showActivityIndicators:NO];
-//    NSLog(@"File upload failed with error - %@", error);
-//    [self showErrorMessage];
-//}
-
 - (void)showErrorMessage
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error"
@@ -377,30 +268,6 @@
                                             animated:YES
                                           completion:nil];
 }
-
-
-
-#pragma mark - Split view
-//-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-//{
-//    return [[DBSession sharedSession] isLinked];
-//    //    return NO;
-//}
-//
-//- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
-//{
-//    barButtonItem.title = NSLocalizedString(@"Library", @"Library");
-//    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-//    self.masterPopoverController = popoverController;
-//}
-//
-//- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    // Called when the view is shown again in the split view, invalidating the button and popover controller.
-//    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
-//    self.masterPopoverController = nil;
-//}
-
 
 #pragma mark - Activity indicator stuff
 - (void)showActivityIndicators:(BOOL)showIndicators

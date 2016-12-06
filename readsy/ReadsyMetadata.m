@@ -99,7 +99,7 @@ static NSString * const kRead = @"read";
 {
     if (![self isRead:date] == read) {
         unsigned char buffer[46];
-        [self.readBytes getBytes:&buffer];
+        [self.readBytes getBytes:&buffer length:46];
         
         NSUInteger dayOfYear = [self calculateDayOfYear:date];
         int mask = pow(2, (dayOfYear-1)%8);
