@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		301BB42BDD3711EEC4CB184A /* libPods-readsy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C2F5D2144F3DD1458B41A3 /* libPods-readsy.a */; };
+		1DE0E60375FDAAA3C00B2170 /* Pods_readsy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969075287B6B9145BE7B0B8 /* Pods_readsy.framework */; };
+		7F00873F1DF7B2A100BDF54F /* ItemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F00873E1DF7B2A100BDF54F /* ItemInfoViewController.m */; };
 		7F1613B5185C1AD100B1E74E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1613B4185C1AD100B1E74E /* HelpViewController.m */; };
 		7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182681183DA72C0064F7F8 /* Security.framework */; };
 		7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182683183DA7300064F7F8 /* QuartzCore.framework */; };
@@ -41,7 +42,7 @@
 		7FB9429B1A6EFAD200F696EF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB9429A1A6EFAD200F696EF /* libz.dylib */; };
 		7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9E9E91856D058000EB398 /* FontSizeViewController.m */; };
 		7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCAE4CE183E7744000C2820 /* Secrets.m */; };
-		A6BD77FEC95A8EEDEB0BC23C /* libPods-readsyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97746C8324911E44BCCDE71C /* libPods-readsyTests.a */; };
+		B788F7C383BDCEEEDBB46B9A /* Pods_readsyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC4753BDFCFC118BB25C47B /* Pods_readsyTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		7344894CA5E96DFCBBE9736A /* Pods-readsy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-readsy/Pods-readsy.debug.xcconfig"; sourceTree = "<group>"; };
+		7F00873D1DF7B2A100BDF54F /* ItemInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemInfoViewController.h; sourceTree = "<group>"; };
+		7F00873E1DF7B2A100BDF54F /* ItemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemInfoViewController.m; sourceTree = "<group>"; };
 		7F1613B3185C1AD100B1E74E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		7F1613B4185C1AD100B1E74E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		7F182681183DA72C0064F7F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -111,10 +114,10 @@
 		7FB9E9E81856D058000EB398 /* FontSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSizeViewController.h; sourceTree = "<group>"; };
 		7FB9E9E91856D058000EB398 /* FontSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSizeViewController.m; sourceTree = "<group>"; };
 		7FCAE4CE183E7744000C2820 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		8AC4753BDFCFC118BB25C47B /* Pods_readsyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readsyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E324628652E1CCF1BDFDA09 /* Pods-readsy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsy.release.xcconfig"; path = "Pods/Target Support Files/Pods-readsy/Pods-readsy.release.xcconfig"; sourceTree = "<group>"; };
-		97746C8324911E44BCCDE71C /* libPods-readsyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-readsyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9969075287B6B9145BE7B0B8 /* Pods_readsy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readsy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF88107E4FAABDD04009D00C /* Pods-readsyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-readsyTests/Pods-readsyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D0C2F5D2144F3DD1458B41A3 /* libPods-readsy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-readsy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC18364D7A6D8CEEE2EBBC6A /* Pods-readsyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-readsyTests/Pods-readsyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,7 +133,7 @@
 				7F5AB5AE183D67A300365006 /* CoreGraphics.framework in Frameworks */,
 				7F5AB5B0183D67A300365006 /* UIKit.framework in Frameworks */,
 				7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */,
-				301BB42BDD3711EEC4CB184A /* libPods-readsy.a in Frameworks */,
+				1DE0E60375FDAAA3C00B2170 /* Pods_readsy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +144,7 @@
 				7F5AB5D1183D67A300365006 /* XCTest.framework in Frameworks */,
 				7F5AB5D3183D67A300365006 /* UIKit.framework in Frameworks */,
 				7F5AB5D2183D67A300365006 /* Foundation.framework in Frameworks */,
-				A6BD77FEC95A8EEDEB0BC23C /* libPods-readsyTests.a in Frameworks */,
+				B788F7C383BDCEEEDBB46B9A /* Pods_readsyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,8 +193,8 @@
 				7F5AB5AD183D67A300365006 /* CoreGraphics.framework */,
 				7F5AB5AF183D67A300365006 /* UIKit.framework */,
 				7F5AB5D0183D67A300365006 /* XCTest.framework */,
-				D0C2F5D2144F3DD1458B41A3 /* libPods-readsy.a */,
-				97746C8324911E44BCCDE71C /* libPods-readsyTests.a */,
+				9969075287B6B9145BE7B0B8 /* Pods_readsy.framework */,
+				8AC4753BDFCFC118BB25C47B /* Pods_readsyTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -209,10 +212,12 @@
 				7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */,
 				7F5AB5C3183D67A300365006 /* MasterViewController.h */,
 				7F5AB5C4183D67A300365006 /* MasterViewController.m */,
-				7F1613B3185C1AD100B1E74E /* HelpViewController.h */,
-				7F1613B4185C1AD100B1E74E /* HelpViewController.m */,
 				7F5AB5C6183D67A300365006 /* DetailViewController.h */,
 				7F5AB5C7183D67A300365006 /* DetailViewController.m */,
+				7F00873D1DF7B2A100BDF54F /* ItemInfoViewController.h */,
+				7F00873E1DF7B2A100BDF54F /* ItemInfoViewController.m */,
+				7F1613B3185C1AD100B1E74E /* HelpViewController.h */,
+				7F1613B4185C1AD100B1E74E /* HelpViewController.m */,
 				7FB9E9E81856D058000EB398 /* FontSizeViewController.h */,
 				7FB9E9E91856D058000EB398 /* FontSizeViewController.m */,
 				7F5EC8E718581EAC0029800F /* DropboxSetupViewController.h */,
@@ -484,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F5EC8EC1858D53F0029800F /* Constants.m in Sources */,
+				7F00873F1DF7B2A100BDF54F /* ItemInfoViewController.m in Sources */,
 				7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */,
 				7FB942991A6EF4B100F696EF /* SSZipArchive.m in Sources */,
 				7F9B30D01A69B33A00568E4C /* DataFileViewController.m in Sources */,

@@ -97,7 +97,7 @@ static NSString * const kRead = @"read";
 
 - (void)setReadFlag:(BOOL)read forDate:(NSDate *)date
 {
-    if (![self isRead:date] == read) {
+    if ((![self isRead:date]) == read) {
         unsigned char buffer[46];
         [self.readBytes getBytes:&buffer length:46];
         
@@ -139,6 +139,45 @@ static NSString * const kRead = @"read";
         }
     }
     return count;
+}
+
+- (NSInteger)getDaysInYear:(NSDate*)date
+{    
+    NSDate *beginningOfYear;
+    NSTimeInterval lengthOfYear;
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    [gregorian rangeOfUnit:NSCalendarUnitYear
+                 startDate:&beginningOfYear
+                  interval:&lengthOfYear
+                   forDate:date];
+    NSDate *nextYear = [beginningOfYear dateByAddingTimeInterval:lengthOfYear];
+    NSInteger startDay = [gregorian ordinalityOfUnit:NSCalendarUnitDay
+                                              inUnit:NSCalendarUnitEra
+                                             forDate:beginningOfYear];
+    NSInteger endDay = [gregorian ordinalityOfUnit:NSCalendarUnitDay
+                                            inUnit:NSCalendarUnitEra
+                                           forDate:nextYear];
+    
+    return endDay - startDay;
+}
+
+- (void)resetReadingStatus
+{
+    [self setRead:@"00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"];
+}
+
+- (void)markPreviousDaysRead:(NSDate *)date
+{
+    int day = 1;
+    NSUInteger dayOfYear = [self calculateDayOfYear:date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitDay
+                                          fromDate:date];
+    while (day <= dayOfYear) {
+        comps.day = day;
+        [self setReadFlag:YES forDate:[calendar dateFromComponents:comps]];
+        day++;
+    }
 }
 
 

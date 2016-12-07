@@ -26,8 +26,12 @@
 - (BOOL)isRead:(NSDate *)date;
 - (void)setReadFlag:(BOOL)read forDate:(NSDate *)date;
 - (int)getUnreadCountForDate:(NSDate *)date;
+- (NSInteger)getDaysInYear:(NSDate *)date;
 
 - (BOOL) dataValidForDate:(NSDate *)date;
+
+- (void)resetReadingStatus;
+- (void)markPreviousDaysRead:(NSDate *)date;
 
 - (NSString *)descriptionInPropertiesFormat;
 @end

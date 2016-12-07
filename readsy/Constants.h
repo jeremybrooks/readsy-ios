@@ -13,6 +13,8 @@ extern NSString* const kReadsyFontSize;
 extern NSString* const kReadsyFontName;
 extern NSString* const kReadsyBoldFontName;
 extern NSString * const kDidShowTipDetailView;
+extern NSString *const kDidShowTipInfoView;
+
 extern NSString *const kDataUploadInProgress;
 
 extern NSString* const DefaultFontName;

@@ -294,17 +294,13 @@
     if (callCount > 0) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         [self.activityIndicator startAnimating];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            self.navigationItem.hidesBackButton = YES;
-        }
+        self.navigationItem.hidesBackButton = YES;
     }
     if (callCount < 1) {
         callCount = 0;
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [self.activityIndicator stopAnimating];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            self.navigationItem.hidesBackButton = NO;
-        }
+        self.navigationItem.hidesBackButton = NO;
     }
 }
 

@@ -192,7 +192,7 @@
 {
     DropboxClient *client = [DropboxClientsManager authorizedClient];
     DBFILESWriteMode *mode = [[DBFILESWriteMode alloc] initWithOverwrite];
-    self.statusLabel.text = [NSString stringWithFormat:@"Uploading %ld/%ld, please wait...", self.uploadCount, self.listSize];
+    self.statusLabel.text = [NSString stringWithFormat:@"Uploading %ld/%ld, please wait...", (long)self.uploadCount, (long)self.listSize];
     
     if (self.uploadFileList.count > 0) {
         NSString *file = [self.uploadFileList objectAtIndex:0];

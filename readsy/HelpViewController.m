@@ -38,6 +38,7 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:kDidShowTipDetailView];
+    [defaults removeObjectForKey:kDidShowTipInfoView];
     [defaults synchronize];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Tips Reset"
                                                                    message:@"Tips have been reset."

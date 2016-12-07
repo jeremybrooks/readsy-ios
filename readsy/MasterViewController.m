@@ -24,6 +24,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     if (!self.objects) {
         self.objects = [NSMutableArray array];
@@ -281,6 +282,7 @@
  }
  */
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -330,7 +332,16 @@
     } else if ([[segue identifier] isEqualToString:@"handleDataFile"]) {
         [[segue destinationViewController] setDataFileDelegate:self];
         [[segue destinationViewController] setDataFile:sender];
+    } else if ([[segue identifier] isEqualToString:@"showInfoSegue"]) {
+        // accessory button tapped, so cell is not selected
+        // use sender to get index path rather than indexPathForSelectedRow
+        UITableViewCell *cell = (UITableViewCell*)sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ReadsyMetadata *object = [self.objects objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setTitle:@"Item Info"];
     }
+    
 }
 
 #pragma mark - Activity indicator stuff
