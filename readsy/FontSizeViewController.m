@@ -146,7 +146,7 @@ NSInteger selectedFontSizeRow;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    NSInteger count;
+    NSInteger count = 0;
     switch (component) {
         case 0:
             count = self.availableFonts.count;

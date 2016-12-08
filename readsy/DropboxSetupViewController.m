@@ -61,8 +61,22 @@
                                                }
                                            browserAuth:NO];
     } else {
-        [DropboxClientsManager unlinkClients];
-        [self updateView];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Unlink Dropbox?"
+                                                                       message:@"You are about to unlink readsy with your Dropbox account. You will not see any content until you re-link it.\n\nDo you want to continue?"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Yes"
+                                                  style:UIAlertActionStyleDestructive
+                                                handler:^(UIAlertAction * _Nonnull action) {
+                                                    [DropboxClientsManager unlinkClients];
+                                                    [self updateView];
+                                                }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"No"
+                                                  style:UIAlertActionStyleCancel
+                                                handler:nil]];
+        
+        [self.navigationController presentViewController:alert
+                                                animated:YES
+                                              completion:nil];
     }
 
 }
