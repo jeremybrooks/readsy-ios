@@ -92,26 +92,39 @@
         
         NSInteger daysInYear = [self.detailItem getDaysInYear:today];
         
-        self.progress1.progress = (float)dayOfYear / daysInYear;
+        [self.progress1 setProgress:(float)dayOfYear / daysInYear
+                             timing:TPPropertyAnimationTimingEaseInEaseOut
+                           duration:0.5
+                              delay:0.2];
+        
         
         // Calculate where we actually are
         NSDate *lastDayOfYear = [[NSCalendar currentCalendar] dateFromComponents:components];
         
         NSInteger daysRead = daysInYear - [self.detailItem getUnreadCountForDate:lastDayOfYear];
-        self.progress2.progress = (float)daysRead / daysInYear;
+        [self.progress2 setProgress:(float)daysRead / daysInYear
+                             timing:TPPropertyAnimationTimingEaseInEaseOut
+                           duration:0.5
+                              delay:0.2];
     } else {
         self.resetButton.hidden = YES;
         self.markReadButton.hidden = YES;
         // if item is for a past year...
         if ([self.detailItem.year integerValue] < components.year) {
-            self.progress1.progress = 1.0;
+            [self.progress1 setProgress:1.0
+                                 timing:TPPropertyAnimationTimingEaseInEaseOut
+                               duration:0.5
+                                  delay:0.2];
             
             [components setYear:[self.detailItem.year integerValue]];
             NSInteger daysInYear = [self.detailItem getDaysInYear:[[NSCalendar currentCalendar] dateFromComponents:components]];
             NSDate *lastDayOfYear = [[NSCalendar currentCalendar] dateFromComponents:components];
             
             NSInteger daysRead = daysInYear - [self.detailItem getUnreadCountForDate:lastDayOfYear];
-            self.progress2.progress = (float)daysRead / daysInYear;
+            [self.progress2 setProgress:(float)daysRead / daysInYear
+                                 timing:TPPropertyAnimationTimingEaseInEaseOut
+                               duration:0.5
+                                  delay:0.2];
         } else {
             // item is for a future year
             self.progress1.progress = 0.0;
