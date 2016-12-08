@@ -32,4 +32,5 @@ extern NSString * const ReadsyHelpURL;
 extern NSString * const ReadsyMobileDownloadURL;
 
 extern NSString * const HelpText;
+extern NSString * const CreditsText;
 @end

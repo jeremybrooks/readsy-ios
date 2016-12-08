@@ -28,10 +28,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.textView.text = [NSString stringWithFormat:@"%@\n\nVersion %@ (%@)", HelpText,
+    self.textView.text = [NSString stringWithFormat:@"%@\n\nThis is readsy version %@ (%@)\n\n%@",
+                          HelpText,
                           [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
-                          [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]
+                          [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey],
+                          CreditsText
                           ];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.textView scrollRangeToVisible:NSMakeRange(0, 1)];
 }
 
 - (IBAction)resetTips:(id)sender
