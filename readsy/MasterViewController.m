@@ -377,7 +377,6 @@
 #pragma mark - Import data file methods
 - (void)handleDataFile:(NSURL *)dataFile
 {
-    NSLog(@"Handling data file...");
     [self performSegueWithIdentifier:@"handleDataFile" sender:dataFile];
 }
 

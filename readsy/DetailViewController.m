@@ -177,7 +177,7 @@
          self.navigationItem.hidesBackButton = NO;
          [self showActivityIndicators:NO];
          if (result) {
-             NSLog(@"Upload of '%@' successful", remoteFile);
+//             NSLog(@"Upload of '%@' successful", remoteFile);
          } else {
              NSLog(@"Upload error. routeError=%@, error=%@", routeError, error);
              NSString *errorMessage = [NSString stringWithFormat:@"There was an error communicating with Dropbox."];

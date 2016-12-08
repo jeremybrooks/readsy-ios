@@ -59,7 +59,6 @@
  */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     if (url.isFileURL && [url.path hasSuffix:@".readsy"]) {
-        NSLog(@"TRYING TO HANDLE %@", url);
         UINavigationController *myNavCon = (UINavigationController*)self.window.rootViewController;
         MasterViewController *masterView = (MasterViewController*) [[myNavCon viewControllers] objectAtIndex:0];
         [masterView handleDataFile:url];
@@ -67,7 +66,6 @@
         DBOAuthResult *authResult = [DropboxClientsManager handleRedirectURL:url];
         if (authResult != nil) {
             if ([authResult isSuccess]) {
-                NSLog(@"Success! User is logged into Dropbox.");
                 // Get the current view controller; it is most likely the dropbox setup view controller
                 // If it IS the dropbox setup view controller, update the view to show
                 // the state of the Dropbox link
