@@ -29,61 +29,60 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
         [mail setSubject:FeedbackEmailSubject];
         [mail setToRecipients:[NSArray arrayWithObject:FeedbackEmailAddress]];
+        [mail setMessageBody:[NSString stringWithFormat:@"Sent from readsy version %@ (%@)\n\n",
+                              [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                              [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey]]
+                      isHTML:NO];
         mail.mailComposeDelegate = self;
-        [self presentViewController:mail animated:YES completion:NULL];
-                               
+        [self presentViewController:mail animated:YES completion:nil];
     } else {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Send Mail"
-                                                                       message:[NSString stringWithFormat:@"This device is not configured to send email. You can send feedback to %@", FeedbackEmailAddress]
+                                                                       message:[NSString stringWithFormat:@"Mail services are not available. You can send feedback to %@", FeedbackEmailAddress]
                                                                 preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
-                                                   handler:nil];
-        [alert addAction:ok];
+                                                handler:nil]];
         [self.navigationController presentViewController:alert
                                                 animated:YES
                                               completion:^{
-                                                    if (![MFMailComposeViewController canSendMail]) {
-                                                        [self.navigationController popViewControllerAnimated:YES];
-                                                    }
-                                                }];
-        
+                                                  [self.navigationController popViewControllerAnimated:YES];
+                                              }];
     }
 }
 
-
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
-    if (result == MFMailComposeResultSent) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Feedback Sent"
-                                                                       message:@"Your message was sent. Thanks!"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:nil];
-        [alert addAction:ok];
-        [self.navigationController presentViewController:alert
-                                                animated:YES
-                                              completion:nil];
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString *message;
+    if (result == MFMailComposeResultSent) {
+        message = @"Your message was sent.";
+    } else if (result == MFMailComposeResultFailed) {
+        message = @"Could not send the message.";
+    }
+    if (message) {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@""
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * _Nonnull action) {
+                                                [self.navigationController popViewControllerAnimated:YES];
+                                            }]];
+    [self.navigationController presentViewController:alert
+                                            animated:YES
+                                          completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
