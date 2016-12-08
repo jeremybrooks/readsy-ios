@@ -173,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aY-cO-3eM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="-689"/>
+            <point key="canvasLocation" x="2161" y="-854"/>
         </scene>
         <!--Help-->
         <scene sceneID="lAg-fH-Tq6">
@@ -239,7 +239,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="frf-a6-Bq8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1365" y="184"/>
+            <point key="canvasLocation" x="1756" y="-942"/>
         </scene>
         <!--Settings-->
         <scene sceneID="o67-ET-dCb">
@@ -540,7 +540,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="842" y="73"/>
+            <point key="canvasLocation" x="1365" y="-221"/>
         </scene>
         <!--Install Data File-->
         <scene sceneID="fbu-Ep-Npu">

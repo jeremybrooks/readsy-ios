@@ -12,7 +12,7 @@
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface DetailViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *headingLabel;
