@@ -85,48 +85,40 @@
     return YES;
 }
 
+/* Utility method to find the current view controller */
 +(UIViewController*) findBestViewController:(UIViewController*)vc {
     
     if (vc.presentedViewController) {
-        
         // Return presented view controller
         return [AppDelegate findBestViewController:vc.presentedViewController];
-        
     } else if ([vc isKindOfClass:[UISplitViewController class]]) {
-        
         // Return right hand side
         UISplitViewController* svc = (UISplitViewController*) vc;
-        if (svc.viewControllers.count > 0)
+        if (svc.viewControllers.count > 0) {
             return [AppDelegate findBestViewController:svc.viewControllers.lastObject];
-        else
+        } else {
             return vc;
-        
+        }
     } else if ([vc isKindOfClass:[UINavigationController class]]) {
-        
         // Return top view
         UINavigationController* svc = (UINavigationController*) vc;
-        if (svc.viewControllers.count > 0)
+        if (svc.viewControllers.count > 0) {
             return [AppDelegate findBestViewController:svc.topViewController];
-        else
+        } else {
             return vc;
-        
+        }
     } else if ([vc isKindOfClass:[UITabBarController class]]) {
-        
         // Return visible view
         UITabBarController* svc = (UITabBarController*) vc;
-        if (svc.viewControllers.count > 0)
+        if (svc.viewControllers.count > 0) {
             return [AppDelegate findBestViewController:svc.selectedViewController];
-        else
+        } else {
             return vc;
-        
+        }
     } else {
-        
         // Unknown view controller type, return last child view controller
         return vc;
-        
     }
-    
 }
-
-
 @end
+
