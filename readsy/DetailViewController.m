@@ -22,6 +22,40 @@
 
 @implementation DetailViewController
 
+- (void)viewDidLoad
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *size = [defaults objectForKey:kReadsyFontSize];
+    self.fontName = [defaults objectForKey:kReadsyFontName];
+    self.boldFontName = [defaults objectForKey:kReadsyBoldFontName];
+    if (size) {
+        self.fontSize = [size floatValue];
+    } else {
+        self.fontSize = DefaultFontSize;
+        [defaults setObject:[NSNumber numberWithFloat:self.fontSize] forKey:kReadsyFontSize];
+        [defaults synchronize];
+    }
+    
+    if (!self.fontName) {
+        self.fontName = DefaultFontName;
+        [defaults setObject:self.fontName forKey:kReadsyFontName];
+        [defaults synchronize];
+    }
+    if (!self.boldFontName) {
+        self.boldFontName = DefaultBoldFontName;
+    }
+    [self becomeFirstResponder];
+    [super viewDidLoad];
+    
+    self.mmddFormat = [[NSDateFormatter alloc] init];
+    [self.mmddFormat setDateFormat:@"MMdd"];
+    self.shortFormat = [[NSDateFormatter alloc] init];
+    [self.shortFormat setDateFormat:@"EEEE MMMM d, yyyy"];
+//    [self updateFonts];
+    [self loadDataForItem];
+    [self configureView];
+}
+
 #pragma mark - Managing the detail item
 
 - (void)setDetailItem:(ReadsyMetadata *)newDetailItem
@@ -52,8 +86,13 @@
              }];
         } else {
             self.dateLabel.text = [self.shortFormat stringFromDate:self.detailItem.date];
-            self.headingLabel.text = @"";
-            self.contentTextView.text = @"No entry found for this date.";
+            NSString *message = @"No entry found for this date.";
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:message];
+            [string addAttribute:NSFontAttributeName
+                           value:[UIFont fontWithName:self.boldFontName
+                                                 size:self.fontSize]
+                           range:NSMakeRange(0, [message length])];
+            self.contentTextView.attributedText = string;
         }
     }
 }
@@ -68,11 +107,22 @@
         self.title = @"";
     }
     if (self.entryItem) {
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@\n\n%@", self.entryItem.heading, self.entryItem.content]];
         
-        self.contentTextView.text = self.entryItem.content;
+        UIFont *font = [UIFont fontWithName:self.fontName
+                                       size:self.fontSize];
+        UIFont *boldFont = [UIFont fontWithName:self.boldFontName
+                                           size:self.fontSize];
+        [attributedString addAttribute:NSFontAttributeName
+                                 value:font
+                                 range:NSMakeRange(0, [attributedString length])];
+        [attributedString addAttribute:NSFontAttributeName
+                                value:boldFont
+                                 range:NSMakeRange(0, [self.entryItem.heading length])];
+        self.contentTextView.attributedText = attributedString;
+        
         [self.contentTextView scrollRangeToVisible:NSMakeRange(0, 1)];
         
-        self.headingLabel.text = self.entryItem.heading;
         self.isReadSwitch.hidden = NO;
         self.isReadSwitchLabel.hidden = NO;
         self.isReadSwitch.on = [self.detailItem isRead:self.detailItem.date];
@@ -100,46 +150,12 @@
 }
 
 
-- (void)viewDidLoad
-{
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *size = [defaults objectForKey:kReadsyFontSize];
-    self.fontName = [defaults objectForKey:kReadsyFontName];
-    self.boldFontName = [defaults objectForKey:kReadsyBoldFontName];
-    if (size) {
-        self.fontSize = [size floatValue];
-    } else {
-        self.fontSize = DefaultFontSize;
-        [defaults setObject:[NSNumber numberWithFloat:self.fontSize] forKey:kReadsyFontSize];
-        [defaults synchronize];
-    }
 
-    if (!self.fontName) {
-        self.fontName = DefaultFontName;
-        [defaults setObject:self.fontName forKey:kReadsyFontName];
-        [defaults synchronize];
-    }
-    if (!self.boldFontName) {
-        self.boldFontName = DefaultBoldFontName;
-    }
-    [self becomeFirstResponder];
-    [super viewDidLoad];
 
-    self.mmddFormat = [[NSDateFormatter alloc] init];
-    [self.mmddFormat setDateFormat:@"MMdd"];
-    self.shortFormat = [[NSDateFormatter alloc] init];
-    [self.shortFormat setDateFormat:@"EEEE MMMM d, yyyy"];
-    [self updateFonts];
-    [self loadDataForItem];
-    [self configureView];
-}
-
-- (void)updateFonts
-{
-    self.contentTextView.font = [UIFont fontWithName:self.fontName size:self.fontSize];
-    self.headingLabel.font = [UIFont fontWithName:self.boldFontName size:(self.fontSize + 2)];
-}
+//- (void)updateFonts
+//{
+//    self.contentTextView.font = [UIFont fontWithName:self.fontName size:self.fontSize];
+//}
 
 
 - (void)viewWillDisappear:(BOOL)animated

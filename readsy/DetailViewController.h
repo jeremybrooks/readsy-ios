@@ -15,7 +15,6 @@
 @interface DetailViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *headingLabel;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UISwitch *isReadSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *isReadSwitchLabel;
