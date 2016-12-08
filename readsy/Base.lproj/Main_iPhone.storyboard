@@ -101,10 +101,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unlinked" translatesAutoresizingMaskIntoConstraints="NO" id="GH9-yV-Vaz">
-                                <rect key="frame" x="47.5" y="65" width="280" height="140"/>
+                                <rect key="frame" x="48" y="65" width="280" height="140"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="854-zp-UK4">
-                                <rect key="frame" x="47.5" y="213" width="280" height="21"/>
+                                <rect key="frame" x="48" y="213" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ceU-1o-6yS"/>
                                 </constraints>
@@ -113,7 +113,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68s-Er-eJa">
-                                <rect key="frame" x="47.5" y="318.5" width="280" height="30"/>
+                                <rect key="frame" x="164" y="629" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -126,12 +126,11 @@
                         <constraints>
                             <constraint firstItem="GH9-yV-Vaz" firstAttribute="top" secondItem="Dle-qv-k2k" secondAttribute="bottom" constant="1" id="N47-9J-m5e"/>
                             <constraint firstItem="GH9-yV-Vaz" firstAttribute="leading" secondItem="854-zp-UK4" secondAttribute="leading" id="WSs-ze-G1x"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerY" secondItem="Eso-tB-z1E" secondAttribute="centerY" id="Yna-Jm-znP"/>
                             <constraint firstItem="854-zp-UK4" firstAttribute="trailing" secondItem="GH9-yV-Vaz" secondAttribute="trailing" id="btv-bk-6Gk"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="leading" secondItem="854-zp-UK4" secondAttribute="leading" id="eTz-Jb-5EC"/>
+                            <constraint firstItem="854-zp-UK4" firstAttribute="centerX" secondItem="Eso-tB-z1E" secondAttribute="centerX" id="fSs-PN-AKu"/>
                             <constraint firstItem="854-zp-UK4" firstAttribute="top" secondItem="GH9-yV-Vaz" secondAttribute="bottom" constant="8" symbolic="YES" id="h1j-Zp-q2u"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="trailing" secondItem="854-zp-UK4" secondAttribute="trailing" id="jPL-66-Q30"/>
-                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerX" secondItem="Eso-tB-z1E" secondAttribute="centerX" id="wre-nI-VJ9"/>
+                            <constraint firstItem="68s-Er-eJa" firstAttribute="centerX" secondItem="Eso-tB-z1E" secondAttribute="centerX" id="sAM-wJ-qSU"/>
+                            <constraint firstItem="IdE-Ll-f0a" firstAttribute="top" secondItem="68s-Er-eJa" secondAttribute="bottom" constant="8" id="xOR-vy-UpB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dropbox Setup" id="llD-xN-S9X"/>
@@ -158,7 +157,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preparing..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dz2-UV-FRx">
-                                <rect key="frame" x="143.5" y="323.5" width="88.5" height="20.5"/>
+                                <rect key="frame" x="143" y="323" width="89" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -260,14 +259,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Font" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m72-az-l56">
-                                                    <rect key="frame" x="48" y="0.0" width="292" height="43"/>
+                                                    <rect key="frame" x="58" y="0.0" width="282" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="350-text" id="zUI-ZT-haq">
-                                                    <rect key="frame" x="15" y="11" width="18" height="20"/>
+                                                    <rect key="frame" x="15" y="7" width="28" height="28"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -542,16 +541,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extracting Files..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11t-vz-hob">
-                                <rect key="frame" x="16" y="108" width="343" height="20.5"/>
+                                <rect key="frame" x="16" y="108" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="le6-QN-ZVe">
-                                <rect key="frame" x="65" y="149.5" width="245" height="2"/>
+                                <rect key="frame" x="65" y="150" width="245" height="2"/>
                             </progressView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FQj-eD-vSg">
-                                <rect key="frame" x="169" y="136.5" width="37" height="37"/>
+                                <rect key="frame" x="169" y="137" width="37" height="37"/>
                                 <color key="color" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -627,7 +626,7 @@
                                 <color key="color" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoL-L4-ydr" customClass="KAProgressLabel">
-                                <rect key="frame" x="138" y="284" width="100" height="100"/>
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2WZ-xW-QCz"/>
@@ -635,7 +634,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IOf-yN-9m2" customClass="KAProgressLabel">
-                                <rect key="frame" x="113" y="259" width="150" height="150"/>
+                                <rect key="frame" x="112.5" y="258.5" width="150" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Oni-St-inu"/>
@@ -684,7 +683,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="350-text" width="18" height="20"/>
+        <image name="350-text" width="28" height="28"/>
         <image name="451-help-symbol2" width="28" height="28"/>
         <image name="730-envelope" width="28" height="18"/>
         <image name="dropbox_small" width="28" height="28"/>

@@ -45,12 +45,13 @@
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK"
                                                      style:UIAlertActionStyleDefault
-                                                handler:nil]];
+                                                handler:^(UIAlertAction *action) {
+                                                    [self.navigationController popViewControllerAnimated:YES];
+                                                }]];
+
         [self.navigationController presentViewController:alert
                                                 animated:YES
-                                              completion:^{
-                                                  [self.navigationController popViewControllerAnimated:YES];
-                                              }];
+                                              completion:nil];
     }
 }
 
