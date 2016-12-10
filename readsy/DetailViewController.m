@@ -51,7 +51,23 @@
     [self.mmddFormat setDateFormat:@"MMdd"];
     self.shortFormat = [[NSDateFormatter alloc] init];
     [self.shortFormat setDateFormat:@"EEEE MMMM d, yyyy"];
-//    [self updateFonts];
+//    [self loadDataForItem];
+//    [self configureView];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Loading..."];
+    
+    UIFont *boldFont = [UIFont fontWithName:self.boldFontName
+                                       size:self.fontSize];
+    [attributedString addAttribute:NSFontAttributeName
+                             value:boldFont
+                             range:NSMakeRange(0, [attributedString length])];
+    
+    self.contentTextView.attributedText = attributedString;
+    
     [self loadDataForItem];
     [self configureView];
 }
@@ -121,8 +137,6 @@
                                  range:NSMakeRange(0, [self.entryItem.heading length])];
         self.contentTextView.attributedText = attributedString;
         
-        [self.contentTextView scrollRangeToVisible:NSMakeRange(0, 1)];
-        
         self.isReadSwitch.hidden = NO;
         self.isReadSwitchLabel.hidden = NO;
         self.isReadSwitch.on = [self.detailItem isRead:self.detailItem.date];
@@ -148,15 +162,6 @@
         
     }
 }
-
-
-
-
-//- (void)updateFonts
-//{
-//    self.contentTextView.font = [UIFont fontWithName:self.fontName size:self.fontSize];
-//}
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {

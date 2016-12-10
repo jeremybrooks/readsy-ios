@@ -106,6 +106,8 @@
                              timing:TPPropertyAnimationTimingEaseInEaseOut
                            duration:0.5
                               delay:0.2];
+        int complete = ((float)daysRead/daysInYear) * 100;
+        self.progress2.text = [NSString stringWithFormat:@"%d%%", complete];
     } else {
         self.resetButton.hidden = YES;
         self.markReadButton.hidden = YES;
@@ -125,10 +127,13 @@
                                  timing:TPPropertyAnimationTimingEaseInEaseOut
                                duration:0.5
                                   delay:0.2];
+            int complete = ((float)daysRead/daysInYear) * 100;
+            self.progress2.text = [NSString stringWithFormat:@"%d%%", complete];
         } else {
             // item is for a future year
             self.progress1.progress = 0.0;
             self.progress2.progress = 0.0;
+            self.progress2.text = @"0%";
         }
     }
 }
