@@ -14,6 +14,9 @@ NSString* const kReadsyFontName = @"kReadsyFontName";
 NSString* const kReadsyBoldFontName = @"kReadsyBoldFontName";
 NSString * const kDidShowTipDetailView = @"kDidShowTipDetailView";
 NSString *const kDidShowTipInfoView = @"kDidShowTipInfoView";
+NSString *const kRemindersEnabled = @"kRemindersEnabled";
+NSString *const kReminderTime = @"kReminderTime";
+
 NSString *const kDataUploadInProgress = @"kDataUploadInProgress";
 
 NSString* const DefaultFontName = @"Helvetica Neue";

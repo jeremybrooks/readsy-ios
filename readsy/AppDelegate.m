@@ -13,15 +13,15 @@
 #import "Constants.h"
 #import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
-
-
-
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [DropboxClientsManager setupWithAppKey:kDbAppKey];
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert|UIUserNotificationTypeSound) categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+
     return YES;
 }
 							

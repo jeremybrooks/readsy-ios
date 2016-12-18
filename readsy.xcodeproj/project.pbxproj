@@ -13,6 +13,9 @@
 		7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182681183DA72C0064F7F8 /* Security.framework */; };
 		7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182683183DA7300064F7F8 /* QuartzCore.framework */; };
 		7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */; };
+		7F40195E1E037F3500556A73 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F40195D1E037F3500556A73 /* ReminderViewController.m */; };
+		7F4019601E050B8600556A73 /* pageturn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7F40195F1E050B8600556A73 /* pageturn.wav */; };
+		7F4019621E050C0200556A73 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4019611E050C0200556A73 /* NotificationCenter.framework */; };
 		7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4D53181840098E0043A25A /* ReadsyMetadata.m */; };
 		7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AB183D67A300365006 /* Foundation.framework */; };
 		7F5AB5AE183D67A300365006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AD183D67A300365006 /* CoreGraphics.framework */; };
@@ -66,6 +69,11 @@
 		7F182685183DCF4F0064F7F8 /* Secrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
 		7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyEntry.h; sourceTree = "<group>"; };
 		7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyEntry.m; sourceTree = "<group>"; };
+		7F40195C1E037F3500556A73 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
+		7F40195D1E037F3500556A73 /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
+		7F40195F1E050B8600556A73 /* pageturn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pageturn.wav; sourceTree = "<group>"; };
+		7F4019611E050C0200556A73 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		7F4019631E050CAE00556A73 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		7F4D53171840098E0043A25A /* ReadsyMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyMetadata.h; sourceTree = "<group>"; };
 		7F4D53181840098E0043A25A /* ReadsyMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyMetadata.m; sourceTree = "<group>"; };
 		7F5AB5A8183D67A300365006 /* readsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4019621E050C0200556A73 /* NotificationCenter.framework in Frameworks */,
 				7FB9429B1A6EFAD200F696EF /* libz.dylib in Frameworks */,
 				7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */,
 				7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */,
@@ -185,6 +194,8 @@
 		7F5AB5AA183D67A300365006 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F4019631E050CAE00556A73 /* UserNotificationsUI.framework */,
+				7F4019611E050C0200556A73 /* NotificationCenter.framework */,
 				7FB9429A1A6EFAD200F696EF /* libz.dylib */,
 				7FB9E9E61856CEBF000EB398 /* MessageUI.framework */,
 				7F182683183DA7300064F7F8 /* QuartzCore.framework */,
@@ -222,6 +233,8 @@
 				7FB9E9E91856D058000EB398 /* FontSizeViewController.m */,
 				7F5EC8E718581EAC0029800F /* DropboxSetupViewController.h */,
 				7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */,
+				7F40195C1E037F3500556A73 /* ReminderViewController.h */,
+				7F40195D1E037F3500556A73 /* ReminderViewController.m */,
 				7F4D53171840098E0043A25A /* ReadsyMetadata.h */,
 				7F4D53181840098E0043A25A /* ReadsyMetadata.m */,
 				7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */,
@@ -235,6 +248,7 @@
 				7F5AB5B2183D67A300365006 /* Supporting Files */,
 				7F182685183DCF4F0064F7F8 /* Secrets.h */,
 				7FCAE4CE183E7744000C2820 /* Secrets.m */,
+				7F40195F1E050B8600556A73 /* pageturn.wav */,
 			);
 			path = readsy;
 			sourceTree = "<group>";
@@ -376,6 +390,7 @@
 			files = (
 				7F5AB5CA183D67A300365006 /* Images.xcassets in Resources */,
 				7F5AB5BF183D67A300365006 /* Main_iPhone.storyboard in Resources */,
+				7F4019601E050B8600556A73 /* pageturn.wav in Resources */,
 				7F5AB5B6183D67A300365006 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,6 +507,7 @@
 				7F00873F1DF7B2A100BDF54F /* ItemInfoViewController.m in Sources */,
 				7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */,
 				7FB942991A6EF4B100F696EF /* SSZipArchive.m in Sources */,
+				7F40195E1E037F3500556A73 /* ReminderViewController.m in Sources */,
 				7F9B30D01A69B33A00568E4C /* DataFileViewController.m in Sources */,
 				7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */,
 				7F5AB5C5183D67A300365006 /* MasterViewController.m in Sources */,

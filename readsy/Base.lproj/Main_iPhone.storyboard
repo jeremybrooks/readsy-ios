@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -240,6 +240,62 @@
             </objects>
             <point key="canvasLocation" x="1365" y="-854"/>
         </scene>
+        <!--Reminder-->
+        <scene sceneID="d1A-sN-eGW">
+            <objects>
+                <viewController id="6lN-74-ynX" customClass="ReminderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iTn-aL-1Lh"/>
+                        <viewControllerLayoutGuide type="bottom" id="w96-cX-QMp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wfe-4Z-eBO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lDg-d2-DYq">
+                                <rect key="frame" x="16" y="72" width="51" height="31"/>
+                                <connections>
+                                    <action selector="switchChanged:" destination="6lN-74-ynX" eventType="valueChanged" id="PRZ-HC-QkT"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Reminders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cr0-5g-d6J">
+                                <rect key="frame" x="73" y="77" width="137.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kCL-Dk-Zob">
+                                <rect key="frame" x="0.0" y="431" width="375" height="216"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="lwI-yZ-sj0"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="503545588.778543">
+                                    <!--2016-12-16 01:46:28 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="w96-cX-QMp" firstAttribute="top" secondItem="kCL-Dk-Zob" secondAttribute="bottom" constant="20" id="4DS-VG-Lod"/>
+                            <constraint firstItem="Cr0-5g-d6J" firstAttribute="top" secondItem="iTn-aL-1Lh" secondAttribute="bottom" constant="13" id="Ctg-Rz-XVY"/>
+                            <constraint firstItem="kCL-Dk-Zob" firstAttribute="leading" secondItem="Wfe-4Z-eBO" secondAttribute="leading" id="K4Q-Ih-myl"/>
+                            <constraint firstItem="kCL-Dk-Zob" firstAttribute="centerX" secondItem="Wfe-4Z-eBO" secondAttribute="centerX" id="RME-xj-3b5"/>
+                            <constraint firstItem="Cr0-5g-d6J" firstAttribute="leading" secondItem="lDg-d2-DYq" secondAttribute="trailing" constant="8" id="SyP-G1-DVd"/>
+                            <constraint firstAttribute="trailing" secondItem="kCL-Dk-Zob" secondAttribute="trailing" id="cn6-Bp-VuB"/>
+                            <constraint firstItem="lDg-d2-DYq" firstAttribute="leading" secondItem="Wfe-4Z-eBO" secondAttribute="leadingMargin" id="dcJ-KG-5O1"/>
+                            <constraint firstItem="lDg-d2-DYq" firstAttribute="top" secondItem="iTn-aL-1Lh" secondAttribute="bottom" constant="8" id="fMk-Pe-1c1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reminder" id="vtv-XU-15s"/>
+                    <connections>
+                        <outlet property="reminderSwitch" destination="lDg-d2-DYq" id="Bf8-zo-kC3"/>
+                        <outlet property="timePicker" destination="kCL-Dk-Zob" id="LW3-lE-dGu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QFr-LW-BLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1991.5" y="-1302.5"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="o67-ET-dCb">
             <objects>
@@ -299,8 +355,32 @@
                                             <segue destination="wRz-oK-qKo" kind="push" identifier="dropboxSetupSegue" id="iN0-rD-Ha7"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="9gC-Og-qEO" imageView="CpG-UU-SEE" style="IBUITableViewCellStyleDefault" id="iic-nM-XZO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="9jt-pd-TWl" imageView="NpY-vc-J4a" style="IBUITableViewCellStyleDefault" id="dhD-PQ-bMX">
                                         <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dhD-PQ-bMX" id="ten-ro-ihI">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9jt-pd-TWl">
+                                                    <rect key="frame" x="56" y="0.0" width="284" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="alarm" id="NpY-vc-J4a">
+                                                    <rect key="frame" x="15" y="9" width="26" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="6lN-74-ynX" kind="push" id="9MS-pI-Jar"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="9gC-Og-qEO" imageView="CpG-UU-SEE" style="IBUITableViewCellStyleDefault" id="iic-nM-XZO">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iic-nM-XZO" id="1pa-eD-sPq">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
@@ -324,7 +404,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="fK4-Ij-nL4" imageView="DuV-pf-VAW" style="IBUITableViewCellStyleDefault" id="gi2-gJ-tFw">
-                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gi2-gJ-tFw" id="4aG-AD-eg1">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
@@ -437,18 +517,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="date" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lei-5M-9Gs">
-                                <rect key="frame" x="16" y="71" width="343" height="20"/>
+                            <label clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text=" " textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Lei-5M-9Gs">
+                                <rect key="frame" x="16" y="71" width="343" height="19.5"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6uK-kz-bej">
-                                <rect key="frame" x="16" y="96" width="343" height="500"/>
+                                <rect key="frame" x="16" y="95.5" width="343" height="500.5"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cv6-TR-eoP">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="500.5"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
                                         <attributedString key="attributedText"/>
@@ -683,6 +763,7 @@
         <image name="350-text" width="28" height="28"/>
         <image name="451-help-symbol2" width="28" height="28"/>
         <image name="730-envelope" width="28" height="18"/>
+        <image name="alarm" width="26" height="24"/>
         <image name="dropbox_small" width="28" height="28"/>
         <image name="unlinked" width="280" height="140"/>
     </resources>
