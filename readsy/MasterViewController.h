@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 #import "DataFileViewController.h"
 
 @class DetailViewController;

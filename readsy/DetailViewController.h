@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ReadsyMetadata.h"
 #import "ReadsyEntry.h"
-#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 
 @interface DetailViewController : UIViewController

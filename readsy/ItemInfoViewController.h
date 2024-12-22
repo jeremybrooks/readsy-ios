@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ReadsyMetadata.h"
 #import "KAProgressLabel.h"
-#import <ObjectiveDropboxOfficial/ObjectiveDropboxOfficial.h>
 
 @interface ItemInfoViewController : UIViewController
 @property (strong, nonatomic) ReadsyMetadata *detailItem;

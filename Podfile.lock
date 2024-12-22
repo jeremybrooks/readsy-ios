@@ -1,0 +1,16 @@
+PODS:
+  - KAProgressLabel (3.3.0)
+
+DEPENDENCIES:
+  - KAProgressLabel
+
+SPEC REPOS:
+  trunk:
+    - KAProgressLabel
+
+SPEC CHECKSUMS:
+  KAProgressLabel: 8ef4544b66f2d8277f8349e0b5ffbab44c95f659
+
+PODFILE CHECKSUM: 5bf5c47c643e51dab918484b3e1513c4d9316347
+
+COCOAPODS: 1.11.2
