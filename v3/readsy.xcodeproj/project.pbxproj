@@ -1,0 +1,776 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DE0E60375FDAAA3C00B2170 /* Pods_readsy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9969075287B6B9145BE7B0B8 /* Pods_readsy.framework */; };
+		7F00873F1DF7B2A100BDF54F /* ItemInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F00873E1DF7B2A100BDF54F /* ItemInfoViewController.m */; };
+		7F1613B5185C1AD100B1E74E /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1613B4185C1AD100B1E74E /* HelpViewController.m */; };
+		7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182681183DA72C0064F7F8 /* Security.framework */; };
+		7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F182683183DA7300064F7F8 /* QuartzCore.framework */; };
+		7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */; };
+		7F40195E1E037F3500556A73 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F40195D1E037F3500556A73 /* ReminderViewController.m */; };
+		7F4019601E050B8600556A73 /* pageturn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7F40195F1E050B8600556A73 /* pageturn.wav */; };
+		7F4019621E050C0200556A73 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F4019611E050C0200556A73 /* NotificationCenter.framework */; };
+		7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4D53181840098E0043A25A /* ReadsyMetadata.m */; };
+		7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AB183D67A300365006 /* Foundation.framework */; };
+		7F5AB5AE183D67A300365006 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AD183D67A300365006 /* CoreGraphics.framework */; };
+		7F5AB5B0183D67A300365006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AF183D67A300365006 /* UIKit.framework */; };
+		7F5AB5B6183D67A300365006 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F5AB5B4183D67A300365006 /* InfoPlist.strings */; };
+		7F5AB5B8183D67A300365006 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5B7183D67A300365006 /* main.m */; };
+		7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5BB183D67A300365006 /* AppDelegate.m */; };
+		7F5AB5BF183D67A300365006 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */; };
+		7F5AB5C5183D67A300365006 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5C4183D67A300365006 /* MasterViewController.m */; };
+		7F5AB5C8183D67A300365006 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5C7183D67A300365006 /* DetailViewController.m */; };
+		7F5AB5CA183D67A300365006 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F5AB5C9183D67A300365006 /* Images.xcassets */; };
+		7F5AB5D1183D67A300365006 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5D0183D67A300365006 /* XCTest.framework */; };
+		7F5AB5D2183D67A300365006 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AB183D67A300365006 /* Foundation.framework */; };
+		7F5AB5D3183D67A300365006 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F5AB5AF183D67A300365006 /* UIKit.framework */; };
+		7F5AB5DB183D67A300365006 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F5AB5D9183D67A300365006 /* InfoPlist.strings */; };
+		7F5AB5DD183D67A300365006 /* readsyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5AB5DC183D67A300365006 /* readsyTests.m */; };
+		7F5EC8E918581EAC0029800F /* DropboxSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */; };
+		7F5EC8EC1858D53F0029800F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8EB1858D53F0029800F /* Constants.m */; };
+		7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F5EC8EE1858ED300029800F /* FeedbackViewController.m */; };
+		7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB9E9E61856CEBF000EB398 /* MessageUI.framework */; };
+		7F9B30D01A69B33A00568E4C /* DataFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */; };
+		7FB942951A6EF4B100F696EF /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9428B1A6EF4B100F696EF /* ioapi.c */; };
+		7FB942961A6EF4B100F696EF /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9428D1A6EF4B100F696EF /* mztools.c */; };
+		7FB942971A6EF4B100F696EF /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9428F1A6EF4B100F696EF /* unzip.c */; };
+		7FB942981A6EF4B100F696EF /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB942911A6EF4B100F696EF /* zip.c */; };
+		7FB942991A6EF4B100F696EF /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB942941A6EF4B100F696EF /* SSZipArchive.m */; };
+		7FB9429B1A6EFAD200F696EF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB9429A1A6EFAD200F696EF /* libz.dylib */; };
+		7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB9E9E91856D058000EB398 /* FontSizeViewController.m */; };
+		7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FCAE4CE183E7744000C2820 /* Secrets.m */; };
+		B788F7C383BDCEEEDBB46B9A /* Pods_readsyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AC4753BDFCFC118BB25C47B /* Pods_readsyTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F5AB5D4183D67A300365006 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F5AB5A0183D67A300365006 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F5AB5A7183D67A300365006;
+			remoteInfo = readsy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7344894CA5E96DFCBBE9736A /* Pods-readsy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-readsy/Pods-readsy.debug.xcconfig"; sourceTree = "<group>"; };
+		7F00873D1DF7B2A100BDF54F /* ItemInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemInfoViewController.h; sourceTree = "<group>"; };
+		7F00873E1DF7B2A100BDF54F /* ItemInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemInfoViewController.m; sourceTree = "<group>"; };
+		7F1613B3185C1AD100B1E74E /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		7F1613B4185C1AD100B1E74E /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		7F182681183DA72C0064F7F8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7F182683183DA7300064F7F8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7F182685183DCF4F0064F7F8 /* Secrets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyEntry.h; sourceTree = "<group>"; };
+		7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyEntry.m; sourceTree = "<group>"; };
+		7F40195C1E037F3500556A73 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
+		7F40195D1E037F3500556A73 /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
+		7F40195F1E050B8600556A73 /* pageturn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pageturn.wav; sourceTree = "<group>"; };
+		7F4019611E050C0200556A73 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		7F4019631E050CAE00556A73 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
+		7F4D53171840098E0043A25A /* ReadsyMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadsyMetadata.h; sourceTree = "<group>"; };
+		7F4D53181840098E0043A25A /* ReadsyMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadsyMetadata.m; sourceTree = "<group>"; };
+		7F5AB5A8183D67A300365006 /* readsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F5AB5AB183D67A300365006 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7F5AB5AD183D67A300365006 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7F5AB5AF183D67A300365006 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7F5AB5B3183D67A300365006 /* readsy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "readsy-Info.plist"; sourceTree = "<group>"; };
+		7F5AB5B5183D67A300365006 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7F5AB5B7183D67A300365006 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7F5AB5B9183D67A300365006 /* readsy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "readsy-Prefix.pch"; sourceTree = "<group>"; };
+		7F5AB5BA183D67A300365006 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7F5AB5BB183D67A300365006 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7F5AB5BE183D67A300365006 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		7F5AB5C3183D67A300365006 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
+		7F5AB5C4183D67A300365006 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		7F5AB5C6183D67A300365006 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		7F5AB5C7183D67A300365006 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		7F5AB5C9183D67A300365006 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7F5AB5CF183D67A300365006 /* readsyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = readsyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F5AB5D0183D67A300365006 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7F5AB5D8183D67A300365006 /* readsyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "readsyTests-Info.plist"; sourceTree = "<group>"; };
+		7F5AB5DA183D67A300365006 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7F5AB5DC183D67A300365006 /* readsyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = readsyTests.m; sourceTree = "<group>"; };
+		7F5EC8E718581EAC0029800F /* DropboxSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxSetupViewController.h; sourceTree = "<group>"; };
+		7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxSetupViewController.m; sourceTree = "<group>"; };
+		7F5EC8EA1858D53F0029800F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		7F5EC8EB1858D53F0029800F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		7F5EC8ED1858ED300029800F /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		7F5EC8EE1858ED300029800F /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		7F8BC8ED1DCABE6700C366E1 /* readsy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = readsy.entitlements; sourceTree = "<group>"; };
+		7F9B30CE1A69B33A00568E4C /* DataFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataFileViewController.h; path = ../DataFileViewController.h; sourceTree = "<group>"; };
+		7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataFileViewController.m; path = ../DataFileViewController.m; sourceTree = "<group>"; };
+		7FB9428A1A6EF4B100F696EF /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		7FB9428B1A6EF4B100F696EF /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		7FB9428C1A6EF4B100F696EF /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		7FB9428D1A6EF4B100F696EF /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		7FB9428E1A6EF4B100F696EF /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		7FB9428F1A6EF4B100F696EF /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		7FB942901A6EF4B100F696EF /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		7FB942911A6EF4B100F696EF /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		7FB942921A6EF4B100F696EF /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		7FB942931A6EF4B100F696EF /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		7FB942941A6EF4B100F696EF /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		7FB9429A1A6EFAD200F696EF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7FB9E9E61856CEBF000EB398 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7FB9E9E81856D058000EB398 /* FontSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSizeViewController.h; sourceTree = "<group>"; };
+		7FB9E9E91856D058000EB398 /* FontSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSizeViewController.m; sourceTree = "<group>"; };
+		7FCAE4CE183E7744000C2820 /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		8AC4753BDFCFC118BB25C47B /* Pods_readsyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readsyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E324628652E1CCF1BDFDA09 /* Pods-readsy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsy.release.xcconfig"; path = "Pods/Target Support Files/Pods-readsy/Pods-readsy.release.xcconfig"; sourceTree = "<group>"; };
+		9969075287B6B9145BE7B0B8 /* Pods_readsy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_readsy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF88107E4FAABDD04009D00C /* Pods-readsyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-readsyTests/Pods-readsyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC18364D7A6D8CEEE2EBBC6A /* Pods-readsyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-readsyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-readsyTests/Pods-readsyTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F5AB5A5183D67A300365006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F4019621E050C0200556A73 /* NotificationCenter.framework in Frameworks */,
+				7FB9429B1A6EFAD200F696EF /* libz.dylib in Frameworks */,
+				7F5EC8F01858EE5E0029800F /* MessageUI.framework in Frameworks */,
+				7F182684183DA7300064F7F8 /* QuartzCore.framework in Frameworks */,
+				7F182682183DA72C0064F7F8 /* Security.framework in Frameworks */,
+				7F5AB5AE183D67A300365006 /* CoreGraphics.framework in Frameworks */,
+				7F5AB5B0183D67A300365006 /* UIKit.framework in Frameworks */,
+				7F5AB5AC183D67A300365006 /* Foundation.framework in Frameworks */,
+				1DE0E60375FDAAA3C00B2170 /* Pods_readsy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F5AB5CC183D67A300365006 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F5AB5D1183D67A300365006 /* XCTest.framework in Frameworks */,
+				7F5AB5D3183D67A300365006 /* UIKit.framework in Frameworks */,
+				7F5AB5D2183D67A300365006 /* Foundation.framework in Frameworks */,
+				B788F7C383BDCEEEDBB46B9A /* Pods_readsyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		351BC8A60E92E977A3DDF58A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7344894CA5E96DFCBBE9736A /* Pods-readsy.debug.xcconfig */,
+				8E324628652E1CCF1BDFDA09 /* Pods-readsy.release.xcconfig */,
+				CF88107E4FAABDD04009D00C /* Pods-readsyTests.debug.xcconfig */,
+				DC18364D7A6D8CEEE2EBBC6A /* Pods-readsyTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7F5AB59F183D67A300365006 = {
+			isa = PBXGroup;
+			children = (
+				7F5AB5B1183D67A300365006 /* readsy */,
+				7F5AB5D6183D67A300365006 /* readsyTests */,
+				7F5AB5AA183D67A300365006 /* Frameworks */,
+				7F5AB5A9183D67A300365006 /* Products */,
+				351BC8A60E92E977A3DDF58A /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		7F5AB5A9183D67A300365006 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F5AB5A8183D67A300365006 /* readsy.app */,
+				7F5AB5CF183D67A300365006 /* readsyTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F5AB5AA183D67A300365006 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F4019631E050CAE00556A73 /* UserNotificationsUI.framework */,
+				7F4019611E050C0200556A73 /* NotificationCenter.framework */,
+				7FB9429A1A6EFAD200F696EF /* libz.dylib */,
+				7FB9E9E61856CEBF000EB398 /* MessageUI.framework */,
+				7F182683183DA7300064F7F8 /* QuartzCore.framework */,
+				7F182681183DA72C0064F7F8 /* Security.framework */,
+				7F5AB5AB183D67A300365006 /* Foundation.framework */,
+				7F5AB5AD183D67A300365006 /* CoreGraphics.framework */,
+				7F5AB5AF183D67A300365006 /* UIKit.framework */,
+				7F5AB5D0183D67A300365006 /* XCTest.framework */,
+				9969075287B6B9145BE7B0B8 /* Pods_readsy.framework */,
+				8AC4753BDFCFC118BB25C47B /* Pods_readsyTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F5AB5B1183D67A300365006 /* readsy */ = {
+			isa = PBXGroup;
+			children = (
+				7F8BC8ED1DCABE6700C366E1 /* readsy.entitlements */,
+				7FB942891A6EF4B100F696EF /* minizip */,
+				7FB942931A6EF4B100F696EF /* SSZipArchive.h */,
+				7FB942941A6EF4B100F696EF /* SSZipArchive.m */,
+				7F5AB5BA183D67A300365006 /* AppDelegate.h */,
+				7F5AB5BB183D67A300365006 /* AppDelegate.m */,
+				7F9B30CE1A69B33A00568E4C /* DataFileViewController.h */,
+				7F9B30CF1A69B33A00568E4C /* DataFileViewController.m */,
+				7F5AB5C3183D67A300365006 /* MasterViewController.h */,
+				7F5AB5C4183D67A300365006 /* MasterViewController.m */,
+				7F5AB5C6183D67A300365006 /* DetailViewController.h */,
+				7F5AB5C7183D67A300365006 /* DetailViewController.m */,
+				7F00873D1DF7B2A100BDF54F /* ItemInfoViewController.h */,
+				7F00873E1DF7B2A100BDF54F /* ItemInfoViewController.m */,
+				7F1613B3185C1AD100B1E74E /* HelpViewController.h */,
+				7F1613B4185C1AD100B1E74E /* HelpViewController.m */,
+				7FB9E9E81856D058000EB398 /* FontSizeViewController.h */,
+				7FB9E9E91856D058000EB398 /* FontSizeViewController.m */,
+				7F5EC8E718581EAC0029800F /* DropboxSetupViewController.h */,
+				7F5EC8E818581EAC0029800F /* DropboxSetupViewController.m */,
+				7F40195C1E037F3500556A73 /* ReminderViewController.h */,
+				7F40195D1E037F3500556A73 /* ReminderViewController.m */,
+				7F4D53171840098E0043A25A /* ReadsyMetadata.h */,
+				7F4D53181840098E0043A25A /* ReadsyMetadata.m */,
+				7F1F515D1840509D00E0FF59 /* ReadsyEntry.h */,
+				7F1F515E1840509D00E0FF59 /* ReadsyEntry.m */,
+				7F5EC8EA1858D53F0029800F /* Constants.h */,
+				7F5EC8EB1858D53F0029800F /* Constants.m */,
+				7F5EC8ED1858ED300029800F /* FeedbackViewController.h */,
+				7F5EC8EE1858ED300029800F /* FeedbackViewController.m */,
+				7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */,
+				7F5AB5C9183D67A300365006 /* Images.xcassets */,
+				7F5AB5B2183D67A300365006 /* Supporting Files */,
+				7F182685183DCF4F0064F7F8 /* Secrets.h */,
+				7FCAE4CE183E7744000C2820 /* Secrets.m */,
+				7F40195F1E050B8600556A73 /* pageturn.wav */,
+			);
+			path = readsy;
+			sourceTree = "<group>";
+		};
+		7F5AB5B2183D67A300365006 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F5AB5B3183D67A300365006 /* readsy-Info.plist */,
+				7F5AB5B4183D67A300365006 /* InfoPlist.strings */,
+				7F5AB5B7183D67A300365006 /* main.m */,
+				7F5AB5B9183D67A300365006 /* readsy-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F5AB5D6183D67A300365006 /* readsyTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F5AB5DC183D67A300365006 /* readsyTests.m */,
+				7F5AB5D7183D67A300365006 /* Supporting Files */,
+			);
+			path = readsyTests;
+			sourceTree = "<group>";
+		};
+		7F5AB5D7183D67A300365006 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7F5AB5D8183D67A300365006 /* readsyTests-Info.plist */,
+				7F5AB5D9183D67A300365006 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7FB942891A6EF4B100F696EF /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				7FB9428A1A6EF4B100F696EF /* crypt.h */,
+				7FB9428B1A6EF4B100F696EF /* ioapi.c */,
+				7FB9428C1A6EF4B100F696EF /* ioapi.h */,
+				7FB9428D1A6EF4B100F696EF /* mztools.c */,
+				7FB9428E1A6EF4B100F696EF /* mztools.h */,
+				7FB9428F1A6EF4B100F696EF /* unzip.c */,
+				7FB942901A6EF4B100F696EF /* unzip.h */,
+				7FB942911A6EF4B100F696EF /* zip.c */,
+				7FB942921A6EF4B100F696EF /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F5AB5A7183D67A300365006 /* readsy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F5AB5E0183D67A300365006 /* Build configuration list for PBXNativeTarget "readsy" */;
+			buildPhases = (
+				DCB8AAA24E41586D408B2A02 /* [CP] Check Pods Manifest.lock */,
+				7F5AB5A4183D67A300365006 /* Sources */,
+				7F5AB5A5183D67A300365006 /* Frameworks */,
+				7F5AB5A6183D67A300365006 /* Resources */,
+				3141ACC5C29564D9977EFE0E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = readsy;
+			productName = readsy;
+			productReference = 7F5AB5A8183D67A300365006 /* readsy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7F5AB5CE183D67A300365006 /* readsyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F5AB5E3183D67A300365006 /* Build configuration list for PBXNativeTarget "readsyTests" */;
+			buildPhases = (
+				D94F30638278464B573717A1 /* [CP] Check Pods Manifest.lock */,
+				7F5AB5CB183D67A300365006 /* Sources */,
+				7F5AB5CC183D67A300365006 /* Frameworks */,
+				7F5AB5CD183D67A300365006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F5AB5D5183D67A300365006 /* PBXTargetDependency */,
+			);
+			name = readsyTests;
+			productName = readsyTests;
+			productReference = 7F5AB5CF183D67A300365006 /* readsyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F5AB5A0183D67A300365006 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1310;
+				ORGANIZATIONNAME = "Jeremy Brooks";
+				TargetAttributes = {
+					7F5AB5A7183D67A300365006 = {
+						DevelopmentTeam = FZ4YZD3U5W;
+						LastSwiftMigration = 1610;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
+					};
+					7F5AB5CE183D67A300365006 = {
+						TestTargetID = 7F5AB5A7183D67A300365006;
+					};
+				};
+			};
+			buildConfigurationList = 7F5AB5A3183D67A300365006 /* Build configuration list for PBXProject "readsy" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F5AB59F183D67A300365006;
+			productRefGroup = 7F5AB5A9183D67A300365006 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F5AB5A7183D67A300365006 /* readsy */,
+				7F5AB5CE183D67A300365006 /* readsyTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F5AB5A6183D67A300365006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F5AB5CA183D67A300365006 /* Images.xcassets in Resources */,
+				7F5AB5BF183D67A300365006 /* Main_iPhone.storyboard in Resources */,
+				7F4019601E050B8600556A73 /* pageturn.wav in Resources */,
+				7F5AB5B6183D67A300365006 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F5AB5CD183D67A300365006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F5AB5DB183D67A300365006 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3141ACC5C29564D9977EFE0E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-readsy/Pods-readsy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/KAProgressLabel/KAProgressLabel.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KAProgressLabel.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-readsy/Pods-readsy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D94F30638278464B573717A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-readsyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCB8AAA24E41586D408B2A02 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-readsy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F5AB5A4183D67A300365006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F5EC8EC1858D53F0029800F /* Constants.m in Sources */,
+				7F00873F1DF7B2A100BDF54F /* ItemInfoViewController.m in Sources */,
+				7F5AB5BC183D67A300365006 /* AppDelegate.m in Sources */,
+				7FB942991A6EF4B100F696EF /* SSZipArchive.m in Sources */,
+				7F40195E1E037F3500556A73 /* ReminderViewController.m in Sources */,
+				7F9B30D01A69B33A00568E4C /* DataFileViewController.m in Sources */,
+				7F4D53191840098E0043A25A /* ReadsyMetadata.m in Sources */,
+				7F5AB5C5183D67A300365006 /* MasterViewController.m in Sources */,
+				7F5AB5B8183D67A300365006 /* main.m in Sources */,
+				7FB942981A6EF4B100F696EF /* zip.c in Sources */,
+				7FB942951A6EF4B100F696EF /* ioapi.c in Sources */,
+				7F5AB5C8183D67A300365006 /* DetailViewController.m in Sources */,
+				7F1F515F1840509D00E0FF59 /* ReadsyEntry.m in Sources */,
+				7F1613B5185C1AD100B1E74E /* HelpViewController.m in Sources */,
+				7F5EC8E918581EAC0029800F /* DropboxSetupViewController.m in Sources */,
+				7FB9E9EA1856D058000EB398 /* FontSizeViewController.m in Sources */,
+				7FCAE4CF183E7744000C2820 /* Secrets.m in Sources */,
+				7F5EC8EF1858ED300029800F /* FeedbackViewController.m in Sources */,
+				7FB942971A6EF4B100F696EF /* unzip.c in Sources */,
+				7FB942961A6EF4B100F696EF /* mztools.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F5AB5CB183D67A300365006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F5AB5DD183D67A300365006 /* readsyTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F5AB5D5183D67A300365006 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F5AB5A7183D67A300365006 /* readsy */;
+			targetProxy = 7F5AB5D4183D67A300365006 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7F5AB5B4183D67A300365006 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F5AB5B5183D67A300365006 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7F5AB5BD183D67A300365006 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F5AB5BE183D67A300365006 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		7F5AB5D9183D67A300365006 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7F5AB5DA183D67A300365006 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7F5AB5DE183D67A300365006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F5AB5DF183D67A300365006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F5AB5E1183D67A300365006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7344894CA5E96DFCBBE9736A /* Pods-readsy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = readsy/readsy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = FZ4YZD3U5W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jeremyb/development/readsy-ios/readsy",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
+				INFOPLIST_FILE = "readsy/readsy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.jeremybrooks.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7F5AB5E2183D67A300365006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E324628652E1CCF1BDFDA09 /* Pods-readsy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = readsy/readsy.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = FZ4YZD3U5W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/jeremyb/development/readsy-ios/readsy",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
+				INFOPLIST_FILE = "readsy/readsy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.jeremybrooks.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7F5AB5E4183D67A300365006 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF88107E4FAABDD04009D00C /* Pods-readsyTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/readsy.app/readsy";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "readsyTests/readsyTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.jeremybrooks.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7F5AB5E5183D67A300365006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC18364D7A6D8CEEE2EBBC6A /* Pods-readsyTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/readsy.app/readsy";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "readsy/readsy-Prefix.pch";
+				INFOPLIST_FILE = "readsyTests/readsyTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.jeremybrooks.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F5AB5A3183D67A300365006 /* Build configuration list for PBXProject "readsy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F5AB5DE183D67A300365006 /* Debug */,
+				7F5AB5DF183D67A300365006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F5AB5E0183D67A300365006 /* Build configuration list for PBXNativeTarget "readsy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F5AB5E1183D67A300365006 /* Debug */,
+				7F5AB5E2183D67A300365006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F5AB5E3183D67A300365006 /* Build configuration list for PBXNativeTarget "readsyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F5AB5E4183D67A300365006 /* Debug */,
+				7F5AB5E5183D67A300365006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F5AB5A0183D67A300365006 /* Project object */;
+}
