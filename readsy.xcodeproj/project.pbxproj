@@ -1,0 +1,825 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F543EC52D18B50900E9C8ED /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7F543EC42D18B50900E9C8ED /* ZIPFoundation */; };
+		7F95CAF72EF8E06000D91EE9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F95CAF62EF8E06000D91EE9 /* WidgetKit.framework */; };
+		7F95CAF82EF8E06000D91EE9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F454F022EEFB2A0009A15E6 /* SwiftUI.framework */; };
+		7F95CB052EF8E06100D91EE9 /* ReadsyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7F95CAF52EF8E06000D91EE9 /* ReadsyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F95CB032EF8E06100D91EE9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F9D0F862CF7B6FF006AC2D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F95CAF42EF8E06000D91EE9;
+			remoteInfo = ReadsyWidgetExtension;
+		};
+		7F9D0F9F2CF7B700006AC2D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F9D0F862CF7B6FF006AC2D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F9D0F8D2CF7B6FF006AC2D3;
+			remoteInfo = readme;
+		};
+		7F9D0FA92CF7B700006AC2D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F9D0F862CF7B6FF006AC2D3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F9D0F8D2CF7B6FF006AC2D3;
+			remoteInfo = readme;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7F454F112EEFB2A1009A15E6 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7F95CB052EF8E06100D91EE9 /* ReadsyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		7F454F022EEFB2A0009A15E6 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7F95CAF52EF8E06000D91EE9 /* ReadsyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ReadsyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F95CAF62EF8E06000D91EE9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		7F95CB0A2EF8E65700D91EE9 /* ReadsyWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReadsyWidgetExtension.entitlements; sourceTree = "<group>"; };
+		7F9D0F8E2CF7B6FF006AC2D3 /* readsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = readsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9D0F9E2CF7B700006AC2D3 /* readsyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = readsyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9D0FA82CF7B700006AC2D3 /* readsyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = readsyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7F047E972D18ADCA005B31B9 /* Exceptions for "readsy" folder in "readsy" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7F9D0F8D2CF7B6FF006AC2D3 /* readsy */;
+		};
+		7F95CB092EF8E06100D91EE9 /* Exceptions for "ReadsyWidget" folder in "ReadsyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7F95CAF42EF8E06000D91EE9 /* ReadsyWidgetExtension */;
+		};
+		7F95CB0C2EFA5A5C00D91EE9 /* Exceptions for "readsy" folder in "ReadsyWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AppConstants.swift,
+			);
+			target = 7F95CAF42EF8E06000D91EE9 /* ReadsyWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7F95CAF92EF8E06000D91EE9 /* ReadsyWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7F95CB092EF8E06100D91EE9 /* Exceptions for "ReadsyWidget" folder in "ReadsyWidgetExtension" target */,
+			);
+			path = ReadsyWidget;
+			sourceTree = "<group>";
+		};
+		7F9D0F902CF7B6FF006AC2D3 /* readsy */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7F047E972D18ADCA005B31B9 /* Exceptions for "readsy" folder in "readsy" target */,
+				7F95CB0C2EFA5A5C00D91EE9 /* Exceptions for "readsy" folder in "ReadsyWidgetExtension" target */,
+			);
+			path = readsy;
+			sourceTree = "<group>";
+		};
+		7F9D0FA12CF7B700006AC2D3 /* readsyTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = readsyTests;
+			sourceTree = "<group>";
+		};
+		7F9D0FAB2CF7B700006AC2D3 /* readmeUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = readmeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F95CAF22EF8E06000D91EE9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F95CAF82EF8E06000D91EE9 /* SwiftUI.framework in Frameworks */,
+				7F95CAF72EF8E06000D91EE9 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0F8B2CF7B6FF006AC2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F543EC52D18B50900E9C8ED /* ZIPFoundation in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0F9B2CF7B700006AC2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0FA52CF7B700006AC2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F543EC32D18B50900E9C8ED /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7F454F022EEFB2A0009A15E6 /* SwiftUI.framework */,
+				7F95CAF62EF8E06000D91EE9 /* WidgetKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F9D0F852CF7B6FF006AC2D3 = {
+			isa = PBXGroup;
+			children = (
+				7F95CB0A2EF8E65700D91EE9 /* ReadsyWidgetExtension.entitlements */,
+				7F9D0F902CF7B6FF006AC2D3 /* readsy */,
+				7F9D0FA12CF7B700006AC2D3 /* readsyTests */,
+				7F9D0FAB2CF7B700006AC2D3 /* readmeUITests */,
+				7F95CAF92EF8E06000D91EE9 /* ReadsyWidget */,
+				7F543EC32D18B50900E9C8ED /* Frameworks */,
+				7F9D0F8F2CF7B6FF006AC2D3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F9D0F8F2CF7B6FF006AC2D3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F9D0F8E2CF7B6FF006AC2D3 /* readsy.app */,
+				7F9D0F9E2CF7B700006AC2D3 /* readsyTests.xctest */,
+				7F9D0FA82CF7B700006AC2D3 /* readsyUITests.xctest */,
+				7F95CAF52EF8E06000D91EE9 /* ReadsyWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F95CAF42EF8E06000D91EE9 /* ReadsyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F95CB082EF8E06100D91EE9 /* Build configuration list for PBXNativeTarget "ReadsyWidgetExtension" */;
+			buildPhases = (
+				7F95CAF12EF8E06000D91EE9 /* Sources */,
+				7F95CAF22EF8E06000D91EE9 /* Frameworks */,
+				7F95CAF32EF8E06000D91EE9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7F95CAF92EF8E06000D91EE9 /* ReadsyWidget */,
+			);
+			name = ReadsyWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = ReadsyWidgetExtension;
+			productReference = 7F95CAF52EF8E06000D91EE9 /* ReadsyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		7F9D0F8D2CF7B6FF006AC2D3 /* readsy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F9D0FB22CF7B700006AC2D3 /* Build configuration list for PBXNativeTarget "readsy" */;
+			buildPhases = (
+				7F9D0F8A2CF7B6FF006AC2D3 /* Sources */,
+				7F9D0F8B2CF7B6FF006AC2D3 /* Frameworks */,
+				7F9D0F8C2CF7B6FF006AC2D3 /* Resources */,
+				7F454F112EEFB2A1009A15E6 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F543EC22D18B4FF00E9C8ED /* PBXTargetDependency */,
+				7F95CB042EF8E06100D91EE9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F9D0F902CF7B6FF006AC2D3 /* readsy */,
+			);
+			name = readsy;
+			packageProductDependencies = (
+				7F543EC42D18B50900E9C8ED /* ZIPFoundation */,
+			);
+			productName = readme;
+			productReference = 7F9D0F8E2CF7B6FF006AC2D3 /* readsy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7F9D0F9D2CF7B700006AC2D3 /* readsyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F9D0FB52CF7B700006AC2D3 /* Build configuration list for PBXNativeTarget "readsyTests" */;
+			buildPhases = (
+				7F9D0F9A2CF7B700006AC2D3 /* Sources */,
+				7F9D0F9B2CF7B700006AC2D3 /* Frameworks */,
+				7F9D0F9C2CF7B700006AC2D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F9D0FA02CF7B700006AC2D3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F9D0FA12CF7B700006AC2D3 /* readsyTests */,
+			);
+			name = readsyTests;
+			packageProductDependencies = (
+			);
+			productName = readmeTests;
+			productReference = 7F9D0F9E2CF7B700006AC2D3 /* readsyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7F9D0FA72CF7B700006AC2D3 /* readsyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F9D0FB82CF7B700006AC2D3 /* Build configuration list for PBXNativeTarget "readsyUITests" */;
+			buildPhases = (
+				7F9D0FA42CF7B700006AC2D3 /* Sources */,
+				7F9D0FA52CF7B700006AC2D3 /* Frameworks */,
+				7F9D0FA62CF7B700006AC2D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F9D0FAA2CF7B700006AC2D3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7F9D0FAB2CF7B700006AC2D3 /* readmeUITests */,
+			);
+			name = readsyUITests;
+			packageProductDependencies = (
+			);
+			productName = readmeUITests;
+			productReference = 7F9D0FA82CF7B700006AC2D3 /* readsyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F9D0F862CF7B6FF006AC2D3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					7F95CAF42EF8E06000D91EE9 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					7F9D0F8D2CF7B6FF006AC2D3 = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					7F9D0F9D2CF7B700006AC2D3 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 7F9D0F8D2CF7B6FF006AC2D3;
+					};
+					7F9D0FA72CF7B700006AC2D3 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 7F9D0F8D2CF7B6FF006AC2D3;
+					};
+				};
+			};
+			buildConfigurationList = 7F9D0F892CF7B6FF006AC2D3 /* Build configuration list for PBXProject "readsy" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F9D0F852CF7B6FF006AC2D3;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7F047E9A2D18B12A005B31B9 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7F9D0F8F2CF7B6FF006AC2D3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F9D0F8D2CF7B6FF006AC2D3 /* readsy */,
+				7F9D0F9D2CF7B700006AC2D3 /* readsyTests */,
+				7F9D0FA72CF7B700006AC2D3 /* readsyUITests */,
+				7F95CAF42EF8E06000D91EE9 /* ReadsyWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F95CAF32EF8E06000D91EE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0F8C2CF7B6FF006AC2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0F9C2CF7B700006AC2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0FA62CF7B700006AC2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F95CAF12EF8E06000D91EE9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0F8A2CF7B6FF006AC2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0F9A2CF7B700006AC2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F9D0FA42CF7B700006AC2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F543EC22D18B4FF00E9C8ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 7F543EC12D18B4FF00E9C8ED /* ZIPFoundation */;
+		};
+		7F95CB042EF8E06100D91EE9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F95CAF42EF8E06000D91EE9 /* ReadsyWidgetExtension */;
+			targetProxy = 7F95CB032EF8E06100D91EE9 /* PBXContainerItemProxy */;
+		};
+		7F9D0FA02CF7B700006AC2D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F9D0F8D2CF7B6FF006AC2D3 /* readsy */;
+			targetProxy = 7F9D0F9F2CF7B700006AC2D3 /* PBXContainerItemProxy */;
+		};
+		7F9D0FAA2CF7B700006AC2D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F9D0F8D2CF7B6FF006AC2D3 /* readsy */;
+			targetProxy = 7F9D0FA92CF7B700006AC2D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7F95CB062EF8E06100D91EE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ReadsyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_ASSET_PATHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReadsyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReadsyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 4.1;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readsy.ReadsyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F95CB072EF8E06100D91EE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ReadsyWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_ASSET_PATHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ReadsyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ReadsyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 4.1;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readsy.ReadsyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7F9D0FB02CF7B700006AC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FZ4YZD3U5W;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7F9D0FB12CF7B700006AC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = FZ4YZD3U5W;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7F9D0FB32CF7B700006AC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = readsy/readsy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_ASSET_PATHS = "\"readsy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = readsy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Readsy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 4.1;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readsy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7F9D0FB42CF7B700006AC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = readsy/readsy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				DEVELOPMENT_ASSET_PATHS = "\"readsy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = readsy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Readsy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = NO;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 4.1;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readsy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7F9D0FB62CF7B700006AC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readmeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/readsy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/readsy";
+			};
+			name = Debug;
+		};
+		7F9D0FB72CF7B700006AC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readmeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/readsy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/readsy";
+			};
+			name = Release;
+		};
+		7F9D0FB92CF7B700006AC2D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readmeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = readme;
+			};
+			name = Debug;
+		};
+		7F9D0FBA2CF7B700006AC2D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 14;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.jeremybrooks.readmeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = readme;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F95CB082EF8E06100D91EE9 /* Build configuration list for PBXNativeTarget "ReadsyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F95CB062EF8E06100D91EE9 /* Debug */,
+				7F95CB072EF8E06100D91EE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F9D0F892CF7B6FF006AC2D3 /* Build configuration list for PBXProject "readsy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F9D0FB02CF7B700006AC2D3 /* Debug */,
+				7F9D0FB12CF7B700006AC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F9D0FB22CF7B700006AC2D3 /* Build configuration list for PBXNativeTarget "readsy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F9D0FB32CF7B700006AC2D3 /* Debug */,
+				7F9D0FB42CF7B700006AC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F9D0FB52CF7B700006AC2D3 /* Build configuration list for PBXNativeTarget "readsyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F9D0FB62CF7B700006AC2D3 /* Debug */,
+				7F9D0FB72CF7B700006AC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F9D0FB82CF7B700006AC2D3 /* Build configuration list for PBXNativeTarget "readsyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F9D0FB92CF7B700006AC2D3 /* Debug */,
+				7F9D0FBA2CF7B700006AC2D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7F047E9A2D18B12A005B31B9 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.19;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7F543EC12D18B4FF00E9C8ED /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F047E9A2D18B12A005B31B9 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+		7F543EC42D18B50900E9C8ED /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F047E9A2D18B12A005B31B9 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7F9D0F862CF7B6FF006AC2D3 /* Project object */;
+}
